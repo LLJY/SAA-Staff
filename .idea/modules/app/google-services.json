@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "793538287708",
+    "firebase_url": "https://saa-project-56400.firebaseio.com",
+    "project_id": "saa-project-56400",
+    "storage_bucket": "saa-project-56400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793538287708:android:b1fcbace3cee7d902bae99",
+        "android_client_info": {
+          "package_name": "com.saa.staff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793538287708-8ctcaqk5utphlk7gbp45665iqobe2gu6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saa.staff",
+            "certificate_hash": "5389579d15a24b04ffc7a2f8bfec96ae66d4f17a"
+          }
+        },
+        {
+          "client_id": "793538287708-bksuclt8hmpgq1a8bsim252suahc55l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhmNcUP3HbkW8jI7klOtFUXVDp5TYQUeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793538287708-bksuclt8hmpgq1a8bsim252suahc55l8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
