@@ -37,6 +37,7 @@ import kotlin.collections.ArrayList
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private val viewModel: SignupViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
     @Inject lateinit var pd: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -192,8 +193,10 @@ class SignUpFragment : Fragment() {
                         pd.dismiss()
                         if(it){
                             activity?.onBackPressed()
+                            // autofill email for the user.
+                            loginViewModel.email = viewModel.user.email
                         }else{
-
+                            Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_LONG).show()
                         }
                     }
                 } else {
