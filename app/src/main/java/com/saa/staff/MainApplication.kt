@@ -26,7 +26,7 @@ import javax.inject.Singleton
 @InstallIn(ActivityComponent::class)
 object ProgressDialogModule {
     @Provides
-    fun ProvideProgressDialog(@ActivityContext appContext: Context): ProgressDialog{
+    fun provideProgressDialog(@ActivityContext appContext: Context): ProgressDialog{
         // create pd and set some attributes
         val pd = ProgressDialog(appContext)
         pd.setCancelable(false)
