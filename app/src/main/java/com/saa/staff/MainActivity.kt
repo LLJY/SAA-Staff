@@ -3,14 +3,11 @@ package com.saa.staff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.navigation.NavDirections
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.saa.staff.databinding.ActivityMainBinding
-import com.saa.staff.fragments.LoginFragmentDirections
-import com.saa.staff.fragments.LoginViewModel
+import com.saa.staff.viewModels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

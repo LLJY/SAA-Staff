@@ -49,7 +49,7 @@ object NetworkModule{
     @Provides
     fun provideRetrofit(): Retrofit{
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5001/saa-project-56400/us-central1/")
+            .baseUrl("http://10.0.2.2:8080/")
             .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
             .build()
         return retrofit

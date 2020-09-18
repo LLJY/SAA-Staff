@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/approveStaffFragment">
+
+    <fragment
+        android:id="@+id/approveStaffFragment"
+        android:name="com.saa.staff.fragments.ApproveStaffFragment"
+        android:label="approve_staff_fragment"
+        tools:layout="@layout/approve_staff_fragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.saa.staff.fragments.EditProfileFragment"
+        android:label="edit_profile_fragment"
+        tools:layout="@layout/edit_profile_fragment" />
+    <fragment
+        android:id="@+id/manageCoursesFragment"
+        android:name="com.saa.staff.fragments.ManageCoursesFragment"
+        android:label="manage_courses_fragment"
+        tools:layout="@layout/manage_courses_fragment" />
+    <fragment
+        android:id="@+id/manageFellowshipFragment"
+        android:name="com.saa.staff.fragments.ManageFellowshipFragment"
+        android:label="manage_fellowship_fragment"
+        tools:layout="@layout/manage_fellowship_fragment" />
+    <fragment
+        android:id="@+id/manageScholarshipFragment"
+        android:name="com.saa.staff.fragments.ManageScholarshipFragment"
+        android:label="manage_scholarship_fragment"
+        tools:layout="@layout/manage_scholarship_fragment" />
+    <fragment
+        android:id="@+id/reviewApplicationFragment"
+        android:name="com.saa.staff.fragments.ReviewApplicationFragment"
+        android:label="review_application_fragment"
+        tools:layout="@layout/review_application_fragment" />
+    <fragment
+        android:id="@+id/sendNotificationFragment"
+        android:name="com.saa.staff.fragments.SendNotificationFragment"
+        android:label="send_notification_fragment"
+        tools:layout="@layout/send_notification_fragment" />
+    <fragment
+        android:id="@+id/trainingProgressFragment"
+        android:name="com.saa.staff.fragments.TrainingProgressFragment"
+        android:label="training_progress_fragment"
+        tools:layout="@layout/training_progress_fragment" />
+    <fragment
+        android:id="@+id/manageDiplomaFragment"
+        android:name="com.saa.staff.fragments.ManageDiplomaFragment"
+        android:label="manage_diploma_fragment"
+        tools:layout="@layout/manage_diploma_fragment" />
+</navigation>

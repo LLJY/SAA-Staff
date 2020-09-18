@@ -1,4 +1,4 @@
-package com.saa.staff.fragments
+package com.saa.staff.viewModels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*

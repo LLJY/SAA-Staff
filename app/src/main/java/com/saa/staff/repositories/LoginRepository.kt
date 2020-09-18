@@ -1,5 +1,6 @@
 package com.saa.staff.repositories
 
+import android.util.Log
 import com.saa.staff.interfaces.FirebaseCloudService
 import com.saa.staff.models.User
 import retrofit2.Retrofit
@@ -12,6 +13,7 @@ class LoginRepository @Inject constructor(var client: FirebaseCloudService) {
             client.signUp(user)
             true
         }catch (ex: Exception){
+            Log.d("Err",ex.toString())
             false
         }
     }
@@ -26,8 +28,9 @@ class LoginRepository @Inject constructor(var client: FirebaseCloudService) {
 
     suspend fun login(email: String, password: String): Boolean{
         return try {
-            client.login(FirebaseCloudService.LoginInformation(email, password)) == "true"
+            client.login(FirebaseCloudService.LoginInformation(email, password))
         }catch (ex: Exception){
+            Log.d("Err",ex.toString())
             false
         }
     }

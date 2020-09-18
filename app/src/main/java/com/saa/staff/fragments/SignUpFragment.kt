@@ -4,24 +4,21 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.saa.staff.R
-import com.saa.staff.databinding.ActivityMainBinding
 import com.saa.staff.databinding.FragmentSignUpBinding
+import com.saa.staff.viewModels.LoginViewModel
+import com.saa.staff.viewModels.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -140,7 +137,7 @@ class SignUpFragment : Fragment() {
             binding.dobPicker.editText!!.addTextChangedListener {
                 try {
                     val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                    viewModel.user.dateOfBirth = date.time;
+                    viewModel.user.dateOfBirth = date.time/1000
                     binding.dobPicker.error = null
                 } catch (ex: Exception) {
                     markFormError(binding.dobPicker, "Please Enter a Valid Date!")
@@ -149,7 +146,7 @@ class SignUpFragment : Fragment() {
             binding.passportExpiryPicker.editText!!.addTextChangedListener {
                 try {
                     val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                    viewModel.user.passportExpiry = date.time;
+                    viewModel.user.passportExpiry = date.time/1000
                     binding.passportExpiryPicker.error = null
                 } catch (ex: Exception) {
                     markFormError(binding.passportExpiryPicker, "Please Enter a Valid Date!")
