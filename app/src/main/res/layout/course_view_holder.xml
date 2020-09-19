@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Course Title"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/duration_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
+        android:text="duration: 5 days"
+        android:layout_marginTop="18dp"
+        android:textSize="18sp"
+        android:layout_marginStart="12dp"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/fees_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duration_text"
+        android:text="fees: $5000"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/language_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fees_text"
+        android:textSize="18sp"
+        android:text="language: English"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/details_button"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/duration_text"
+        app:layout_constraintBottom_toBottomOf="@id/duration_text"
+        android:text="Details..."
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        app:cornerRadius="50dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/edit_info_button"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/fees_text"
+        app:layout_constraintBottom_toBottomOf="@id/fees_text"
+        android:text="Edit Info"
+        android:backgroundTint="#ef6c00"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        app:cornerRadius="50dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_button"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/language_text"
+        app:layout_constraintBottom_toBottomOf="@id/language_text"
+        android:text="DELETE"
+        android:backgroundTint="#dd2c00"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        app:cornerRadius="50dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        app:layout_constraintTop_toBottomOf="@id/language_text"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

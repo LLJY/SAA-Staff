@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/edit_profile_item"
+            android:title="Edit Profile" />
+
+        <item
+            android:id="@+id/manage_course_item"
+            android:title="Manage Courses" />
+
+        <item
+            android:id="@+id/manage_fellowship_item"
+            android:title="Manage Fellowships" />
+        <item
+            android:id="@+id/manage_scholarship_item"
+            android:title="Manage Scholarships" />
+
+        <item
+            android:id="@+id/manage_diploma_item"
+            android:title="Manage Diploma" />
+
+        <item
+            android:id="@+id/send_notification_item"
+            android:title="Send Push Notification" />
+
+        <item
+            android:id="@+id/training_progress_item"
+            android:title="Training Progress" />
+
+        <item
+            android:id="@+id/review_application_item"
+            android:title="Review Applications" />
+
+        <item
+            android:id="@+id/approve_staff_item"
+            android:title="Approve Staff Users" />
+
+
+    </group>
+</menu>

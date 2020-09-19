@@ -1,4 +1,4 @@
-package com.saa.staff.fragments
+package com.saa.staff.activities.mainui.ReviewApplication
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,28 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.saa.staff.R
-import com.saa.staff.viewModels.ManageCoursesViewModel
+import com.saa.staff.databinding.ReviewApplicationFragmentBinding
+import javax.inject.Inject
 
-class ManageCoursesFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ManageCoursesFragment()
-    }
-
-    private lateinit var viewModel: ManageCoursesViewModel
-
+class ReviewApplicationFragment : Fragment() {
+    val viewModel: ReviewApplicationViewModel by viewModels()
+    lateinit var binding: ReviewApplicationFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.manage_courses_fragment, container, false)
+        binding = ReviewApplicationFragmentBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ManageCoursesViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

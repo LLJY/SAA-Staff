@@ -18,11 +18,3 @@ data class User(
     var password: String? = "",
     var contactNumber: Int = 0
 )
-
-@Serializable
-data class Course(
-    var title: String,
-    var startDate: Long,
-    var endDate: Long,
-
-)
