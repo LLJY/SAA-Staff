@@ -1,5 +1,6 @@
 package com.saa.staff.interfaces
 
+import com.saa.staff.models.Course
 import com.saa.staff.models.User
 import kotlinx.serialization.Serializable
 import retrofit2.Call
@@ -16,8 +17,21 @@ interface FirebaseCloudService{
 
     @POST("check-email")
     suspend fun checkEmail(@Body email: String): String
+
     @Serializable
     data class LoginInformation(val email: String, val password: String)
     @POST("login-staff")
     suspend fun login(@Body loginInformation: LoginInformation):Boolean
+
+    @POST("add-course")
+    suspend fun addCourse(@Body course: Course): Boolean
+
+    @GET("get-courses")
+    suspend fun getCourses(): List<Course>
+
+    @POST("delete-course")
+    suspend fun deleteCourse(@Body course: Course): Boolean
+
+    @POST("update-course")
+    suspend fun updateCourse(@Body course: Course): Boolean
 }

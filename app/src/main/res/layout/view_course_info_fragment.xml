@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.mainui.ManageCourses.ViewCourseInfoFragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Some Course"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/start_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="Start Date: "
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/start_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="3/10/2015"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/start_date_title"
+            app:layout_constraintTop_toBottomOf="@id/start_date_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/end_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="End Date: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_date_text"
+            app:layout_constraintTop_toBottomOf="@id/start_date_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/end_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/15/1002"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/end_date_title"
+            app:layout_constraintTop_toBottomOf="@id/end_date_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fees_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Fees: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/end_date_text"
+            app:layout_constraintTop_toBottomOf="@id/end_date_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fees_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/fees_title"
+            app:layout_constraintTop_toBottomOf="@id/fees_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/learning_outcomes_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Learning Outcomes: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/fees_text"
+            app:layout_constraintTop_toBottomOf="@id/fees_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/learning_outcomes_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="360dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue nunc et congue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec vel tortor tellus. Quisque fringilla, diam ut iaculis pulvinar, libero orci finibus ligula, sed elementum orci metus sit amet nulla. Aliquam euismod mauris eros, iaculis scelerisque lacus tincidunt at. Etiam ultricies tincidunt molestie. Aenean facilisis elementum consectetur. Pellentesque interdum, orci tincidunt auctor molestie, quam odio lacinia nisl, vel efficitur lorem elit a augue."
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/learning_outcomes_title"
+            app:layout_constraintTop_toBottomOf="@id/learning_outcomes_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/attend_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Who is attending: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/learning_outcomes_text"
+            app:layout_constraintTop_toBottomOf="@id/learning_outcomes_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/attend_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lalalalalalala people"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/attend_title"
+            app:layout_constraintTop_toBottomOf="@id/attend_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/prerequisites_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Prerequisites: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/attend_text"
+            app:layout_constraintTop_toBottomOf="@id/attend_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/prerequisites_text"
+            android:layout_width="wrap_content"
+            android:maxWidth="360dp"
+            android:layout_height="wrap_content"
+            android:text="lalalalalalala items"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/prerequisites_title"
+            app:layout_constraintTop_toBottomOf="@id/prerequisites_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Language: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/prerequisites_text"
+            app:layout_constraintTop_toBottomOf="@id/prerequisites_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_text"
+            android:layout_width="wrap_content"
+            android:maxWidth="360dp"
+            android:layout_height="wrap_content"
+            android:text="Engrish"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/language_title"
+            app:layout_constraintTop_toBottomOf="@id/language_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/covered_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="What is covered: "
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/language_text"
+            app:layout_constraintTop_toBottomOf="@id/language_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/covered_text"
+            android:layout_width="wrap_content"
+            android:maxWidth="360dp"
+            android:layout_height="wrap_content"
+            android:text="Proin non congue quam. Maecenas non rhoncus arcu. Donec eu tortor et nulla auctor lacinia non id eros. Vivamus ante diam, hendrerit sit amet ex sit amet, dictum tempus justo. Aliquam a elementum ante, at dapibus metus. Maecenas quis elit sed erat lobortis fringilla. Vestibulum mattis consequat lorem ut pellentesque. Nunc ornare odio a hendrerit semper."
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/covered_title"
+            app:layout_constraintTop_toBottomOf="@id/covered_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

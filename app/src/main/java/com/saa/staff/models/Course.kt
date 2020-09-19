@@ -15,6 +15,7 @@ data class Course(
     var learningActivities: String,
     var language: String,
     var covered: String,
+    var attending: String,
     var applicationDeadline: Long
 )
 class CourseItemDiffCallback : DiffUtil.ItemCallback<Course>(){

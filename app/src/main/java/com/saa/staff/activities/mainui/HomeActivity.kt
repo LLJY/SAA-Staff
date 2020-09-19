@@ -3,6 +3,7 @@ package com.saa.staff.activities.mainui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -28,7 +29,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setHomeButtonEnabled(true)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.editProfileFragment, R.id.manageCoursesFragment, R.id.manageFellowshipFragment, R.id.manageScholarshipFragment, R.id.manageDiplomaFragment, R.id.sendNotificationFragment, R.id.trainingProgressFragment, R.id.reviewApplicationFragment, R.id.approveStaffFragment), binding.drawerLayout)
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         NavigationUI.setupWithNavController(binding.navigationView, navController)
         binding.navigationView.setNavigationItemSelectedListener(this);

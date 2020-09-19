@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.view.LayoutInflater
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.saa.staff.activities.mainui.ManageCourses.ManageCourseRepository
 import com.saa.staff.databinding.ActivityMainBinding
 import com.saa.staff.databinding.FragmentSignUpBinding
 import com.saa.staff.databinding.LoginFragmentBinding
@@ -41,6 +42,11 @@ object RepositoriesModule {
     @Singleton
     fun provideLoginRepository(retrofit: FirebaseCloudService): LoginRepository{
         return LoginRepository(retrofit)
+    }
+    @Provides
+    @Singleton
+    fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository{
+        return ManageCourseRepository(retrofit)
     }
 }
 @Module

@@ -1,23 +1,28 @@
 package com.saa.staff.activities.mainui.ManageCourses
 
-import androidx.lifecycle.ViewModelProviders
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.R
 import com.saa.staff.adapters.CoursesRecyclerAdapter
 import com.saa.staff.databinding.ManageCoursesFragmentBinding
-import com.saa.staff.interfaces.Disposable
 import com.saa.staff.models.Course
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ManageCoursesFragment : Fragment() {
-    val viewModel: ManageCoursesViewModel by viewModels()
+    val viewModel: ManageCoursesViewModel by activityViewModels()
+    val addEditCourseViewModel: AddEditCourseViewModel by activityViewModels()
+    val viewCourseViewModel: ViewCourseInfoViewModel by activityViewModels()
     private lateinit var binding: ManageCoursesFragmentBinding
     private lateinit var adapter: CoursesRecyclerAdapter
     override fun onCreateView(
@@ -32,41 +37,59 @@ class ManageCoursesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         adapter = CoursesRecyclerAdapter(
             requireContext(),
+        )
 
-        )
-        // dummy data
-        val items = listOf(
-            Course(
-                "adana",
-                "An Interesting Course",
-                System.currentTimeMillis(),
-                System.currentTimeMillis()+(22*24*60*10000),
-                1000f,
-                "a",
-                "a",
-                "a",
-                "English",
-                "a",
-                System.currentTimeMillis()
-            )
-        )
+        viewModel.getCourses().observe(viewLifecycleOwner, {
+            Log.d("Courses", it.toString())
+            adapter.submitList(it)
+        })
         // setup the recyclerview
         binding.coursesRecycler.adapter = adapter
         binding.coursesRecycler.layoutManager = LinearLayoutManager(requireContext())
-        adapter.submitList(items)
         binding.swipeRefreshLayout.setOnRefreshListener {
-            //TODO get new list and submit it
-            binding.swipeRefreshLayout.isRefreshing = false
+            refreshRv()
         }
         adapter.deleteClick.subscribe {
-            Snackbar.make(binding.coordinator, "Delete clicked", Snackbar.LENGTH_SHORT).show()
+            // TODO send a delete request
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setMessage("Are you sure you want to delete ${it.title} ?")
+            builder.setTitle("Confirm")
+            builder.setNegativeButton("NO"){dialog, which ->
+
+            }
+            builder.setPositiveButton("YES") { dialog, which ->
+                viewModel.deleteCourse(it).observe(viewLifecycleOwner, {
+                    refreshRv()
+                })
+            }
+            builder.show()
         }
+        // subscribe for click information and launch the views accordingly
         adapter.detailsButtonClick.subscribe{
-            Snackbar.make(binding.coordinator, "Details clicked", Snackbar.LENGTH_SHORT).show()
+            viewCourseViewModel.clearViewModel()
+            viewCourseViewModel.course = it
+            findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToViewCourseInfoFragment())
         }
         adapter.editInfoClick.subscribe {
-            Snackbar.make(binding.coordinator, "Edit clicked", Snackbar.LENGTH_SHORT).show()
+            addEditCourseViewModel.isEdit = true
+            // ensure that viewmodel is cleared
+            addEditCourseViewModel.clearViewModel()
+            addEditCourseViewModel.course = it
+            findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
         }
+        binding.fab.setOnClickListener {
+            addEditCourseViewModel.isEdit = false
+            // ensure that viewmodel is cleared
+            addEditCourseViewModel.clearViewModel()
+            findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
+        }
+    }
+    fun refreshRv(){
+        viewModel.getCourses().observe(viewLifecycleOwner, {
+            binding.swipeRefreshLayout.isRefreshing = false
+            Log.d("Courses", it.toString())
+            adapter.submitList(it)
+        })
     }
 
 }

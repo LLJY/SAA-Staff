@@ -32,6 +32,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val intent = Intent(activity, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent)
         val navController = findNavController()
         binding.emailText.editText!!.setText(viewModel.email)
         binding.passwordText.editText!!.setText(viewModel.password)
