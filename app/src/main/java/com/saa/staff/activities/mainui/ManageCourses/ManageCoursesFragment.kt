@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.CoursesRecyclerAdapter
 import com.saa.staff.databinding.ManageCoursesFragmentBinding
@@ -51,8 +53,8 @@ class ManageCoursesFragment : Fragment() {
         adapter.deleteClick.subscribe {
             // TODO send a delete request
             val builder = AlertDialog.Builder(requireContext())
-            builder.setMessage("Are you sure you want to delete ${it.title} ?")
-            builder.setTitle("Confirm")
+            builder.setTitle("Are you sure?")
+            builder.setMessage("Do you want to delete \"${it.title}\" ?")
             builder.setNegativeButton("NO"){dialog, which ->
 
             }
@@ -82,6 +84,20 @@ class ManageCoursesFragment : Fragment() {
             addEditCourseViewModel.clearViewModel()
             findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
         }
+        binding.coursesRecycler.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(dy > 0){
+                    binding.fab.hide()
+                }else if(dy<0){
+                    binding.fab.show()
+                }
+            }
+        })
     }
     fun refreshRv(){
         viewModel.getCourses().observe(viewLifecycleOwner, {

@@ -39,7 +39,22 @@
         android:id="@+id/manageFellowshipFragment"
         android:name="com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipFragment"
         android:label="manage_fellowship_fragment"
-        tools:layout="@layout/manage_fellowship_fragment" />
+        tools:layout="@layout/manage_fellowship_fragment" >
+        <action
+            android:id="@+id/action_manageFellowshipFragment_to_viewFellowshipFragment"
+            app:destination="@id/viewFellowshipFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_manageFellowshipFragment_to_addEditFellowshipFragment"
+            app:destination="@id/addEditFellowshipFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/manageScholarshipFragment"
         android:name="com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipFragment"
@@ -73,4 +88,13 @@
         android:id="@+id/viewCourseInfoFragment"
         android:name="com.saa.staff.activities.mainui.ManageCourses.ViewCourseInfoFragment"
         android:label="ViewCourseInfoFragment" />
+    <fragment
+        android:id="@+id/viewFellowshipFragment"
+        android:name="com.saa.staff.activities.mainui.ManageFellowship.ViewFellowshipFragment"
+        android:label="ViewFellowshipFragment" />
+    <fragment
+        android:id="@+id/addEditFellowshipFragment"
+        android:name="com.saa.staff.activities.mainui.ManageFellowship.AddEditFellowshipFragment"
+        android:label="add_edit_fellowship_fragment"
+        tools:layout="@layout/add_edit_fellowship_fragment" />
 </navigation>

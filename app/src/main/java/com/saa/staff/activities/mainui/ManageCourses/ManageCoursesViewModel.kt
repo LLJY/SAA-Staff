@@ -13,9 +13,7 @@ import javax.inject.Inject
 class ManageCoursesViewModel @ViewModelInject constructor(private var repository: ManageCourseRepository) : ViewModel() {
     var courses: List<Course> = ArrayList()
 
-    fun getCourses(): LiveData<List<Course>>{
-        return liveData(Dispatchers.IO) { emit(repository.getCourses()) }
-    }
+    fun getCourses()= liveData(Dispatchers.IO) { emit(repository.getCourses()) }
 
     /**
      * Adds course, returns boolean for successful or not

@@ -17,7 +17,12 @@ data class Course(
     var covered: String,
     var attending: String,
     var applicationDeadline: Long
-)
+){
+    // override the toString method to correctly display in a spinner
+    override fun toString(): String {
+        return this.title
+    }
+}
 class CourseItemDiffCallback : DiffUtil.ItemCallback<Course>(){
     override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
         // only compare their unique uuids
@@ -34,8 +39,6 @@ class CourseItemDiffCallback : DiffUtil.ItemCallback<Course>(){
 data class Fellowship(
     var uuid: String,
     var title: String,
-    var startDate: Long,
-    var endDate: Long,
     var outline: String,
     var course: Course,
     var applicationDeadline: Long

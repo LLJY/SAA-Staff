@@ -1,14 +1,19 @@
 package com.saa.staff.activities.mainui.ManageCourses
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.R
@@ -174,6 +179,21 @@ class AddEditCourseFragment : Fragment() {
             }else{
                 Snackbar.make(binding.root, "Ensure all fields are valid!", Snackbar.LENGTH_LONG).show()
             }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
+            val dialog = AlertDialog.Builder(context)
+            dialog.setTitle("Are you sure?")
+            dialog.setMessage("Are you sure you want to abandon your changes?")
+            dialog.setNegativeButton("NO") { _: DialogInterface, i: Int ->
+
+            }
+            dialog.setPositiveButton("YES") { dialog: DialogInterface, i: Int ->
+                dialog.dismiss()
+                // disable the callback when yes is pressed and trigger onBackPressed
+                this.isEnabled = false
+                requireActivity().onBackPressed()
+            }
+            dialog.show()
         }
     }
 
