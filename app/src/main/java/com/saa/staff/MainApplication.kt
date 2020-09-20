@@ -6,6 +6,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.saa.staff.activities.mainui.ManageCourses.ManageCourseRepository
+import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaRepository
+import com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipRepository
 import com.saa.staff.databinding.ActivityMainBinding
 import com.saa.staff.databinding.FragmentSignUpBinding
 import com.saa.staff.databinding.LoginFragmentBinding
@@ -48,6 +50,16 @@ object RepositoriesModule {
     fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository{
         return ManageCourseRepository(retrofit)
     }
+    @Provides
+    @Singleton
+    fun provideManageFellowshipRepository(retrofit: FirebaseCloudService): ManageFellowshipRepository{
+        return ManageFellowshipRepository(retrofit)
+    }
+    @Provides
+    @Singleton
+    fun provideManageDiplomaRepository(retrofit: FirebaseCloudService): ManageDiplomaRepository{
+        return ManageDiplomaRepository(retrofit)
+    }
 }
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -69,8 +81,6 @@ object NetworkModule{
 }
 @HiltAndroidApp
 class MainApplication: Application() {
-
-
     override fun onCreate() {
         super.onCreate()
     }

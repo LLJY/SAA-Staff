@@ -55,4 +55,26 @@ class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>(){
 
 }
 
+@Serializable
+data class Diploma(
+    var uuid: String,
+    var title: String,
+    var fees: String,
+    var outline: String,
+    var startDate: Long,
+    var endDate: Long,
+    var applicationDeadline: Long
+)
+class DiplomaItemDiffCallback : DiffUtil.ItemCallback<Diploma>(){
+    override fun areItemsTheSame(oldItem: Diploma, newItem: Diploma): Boolean {
+        // only compare their unique uuids
+        return oldItem.uuid == newItem.uuid
+    }
+
+    override fun areContentsTheSame(oldItem: Diploma, newItem: Diploma): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
 
