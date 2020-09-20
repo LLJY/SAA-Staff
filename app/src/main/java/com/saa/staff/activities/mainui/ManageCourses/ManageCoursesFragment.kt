@@ -86,7 +86,6 @@ class ManageCoursesFragment : Fragment() {
     fun refreshRv(){
         viewModel.getCourses().observe(viewLifecycleOwner, {
             binding.swipeRefreshLayout.isRefreshing = false
-            Log.d("Courses", it.toString())
             adapter.submitList(it)
         })
     }
