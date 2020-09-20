@@ -51,6 +51,7 @@ class CoursesRecyclerAdapter(var context: Context): ListAdapter<Course, CoursesV
         binding.feesText.text = "Fees: ${formatter.format(course.fees)}"
         binding.languageText.text = "Language: ${course.language}"
         binding.titleText.text = course.title
+        binding.titleText.isSelected = true
         // set the onclick listener
         binding.editInfoButton.setOnClickListener{
             editInfoClickPublisher.onNext(course)

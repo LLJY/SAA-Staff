@@ -40,7 +40,6 @@ class ManageCoursesFragment : Fragment() {
         )
 
         viewModel.getCourses().observe(viewLifecycleOwner, {
-            Log.d("Courses", it.toString())
             adapter.submitList(it)
         })
         // setup the recyclerview
