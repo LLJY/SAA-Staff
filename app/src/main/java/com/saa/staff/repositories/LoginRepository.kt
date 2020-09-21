@@ -3,8 +3,6 @@ package com.saa.staff.repositories
 import android.util.Log
 import com.saa.staff.interfaces.FirebaseCloudService
 import com.saa.staff.models.User
-import retrofit2.Retrofit
-import java.lang.Exception
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(var client: FirebaseCloudService) {
@@ -20,7 +18,7 @@ class LoginRepository @Inject constructor(var client: FirebaseCloudService) {
 
     suspend fun checkEmail(email: String): Boolean{
         return try {
-            client.checkEmail(email) == "true"
+            client.checkEmail(email)
         }catch (ex: Exception){
             false
         }

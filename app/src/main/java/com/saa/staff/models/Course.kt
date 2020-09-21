@@ -59,7 +59,7 @@ class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>(){
 data class Diploma(
     var uuid: String,
     var title: String,
-    var fees: String,
+    var fees: Float,
     var outline: String,
     var startDate: Long,
     var endDate: Long,

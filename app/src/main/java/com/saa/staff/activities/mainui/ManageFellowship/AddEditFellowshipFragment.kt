@@ -1,22 +1,20 @@
 package com.saa.staff.activities.mainui.ManageFellowship
 
 import android.app.ProgressDialog
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.R
 import com.saa.staff.activities.mainui.ManageCourses.ManageCoursesViewModel
-import com.saa.staff.databinding.AddEditCourseFragmentBinding
 import com.saa.staff.databinding.AddEditFellowshipFragmentBinding
 import com.saa.staff.models.Course
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,20 +40,21 @@ class AddEditFellowshipFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         pd.show()
-        manageCourseViewModel.getCourses().observe(viewLifecycleOwner, {
+        manageCourseViewModel.getCourses().observe(viewLifecycleOwner) {
             pd.dismiss()
             viewModel.courseList = it as ArrayList<Course>
-            val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, it)
+            val adapter =
+                ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, it)
             (binding.courseSpinner.editText!! as AutoCompleteTextView).setAdapter(adapter)
             (binding.courseSpinner.editText!! as AutoCompleteTextView).setOnItemClickListener { parent, view, position, id ->
                 viewModel.fellowShip.course = viewModel.courseList[position]
             }
-            if(viewModel.isEdit){
+            if (viewModel.isEdit) {
                 val courseIndex = viewModel.courseList.indexOf(viewModel.fellowShip.course)
                 // ensure it does not get set to -1
                 (binding.courseSpinner.editText!! as AutoCompleteTextView).setSelection(if(courseIndex == -1) 0 else courseIndex)
             }
-        })
+        }
         // set up the fields if is editing
         if(viewModel.isEdit){
             binding.courseTitleText.editText!!.setText(viewModel.fellowShip.title)

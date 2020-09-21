@@ -79,7 +79,22 @@
         android:id="@+id/manageDiplomaFragment"
         android:name="com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaFragment"
         android:label="manage_diploma_fragment"
-        tools:layout="@layout/manage_diploma_fragment" />
+        tools:layout="@layout/manage_diploma_fragment">
+        <action
+            android:id="@+id/action_manageDiplomaFragment_to_addEditDiplomaFragment"
+            app:destination="@id/addEditDiplomaFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_manageDiplomaFragment_to_viewDiplomaFragment"
+            app:destination="@id/viewDiplomaFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/addEditCourseFragment"
         android:name="com.saa.staff.activities.mainui.ManageCourses.AddEditCourseFragment"
@@ -97,4 +112,12 @@
         android:name="com.saa.staff.activities.mainui.ManageFellowship.AddEditFellowshipFragment"
         android:label="add_edit_fellowship_fragment"
         tools:layout="@layout/add_edit_fellowship_fragment" />
+    <fragment
+        android:id="@+id/addEditDiplomaFragment"
+        android:name="com.saa.staff.activities.mainui.ManageDiploma.AddEditDiplomaFragment"
+        android:label="AddEditDiplomaFragment" />
+    <fragment
+        android:id="@+id/viewDiplomaFragment"
+        android:name="com.saa.staff.activities.mainui.ManageDiploma.ViewDiplomaFragment"
+        android:label="ViewDiplomaFragment" />
 </navigation>

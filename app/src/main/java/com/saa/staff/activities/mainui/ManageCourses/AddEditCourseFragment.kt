@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.R
@@ -26,6 +24,7 @@ class AddEditCourseFragment : Fragment() {
     private val viewModel: AddEditCourseViewModel by activityViewModels()
     val manageCourseViewModel: ManageCoursesViewModel by activityViewModels()
     private lateinit var binding: AddEditCourseFragmentBinding
+    private var isExit = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,11 +35,12 @@ class AddEditCourseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        isExit = false
         val allLanguages = ArrayList<String>()
         val languages: Array<String> = Locale.getISOLanguages()
         for (i in languages.indices) {
             val loc = Locale(languages[i])
-            allLanguages.add(loc.getDisplayLanguage())
+            allLanguages.add(loc.displayLanguage)
         }
         val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, allLanguages)
         (binding.languageSpinner.editText!! as AutoCompleteTextView).setAdapter(adapter)
@@ -155,25 +155,34 @@ class AddEditCourseFragment : Fragment() {
             viewModel.course.language = it.toString()
         }
         binding.doneButton.setOnClickListener {
+            isExit = true
             val course = viewModel.course
             if (course.applicationDeadline != 0L && course.attending.isNotBlank() && course.covered.isNotBlank() && course.startDate != 0L && course.endDate != 0L && course.language.isNotBlank() && course.learningActivities.isNotBlank() && course.learningOutcomes.isNotBlank() && course.title.isNotBlank() && course.language.isNotBlank()) {
                 // check if in edit mode, then choose to update or add.
                 if(viewModel.isEdit){
                     manageCourseViewModel.updateCourse(course).observe(viewLifecycleOwner, {
-                        if(it){
+                        if (it) {
                             requireActivity().onBackPressed()
-                        }else{
-                            Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            Snackbar.make(
+                                binding.root,
+                                "Oops! Something went wrong!",
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
-                    });
+                    })
                 }else{
                     manageCourseViewModel.addCourse(course).observe(viewLifecycleOwner, {
-                        if(it){
+                        if (it) {
                             requireActivity().onBackPressed()
-                        }else{
-                            Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG).show()
+                        } else {
+                            Snackbar.make(
+                                binding.root,
+                                "Oops! Something went wrong!",
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
-                    });
+                    })
                 }
 
             }else{
@@ -193,7 +202,12 @@ class AddEditCourseFragment : Fragment() {
                 this.isEnabled = false
                 requireActivity().onBackPressed()
             }
-            dialog.show()
+            if (isExit) {
+                this.isEnabled = false
+                requireActivity().onBackPressed()
+            } else {
+                dialog.show()
+            }
         }
     }
 

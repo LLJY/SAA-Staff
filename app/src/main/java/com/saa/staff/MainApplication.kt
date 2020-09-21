@@ -3,14 +3,10 @@ package com.saa.staff
 import android.app.Application
 import android.app.ProgressDialog
 import android.content.Context
-import android.view.LayoutInflater
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.saa.staff.activities.mainui.ManageCourses.ManageCourseRepository
 import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaRepository
 import com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipRepository
-import com.saa.staff.databinding.ActivityMainBinding
-import com.saa.staff.databinding.FragmentSignUpBinding
-import com.saa.staff.databinding.LoginFragmentBinding
 import com.saa.staff.interfaces.FirebaseCloudService
 import com.saa.staff.repositories.LoginRepository
 import dagger.Module
@@ -67,7 +63,7 @@ object NetworkModule{
     @Provides
     fun provideRetrofit(): Retrofit{
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/")
+            .baseUrl("http://192.168.1.94:8080/")
             .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
             .build()
         return retrofit
@@ -81,7 +77,4 @@ object NetworkModule{
 }
 @HiltAndroidApp
 class MainApplication: Application() {
-    override fun onCreate() {
-        super.onCreate()
-    }
 }
