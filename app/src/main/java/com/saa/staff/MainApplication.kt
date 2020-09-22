@@ -7,6 +7,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.saa.staff.activities.mainui.ManageCourses.ManageCourseRepository
 import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaRepository
 import com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipRepository
+import com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipRepository
 import com.saa.staff.interfaces.FirebaseCloudService
 import com.saa.staff.repositories.LoginRepository
 import dagger.Module
@@ -29,7 +30,7 @@ object ProgressDialogModule {
         // create pd and set some attributes
         val pd = ProgressDialog(appContext)
         pd.setCancelable(false)
-        pd.setTitle("Loading...")
+        pd.setTitle("Please wait...")
         return pd
     }
 }
@@ -46,15 +47,23 @@ object RepositoriesModule {
     fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository{
         return ManageCourseRepository(retrofit)
     }
+
     @Provides
     @Singleton
-    fun provideManageFellowshipRepository(retrofit: FirebaseCloudService): ManageFellowshipRepository{
+    fun provideManageFellowshipRepository(retrofit: FirebaseCloudService): ManageFellowshipRepository {
         return ManageFellowshipRepository(retrofit)
     }
+
     @Provides
     @Singleton
-    fun provideManageDiplomaRepository(retrofit: FirebaseCloudService): ManageDiplomaRepository{
+    fun provideManageDiplomaRepository(retrofit: FirebaseCloudService): ManageDiplomaRepository {
         return ManageDiplomaRepository(retrofit)
+    }
+
+    @Provides
+    @Singleton
+    fun provideManageScholarshipRepository(retrofit: FirebaseCloudService): ManageScholarshipRepository {
+        return ManageScholarshipRepository(retrofit)
     }
 }
 @Module
@@ -75,6 +84,6 @@ object NetworkModule{
     }
 
 }
+
 @HiltAndroidApp
-class MainApplication: Application() {
-}
+class MainApplication : Application()

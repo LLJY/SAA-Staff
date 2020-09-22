@@ -43,13 +43,36 @@ data class Fellowship(
     var course: Course,
     var applicationDeadline: Long
 )
-class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>(){
+
+class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>() {
     override fun areItemsTheSame(oldItem: Fellowship, newItem: Fellowship): Boolean {
         // only compare their unique uuids
         return oldItem.uuid == newItem.uuid
     }
 
     override fun areContentsTheSame(oldItem: Fellowship, newItem: Fellowship): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
+@Serializable
+data class Scholarship(
+    var uuid: String,
+    var title: String,
+    var eligibility: String,
+    var benefits: String,
+    var bondTime: Int,
+    var outline: String
+)
+
+class ScholarshipItemDiffCallback : DiffUtil.ItemCallback<Scholarship>() {
+    override fun areItemsTheSame(oldItem: Scholarship, newItem: Scholarship): Boolean {
+        // only compare their unique uuids
+        return oldItem.uuid == newItem.uuid
+    }
+
+    override fun areContentsTheSame(oldItem: Scholarship, newItem: Scholarship): Boolean {
         return oldItem == newItem
     }
 

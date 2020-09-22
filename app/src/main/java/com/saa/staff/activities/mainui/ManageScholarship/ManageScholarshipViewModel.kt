@@ -1,8 +1,38 @@
 package com.saa.staff.activities.mainui.ManageScholarship
 
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.saa.staff.models.Scholarship
 
-class ManageScholarshipViewModel @ViewModelInject constructor() : ViewModel() {
-    // TODO: Implement the ViewModel
+class ManageScholarshipViewModel @ViewModelInject constructor(var repository: ManageScholarshipRepository) :
+    ViewModel() {
+    var scholarships: List<Scholarship>? = null
+
+    fun getScholarships() = liveData {
+        if (scholarships == null) {
+            emit(repository.getScholarships())
+        } else {
+            emit(scholarships)
+        }
+    }
+
+    fun addScholarship(scholarship: Scholarship): LiveData<Boolean> {
+        return liveData {
+            emit(repository.addScholarship(scholarship))
+        }
+    }
+
+    fun deleteScholarship(scholarship: Scholarship): LiveData<Boolean> {
+        return liveData {
+            emit(repository.deleteScholarship(scholarship))
+        }
+    }
+
+    fun updateScholarship(scholarship: Scholarship): LiveData<Boolean> {
+        return liveData {
+            emit(repository.updateScholarship(scholarship))
+        }
+    }
 }

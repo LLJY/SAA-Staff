@@ -59,7 +59,22 @@
         android:id="@+id/manageScholarshipFragment"
         android:name="com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipFragment"
         android:label="manage_scholarship_fragment"
-        tools:layout="@layout/manage_scholarship_fragment" />
+        tools:layout="@layout/manage_scholarship_fragment">
+        <action
+            android:id="@+id/action_manageScholarshipFragment_to_viewScholarshipFragment"
+            app:destination="@id/viewScholarshipFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_manageScholarshipFragment_to_addEditScholarshipFragment"
+            app:destination="@id/addEditScholarshipFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/reviewApplicationFragment"
         android:name="com.saa.staff.activities.mainui.ReviewApplication.ReviewApplicationFragment"
@@ -120,4 +135,12 @@
         android:id="@+id/viewDiplomaFragment"
         android:name="com.saa.staff.activities.mainui.ManageDiploma.ViewDiplomaFragment"
         android:label="ViewDiplomaFragment" />
+    <fragment
+        android:id="@+id/addEditScholarshipFragment"
+        android:name="com.saa.staff.activities.mainui.ManageScholarship.AddEditScholarshipFragment"
+        android:label="AddEditScholarshipFragment" />
+    <fragment
+        android:id="@+id/viewScholarshipFragment"
+        android:name="com.saa.staff.activities.mainui.ManageScholarship.ViewScholarshipFragment"
+        android:label="ViewScholarshipFragment" />
 </navigation>
