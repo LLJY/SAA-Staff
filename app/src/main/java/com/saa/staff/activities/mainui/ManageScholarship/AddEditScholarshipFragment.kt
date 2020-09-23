@@ -41,16 +41,44 @@ class AddEditScholarshipFragment : Fragment() {
             binding.outlineText.editText!!.setText(scholarship.outline)
         }
         binding.titleText.editText!!.addTextChangedListener {
-
+            if (it.toString().isNotBlank()) {
+                binding.titleText.error = null
+                viewModel.scholarship.title = it.toString()
+            } else {
+                binding.titleText.error = "Required"
+            }
         }
         binding.outlineText.editText!!.addTextChangedListener {
-
+            if (it.toString().isNotBlank()) {
+                binding.outlineText.error = null
+                viewModel.scholarship.outline = it.toString()
+            } else {
+                binding.outlineText.error = "Required"
+            }
         }
         binding.eligibilityText.editText!!.addTextChangedListener {
-
+            if (it.toString().isNotBlank()) {
+                binding.eligibilityText.error = null
+                viewModel.scholarship.eligibility = it.toString()
+            } else {
+                binding.eligibilityText.error = "Required"
+            }
         }
         binding.benefitsText.editText!!.addTextChangedListener {
-
+            if (it.toString().isNotBlank()) {
+                binding.benefitsText.error = null
+                viewModel.scholarship.benefits = it.toString()
+            } else {
+                binding.benefitsText.error = "Required"
+            }
+        }
+        binding.bondPeriodText.editText!!.addTextChangedListener {
+            if (it.toString().isNotBlank()) {
+                binding.bondPeriodText.error = null
+                viewModel.scholarship.bondTime = it.toString().toInt()
+            } else {
+                binding.bondPeriodText.error = "Required"
+            }
         }
         binding.doneButton.setOnClickListener {
             val scholarship = viewModel.scholarship
