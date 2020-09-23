@@ -13,16 +13,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.databinding.AddEditScholarshipFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddEditScholarshipFragment : Fragment() {
     private var isExit = false
     private val viewModel: AddEditScholarshipViewModel by activityViewModels()
     private val manageScholarshipViewModel: ManageScholarshipViewModel by activityViewModels()
     private lateinit var binding: AddEditScholarshipFragmentBinding
 
-    @Inject
-    lateinit var pd: ProgressDialog
+    @Inject lateinit var pd: ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

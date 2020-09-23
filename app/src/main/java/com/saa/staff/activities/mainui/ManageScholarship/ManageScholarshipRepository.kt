@@ -5,20 +5,11 @@ import com.saa.staff.interfaces.FirebaseCloudService
 import com.saa.staff.models.Scholarship
 import javax.inject.Inject
 
-class ManageScholarshipRepository @Inject constructor(retrofit: FirebaseCloudService) {
+class ManageScholarshipRepository @Inject constructor(var retrofit: FirebaseCloudService) {
     // TODO use retrofit
     suspend fun getScholarships(): List<Scholarship> {
         return try {
-            listOf(
-                Scholarship(
-                    "aaa",
-                    "An Interesting Scholarship",
-                    "GCE O Levels",
-                    "Lots of benefits",
-                    10,
-                    "Some very long lorem ipsum outline im lazy to add because I don't currently have internet"
-                )
-            )
+            retrofit.getScholarships()
         } catch (ex: Exception) {
             Log.d("Err", ex.toString())
             // return empty list if error
@@ -27,14 +18,29 @@ class ManageScholarshipRepository @Inject constructor(retrofit: FirebaseCloudSer
     }
 
     suspend fun addScholarship(scholarship: Scholarship): Boolean {
-        return true
+        return try {
+            retrofit.addScholarship(scholarship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
 
     suspend fun updateScholarship(scholarship: Scholarship): Boolean {
-        return true
+        return try {
+            retrofit.updateScholarship(scholarship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
 
     suspend fun deleteScholarship(scholarship: Scholarship): Boolean {
-        return true
+        return try {
+            retrofit.deleteScholarship(scholarship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
 }

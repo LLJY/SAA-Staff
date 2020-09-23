@@ -8,31 +8,10 @@ import retrofit2.Retrofit
 import java.lang.Exception
 import javax.inject.Inject
 
-class ManageFellowshipRepository @Inject constructor(retrofit: FirebaseCloudService) {
+class ManageFellowshipRepository @Inject constructor(var retrofit: FirebaseCloudService) {
     suspend fun getFellowships(): List<Fellowship> {
         return try {
-            listOf(
-                Fellowship(
-                    "",
-                    "An interesting fellowship",
-                    "some random outline",
-                    Course(
-                        "",
-                        "An interesting course",
-                        System.currentTimeMillis() - 10000000,
-                        System.currentTimeMillis(),
-                        1000f,
-                        "some outcome",
-                        "some prerequisites",
-                        "some activities",
-                        "English",
-                        "covered",
-                        "a",
-                        System.currentTimeMillis()
-                    ),
-                    System.currentTimeMillis()
-                )
-            )
+            retrofit.getFellowships()
         } catch (ex: Exception) {
             Log.d("Err", ex.toString())
             // return empty list if error
@@ -40,12 +19,27 @@ class ManageFellowshipRepository @Inject constructor(retrofit: FirebaseCloudServ
         }
     }
     suspend fun addFellowship(fellowship: Fellowship): Boolean {
-        return true
+        return try {
+            retrofit.addFellowship(fellowship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
     suspend fun updateFellowship(fellowship: Fellowship): Boolean {
-        return true
+        return try {
+            retrofit.updateFellowship(fellowship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
     suspend fun deleteFellowship(fellowship: Fellowship): Boolean {
-        return true
+        return try {
+            retrofit.deleteFellowship(fellowship)
+        } catch (ex: Exception) {
+            Log.d("Err", ex.toString())
+            false
+        }
     }
 }

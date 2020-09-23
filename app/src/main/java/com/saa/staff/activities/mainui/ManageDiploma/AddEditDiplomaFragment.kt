@@ -11,10 +11,12 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.databinding.AddEditDiplomaFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AddEditDiplomaFragment : Fragment() {
     private val viewModel: AddEditDiplomaViewModel by activityViewModels()
     val manageDiplomaViewModel: ManageDiplomaViewModel by activityViewModels()

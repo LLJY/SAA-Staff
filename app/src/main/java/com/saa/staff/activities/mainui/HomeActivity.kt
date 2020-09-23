@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_home.*
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
@@ -32,7 +33,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         appBarConfiguration = AppBarConfiguration(setOf(R.id.editProfileFragment, R.id.manageCoursesFragment, R.id.manageFellowshipFragment, R.id.manageScholarshipFragment, R.id.manageDiplomaFragment, R.id.sendNotificationFragment, R.id.trainingProgressFragment, R.id.reviewApplicationFragment, R.id.approveStaffFragment), binding.drawerLayout)
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         NavigationUI.setupWithNavController(binding.navigationView, navController)
-        binding.navigationView.setNavigationItemSelectedListener(this);
+        binding.navigationView.setNavigationItemSelectedListener(this)
 
     }
 

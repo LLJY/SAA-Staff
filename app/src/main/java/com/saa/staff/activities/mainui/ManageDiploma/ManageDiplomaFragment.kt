@@ -77,8 +77,12 @@ class ManageDiplomaFragment : Fragment() {
             addEditDiplomaViewModel.isEdit = true
             addEditDiplomaViewModel.diploma = it
             findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToAddEditDiplomaFragment())
-        }
 
+        }
+        binding.fab.setOnClickListener {
+            addEditDiplomaViewModel.clearViewModel()
+            findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToAddEditDiplomaFragment())
+        }
     }
 
     /**

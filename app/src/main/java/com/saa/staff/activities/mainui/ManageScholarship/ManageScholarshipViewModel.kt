@@ -10,8 +10,8 @@ class ManageScholarshipViewModel @ViewModelInject constructor(var repository: Ma
     ViewModel() {
     var scholarships: List<Scholarship>? = null
 
-    fun getScholarships() = liveData {
-        if (scholarships == null) {
+    fun getScholarships(refresh: Boolean = false) = liveData {
+        if (scholarships == null || refresh) {
             emit(repository.getScholarships())
         } else {
             emit(scholarships)

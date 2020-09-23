@@ -49,7 +49,7 @@ class ManageScholarshipFragment : Fragment() {
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            refreshRv()
+            refreshRv(true)
         }
         adapter.detailsButtonClick.subscribe {
             viewScholarshipViewModel.scholarship = it
@@ -70,7 +70,7 @@ class ManageScholarshipFragment : Fragment() {
             }
             builder.setPositiveButton("YES") { dialog, which ->
                 viewModel.deleteScholarship(it).observe(viewLifecycleOwner, {
-                    refreshRv()
+                    refreshRv(true)
                 })
             }
             builder.show()
@@ -84,8 +84,8 @@ class ManageScholarshipFragment : Fragment() {
     /**
      * refresh recyclerview
      */
-    fun refreshRv() {
-        viewModel.getScholarships().observe(viewLifecycleOwner) {
+    fun refreshRv(refresh:Boolean=false) {
+        viewModel.getScholarships(refresh).observe(viewLifecycleOwner) {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.scholarships = it
             adapter.submitList(it)

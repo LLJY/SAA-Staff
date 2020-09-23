@@ -86,11 +86,18 @@ class AddEditFellowshipFragment : Fragment() {
         binding.doneButton.setOnClickListener {
             val fellowShip = viewModel.fellowShip
             if(fellowShip.applicationDeadline != 0L && fellowShip.course.title.isNotBlank() && fellowShip.outline.isNotBlank() && fellowShip.title.isNotBlank()){
-                // if it is editing call update, or else, call add
+                // if it is editing call update, or else, call
+                pd.show()
                 if(viewModel.isEdit){
-                    manageFellowShipViewModel.updateFellowship(fellowShip)
+                    Snackbar.make(binding.root, "updating fellowship...", Snackbar.LENGTH_LONG).show()
+                    manageFellowShipViewModel.updateFellowship(fellowShip).observe(viewLifecycleOwner){
+                        pd.dismiss()
+                    }
                 }else{
-                    manageFellowShipViewModel.addFellowship(fellowShip)
+                    Snackbar.make(binding.root, "adding fellowship...", Snackbar.LENGTH_LONG).show()
+                    manageFellowShipViewModel.addFellowship(fellowShip).observe(viewLifecycleOwner){
+                        pd.dismiss()
+                    }
                 }
             }else{
                 Snackbar.make(binding.root, "Ensure all fields are valid!", Snackbar.LENGTH_LONG).show()

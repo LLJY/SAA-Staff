@@ -18,6 +18,8 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
+import kotlinx.serialization.json.nonstrict
 import okhttp3.MediaType
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -72,8 +74,9 @@ object NetworkModule{
     @Provides
     fun provideRetrofit(): Retrofit{
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.94:8080/")
-            .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
+            .baseUrl("http://10.0.2.2:8080/")
+            .addConverterFactory(Json{ignoreUnknownKeys=true
+            isLenient = true}.asConverterFactory(MediaType.get("application/json")))
             .build()
         return retrofit
     }
