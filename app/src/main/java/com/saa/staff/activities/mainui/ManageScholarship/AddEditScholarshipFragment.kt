@@ -39,6 +39,7 @@ class AddEditScholarshipFragment : Fragment() {
             binding.benefitsText.editText!!.setText(scholarship.benefits)
             binding.eligibilityText.editText!!.setText(scholarship.eligibility)
             binding.outlineText.editText!!.setText(scholarship.outline)
+            binding.bondPeriodText.editText!!.setText(scholarship.bondTime.toString())
         }
         binding.titleText.editText!!.addTextChangedListener {
             if (it.toString().isNotBlank()) {
