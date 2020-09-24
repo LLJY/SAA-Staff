@@ -1,6 +1,7 @@
 package com.saa.staff.activities.mainui.ManageFellowship
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -26,6 +27,7 @@ class ManageFellowshipFragment : Fragment() {
     val addEditFellowshipViewModel: AddEditFellowshipViewModel by activityViewModels()
     lateinit var binding: ManageFellowshipFragmentBinding
     lateinit var adapter: FellowshipsRecyclerAdapter
+    @Inject lateinit var pd: ProgressDialog
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +44,7 @@ class ManageFellowshipFragment : Fragment() {
         binding.fellowshipRecycler.layoutManager = LinearLayoutManager(requireContext())
         refreshRv()
         binding.swipeRefreshLayout.setOnRefreshListener {
-            refreshRv()
+            refreshRv(true)
         }
         // setup the recyclerview onclicklisteners
         adapter.detailsButtonClick.subscribe {
@@ -63,12 +65,20 @@ class ManageFellowshipFragment : Fragment() {
             val dialog = AlertDialog.Builder(requireContext())
             dialog.setTitle("Are you sure?")
             dialog.setMessage("Do you want to delete \"${it.title}\" ?")
-            dialog.setPositiveButton("YES", { dialogInterface: DialogInterface, i: Int ->
-                Snackbar.make(binding.root, "Delete is a todo feature", Snackbar.LENGTH_SHORT).show()
-            })
-            dialog.setNegativeButton("NO", { dialogInterface: DialogInterface, i: Int ->
+            dialog.setPositiveButton("YES") { dialogInterface: DialogInterface, i: Int ->
+                pd.show()
+                viewModel.deleteFellowship(it).observe(viewLifecycleOwner){
+                    pd.dismiss()
+                    if(it){
+                        refreshRv(true)
+                    }else{
+                        Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+            dialog.setNegativeButton("NO") { dialogInterface: DialogInterface, i: Int ->
 
-            })
+            }
             dialog.show()
         }
 
@@ -78,8 +88,9 @@ class ManageFellowshipFragment : Fragment() {
      * Refresh the recyclerview by getting fellowships from the backend and asynchronously updating the
      * List using submitList, which calculates the diff in another thread.
      */
-    fun refreshRv(){
-        viewModel.getFellowships().observe(viewLifecycleOwner, {
+    fun refreshRv(refresh: Boolean = false){
+        binding.swipeRefreshLayout.isRefreshing = true
+        viewModel.getFellowships(refresh).observe(viewLifecycleOwner, {
             // set the refresh to not refreshing
             binding.swipeRefreshLayout.isRefreshing = false
             adapter.submitList(it)

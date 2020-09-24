@@ -35,14 +35,12 @@ class ManageCoursesFragment : Fragment() {
             requireContext(),
         )
 
-        viewModel.getCourses().observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-        })
+        refreshRv()
         // setup the recyclerview
         binding.coursesRecycler.adapter = adapter
         binding.coursesRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.swipeRefreshLayout.setOnRefreshListener {
-            refreshRv()
+            refreshRv(true)
         }
         adapter.deleteClick.subscribe {
             val builder = AlertDialog.Builder(requireContext())
@@ -89,8 +87,9 @@ class ManageCoursesFragment : Fragment() {
             }
         })
     }
-    fun refreshRv(){
-        viewModel.getCourses().observe(viewLifecycleOwner, {
+    fun refreshRv(refresh: Boolean = false){
+        binding.swipeRefreshLayout.isRefreshing = true
+        viewModel.getCourses(refresh).observe(viewLifecycleOwner, {
             binding.swipeRefreshLayout.isRefreshing = false
             adapter.submitList(it)
         })

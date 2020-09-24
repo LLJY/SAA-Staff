@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ManageCoursesViewModel @ViewModelInject constructor(private var repository: ManageCourseRepository) : ViewModel() {
-    var courses: List<Course> = ArrayList()
+    var courses: List<Course>? = null
 
-    fun getCourses()= liveData(Dispatchers.IO) { emit(repository.getCourses()) }
+    fun getCourses(refresh: Boolean = false)= liveData(Dispatchers.IO) { emit(if(courses==null||refresh)repository.getCourses()else courses) }
 
     /**
      * Adds course, returns boolean for successful or not

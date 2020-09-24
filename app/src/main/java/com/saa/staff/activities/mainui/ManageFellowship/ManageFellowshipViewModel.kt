@@ -7,8 +7,8 @@ import androidx.lifecycle.liveData
 import com.saa.staff.models.Fellowship
 
 class ManageFellowshipViewModel @ViewModelInject constructor(var repository: ManageFellowshipRepository) : ViewModel() {
-
-    fun getFellowships() = liveData { emit(repository.getFellowships()) }
+    var fellowships: List<Fellowship>? = null
+    fun getFellowships(refresh: Boolean = false) = liveData { emit(if(fellowships == null || refresh)repository.getFellowships()else fellowships) }
 
     fun addFellowship(fellowShip: Fellowship): LiveData<Boolean>{
         return liveData {

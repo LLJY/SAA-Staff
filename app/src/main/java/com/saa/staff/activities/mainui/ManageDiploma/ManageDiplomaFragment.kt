@@ -33,11 +33,7 @@ class ManageDiplomaFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         adapter = DiplomasRecyclerAdapter(requireContext())
-        if (viewModel.diplomas == null) {
-            refreshRv()
-        } else {
-            adapter.submitList(viewModel.diplomas)
-        }
+        refreshRv()
         binding.diplomasRecycler.adapter = adapter
         binding.diplomasRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.diplomasRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -52,7 +48,7 @@ class ManageDiplomaFragment : Fragment() {
             }
         })
         binding.swipeRefreshLayout.setOnRefreshListener {
-            refreshRv()
+            refreshRv(true)
         }
         adapter.deleteClick.subscribe {
             val builder = AlertDialog.Builder(requireContext())
@@ -63,7 +59,7 @@ class ManageDiplomaFragment : Fragment() {
             }
             builder.setPositiveButton("YES") { dialog, which ->
                 viewModel.deleteDiploma(it).observe(viewLifecycleOwner, {
-                    refreshRv()
+                    refreshRv(true)
                 })
             }
             builder.show()
@@ -88,8 +84,9 @@ class ManageDiplomaFragment : Fragment() {
     /**
      * refresh recyclerview
      */
-    fun refreshRv() {
-        viewModel.getDiplomas().observe(viewLifecycleOwner) {
+    fun refreshRv(refresh: Boolean = false) {
+        binding.swipeRefreshLayout.isRefreshing = true
+        viewModel.getDiplomas(refresh).observe(viewLifecycleOwner) {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.diplomas = it
             adapter.submitList(it)

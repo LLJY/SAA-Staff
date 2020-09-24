@@ -85,6 +85,7 @@ class ManageScholarshipFragment : Fragment() {
      * refresh recyclerview
      */
     fun refreshRv(refresh:Boolean=false) {
+        binding.swipeRefreshLayout.isRefreshing = true
         viewModel.getScholarships(refresh).observe(viewLifecycleOwner) {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.scholarships = it
