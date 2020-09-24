@@ -11,15 +11,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.saa.staff.R
-import com.saa.staff.activities.mainui.ManageCourses.ManageCoursesViewModel
-import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaViewModel
-import com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipViewModel
-import com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipViewModel
 import com.saa.staff.adapters.TrainingCoursesRecyclerAdapter
 import com.saa.staff.adapters.TrainingDiplomasRecyclerAdapter
 import com.saa.staff.adapters.TrainingFellowshipsRecyclerAdapter
 import com.saa.staff.adapters.TrainingScholarshipsRecyclerAdapter
 import com.saa.staff.databinding.TrainingProgressFragmentBinding
+import com.saa.staff.viewModels.ManageCoursesViewModel
+import com.saa.staff.viewModels.ManageDiplomaViewModel
+import com.saa.staff.viewModels.ManageFellowshipViewModel
+import com.saa.staff.viewModels.ManageScholarshipViewModel
 
 class TrainingProgressFragment : Fragment() {
     val viewModel: TrainingProgressViewModel by viewModels()

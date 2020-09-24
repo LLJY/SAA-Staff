@@ -4,12 +4,8 @@ import android.app.Application
 import android.app.ProgressDialog
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.saa.staff.activities.mainui.ManageCourses.ManageCourseRepository
-import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaRepository
-import com.saa.staff.activities.mainui.ManageFellowship.ManageFellowshipRepository
-import com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipRepository
 import com.saa.staff.interfaces.FirebaseCloudService
-import com.saa.staff.repositories.LoginRepository
+import com.saa.staff.repositories.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +14,6 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
-import kotlinx.serialization.json.nonstrict
 import okhttp3.MediaType
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -41,12 +35,13 @@ object ProgressDialogModule {
 object RepositoriesModule {
     @Provides
     @Singleton
-    fun provideLoginRepository(retrofit: FirebaseCloudService): LoginRepository{
+    fun provideLoginRepository(retrofit: FirebaseCloudService): LoginRepository {
         return LoginRepository(retrofit)
     }
+
     @Provides
     @Singleton
-    fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository{
+    fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository {
         return ManageCourseRepository(retrofit)
     }
 

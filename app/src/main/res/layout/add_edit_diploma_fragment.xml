@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        tools:context=".activities.mainui.ManageDiploma.AddEditDiplomaFragment">
+        tools:context=".fragments.AddEditDiplomaFragment">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/diploma_title_text"
             android:layout_width="0dp"

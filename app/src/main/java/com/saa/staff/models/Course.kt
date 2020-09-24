@@ -100,4 +100,62 @@ class DiplomaItemDiffCallback : DiffUtil.ItemCallback<Diploma>(){
 
 }
 
+@Serializable
+data class UserApplication(
+    var fullName: String,
+    var applicationStatus: Int,
+    var applicationUUID: String,
+    var userUUID: String
+)
 
+class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {
+    override fun areItemsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
+        // compare concatenated unique user and application uuids to compare as they will surely be unique as well
+        return oldItem.userUUID + oldItem.applicationUUID == newItem.userUUID + oldItem.applicationUUID
+    }
+
+    override fun areContentsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
+        return oldItem == newItem
+    }
+
+}
+
+@Serializable
+data class Participant(
+    var uuid: String,
+    var fullName: String,
+    var dob: Long,
+    var contactNumber: String,
+    var country: String,
+    var passportNumber: String,
+    var passportExpiry: Long,
+    var organisation: String,
+    var jobTitle: String,
+    var email: String
+)
+
+@Serializable
+data class Employee(
+    var uuid: String,
+    var fullName: String,
+    var dob: Long,
+    var contactNumber: String,
+    var country: String,
+    var passportNumber: String,
+    var passportExpiry: Long,
+    var email: String,
+    var userType: String,
+    var approvalStatus: Int
+)
+
+class EmployeeDiffCallback : DiffUtil.ItemCallback<Employee>() {
+    override fun areItemsTheSame(oldItem: Employee, newItem: Employee): Boolean {
+        // compare concatenated unique user and application uuids to compare as they will surely be unique as well
+        return oldItem.uuid == newItem.uuid
+    }
+
+    override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
+        return oldItem == newItem
+    }
+
+}

@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        tools:context=".activities.mainui.ManageFellowship.AddEditFellowshipFragment">
+        tools:context=".fragments.AddEditFellowshipFragment">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/course_title_text"
             android:layout_width="0dp"
