@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.saa.staff.activities.mainui.ManageDiploma.ManageDiplomaFragmentDirections
 import com.saa.staff.adapters.DiplomasRecyclerAdapter
 import com.saa.staff.databinding.ManageDiplomaFragmentBinding
 import com.saa.staff.viewModels.AddEditDiplomaViewModel

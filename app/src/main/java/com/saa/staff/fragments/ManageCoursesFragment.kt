@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.saa.staff.activities.mainui.ManageCourses.ManageCoursesFragmentDirections
 import com.saa.staff.adapters.CoursesRecyclerAdapter
 import com.saa.staff.databinding.ManageCoursesFragmentBinding
 import com.saa.staff.viewModels.AddEditCourseViewModel

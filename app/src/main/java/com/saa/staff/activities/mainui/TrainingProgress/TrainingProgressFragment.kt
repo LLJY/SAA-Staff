@@ -9,6 +9,7 @@ import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.saa.staff.R
 import com.saa.staff.adapters.TrainingCoursesRecyclerAdapter
@@ -20,13 +21,17 @@ import com.saa.staff.viewModels.ManageCoursesViewModel
 import com.saa.staff.viewModels.ManageDiplomaViewModel
 import com.saa.staff.viewModels.ManageFellowshipViewModel
 import com.saa.staff.viewModels.ManageScholarshipViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TrainingProgressFragment : Fragment() {
     val viewModel: TrainingProgressViewModel by viewModels()
     val manageCoursesViewModel: ManageCoursesViewModel by activityViewModels()
     val manageDiplomaViewModel: ManageDiplomaViewModel by activityViewModels()
     val manageScholarshipViewModel: ManageScholarshipViewModel by activityViewModels()
     val manageFellowshipViewModel: ManageFellowshipViewModel by activityViewModels()
+    val editTrainingProgressViewModel: EditTrainingProgressViewModel by activityViewModels()
+
     lateinit var binding: TrainingProgressFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,12 +58,20 @@ class TrainingProgressFragment : Fragment() {
                     manageCoursesViewModel.getCourses().observe(viewLifecycleOwner) {
                         adapter.submitList(it)
                     }
+                    adapter.onClickSubject.subscribe {
+                        editTrainingProgressViewModel.courseTypeIndex = 0
+                        findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
+                    }
                 }
                 1 -> {
                     val adapter = TrainingFellowshipsRecyclerAdapter(requireContext())
                     binding.recycler.adapter = adapter
                     manageFellowshipViewModel.getFellowships().observe(viewLifecycleOwner) {
                         adapter.submitList(it)
+                    }
+                    adapter.onClickSubject.subscribe {
+                        editTrainingProgressViewModel.courseTypeIndex = 1
+                        findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                     }
                 }
                 2 -> {
@@ -67,12 +80,20 @@ class TrainingProgressFragment : Fragment() {
                     manageScholarshipViewModel.getScholarships().observe(viewLifecycleOwner) {
                         adapter.submitList(it)
                     }
+                    adapter.onClickSubject.subscribe {
+                        editTrainingProgressViewModel.courseTypeIndex = 2
+                        findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
+                    }
                 }
                 3 -> {
                     val adapter = TrainingDiplomasRecyclerAdapter(requireContext())
                     binding.recycler.adapter = adapter
                     manageDiplomaViewModel.getDiplomas().observe(viewLifecycleOwner) {
                         adapter.submitList(it)
+                    }
+                    adapter.onClickSubject.subscribe {
+                        editTrainingProgressViewModel.courseTypeIndex = 3
+                        findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                     }
                 }
             }
@@ -84,6 +105,10 @@ class TrainingProgressFragment : Fragment() {
         binding.recycler.adapter = adapter
         manageCoursesViewModel.getCourses().observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+        adapter.onClickSubject.subscribe {
+            editTrainingProgressViewModel.courseTypeIndex = 0
+            findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
         }
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
     }

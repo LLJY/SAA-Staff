@@ -103,9 +103,10 @@ class DiplomaItemDiffCallback : DiffUtil.ItemCallback<Diploma>(){
 @Serializable
 data class UserApplication(
     var fullName: String,
-    var applicationStatus: Int,
+    var progressType: Int, // 0, rejected, 1 not approved, 2 in progress, 3 completed
     var applicationUUID: String,
-    var userUUID: String
+    var userUUID: String,
+    var courseApplicationIndex: Int // 0 = course, 1= fellowship, 2=scholarship, 3=diploma
 )
 
 class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {

@@ -89,7 +89,15 @@
         android:id="@+id/trainingProgressFragment"
         android:name="com.saa.staff.activities.mainui.TrainingProgress.TrainingProgressFragment"
         android:label="training_progress_fragment"
-        tools:layout="@layout/training_progress_fragment" />
+        tools:layout="@layout/training_progress_fragment">
+        <action
+            android:id="@+id/action_trainingProgressFragment_to_editTrainingProgressFragment"
+            app:destination="@id/editTrainingProgressFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/manageDiplomaFragment"
         android:name="com.saa.staff.fragments.ManageDiplomaFragment"
@@ -143,4 +151,9 @@
         android:id="@+id/viewScholarshipFragment"
         android:name="com.saa.staff.fragments.ViewScholarshipFragment"
         android:label="ViewScholarshipFragment" />
+    <fragment
+        android:id="@+id/editTrainingProgressFragment"
+        android:name="com.saa.staff.activities.mainui.TrainingProgress.EditTrainingProgressFragment"
+        android:label="edit_training_progress_fragment"
+        tools:layout="@layout/edit_training_progress_fragment" />
 </navigation>

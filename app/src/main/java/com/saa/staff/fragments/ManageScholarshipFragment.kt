@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.saa.staff.activities.mainui.ManageScholarship.ManageScholarshipFragmentDirections
 import com.saa.staff.adapters.ScholarshipRecyclerAdapter
 import com.saa.staff.databinding.ManageScholarshipFragmentBinding
 import com.saa.staff.viewModels.AddEditScholarshipViewModel
