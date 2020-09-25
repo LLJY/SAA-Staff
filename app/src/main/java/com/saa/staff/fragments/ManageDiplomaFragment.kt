@@ -88,7 +88,6 @@ class ManageDiplomaFragment : Fragment() {
      * refresh recyclerview
      */
     fun refreshRv(refresh: Boolean = false) {
-        binding.swipeRefreshLayout.isRefreshing = true
         viewModel.getDiplomas(refresh).observe(viewLifecycleOwner) {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.diplomas = it

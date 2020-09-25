@@ -89,10 +89,10 @@ class ManageFellowshipFragment : Fragment() {
      * List using submitList, which calculates the diff in another thread.
      */
     fun refreshRv(refresh: Boolean = false){
-        binding.swipeRefreshLayout.isRefreshing = true
         viewModel.getFellowships(refresh).observe(viewLifecycleOwner, {
             // set the refresh to not refreshing
             binding.swipeRefreshLayout.isRefreshing = false
+            viewModel.fellowships = it
             adapter.submitList(it)
         })
     }

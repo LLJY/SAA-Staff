@@ -79,7 +79,15 @@
         android:id="@+id/reviewApplicationFragment"
         android:name="com.saa.staff.activities.mainui.ReviewApplication.ReviewApplicationFragment"
         android:label="review_application_fragment"
-        tools:layout="@layout/review_application_fragment" />
+        tools:layout="@layout/review_application_fragment">
+        <action
+            android:id="@+id/action_reviewApplicationFragment_to_editParticipantApplicationFragment"
+            app:destination="@id/editParticipantApplicationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/sendNotificationFragment"
         android:name="com.saa.staff.activities.mainui.SendNotification.SendNotificationFragment"
@@ -155,5 +163,23 @@
         android:id="@+id/editTrainingProgressFragment"
         android:name="com.saa.staff.activities.mainui.TrainingProgress.EditTrainingProgressFragment"
         android:label="edit_training_progress_fragment"
-        tools:layout="@layout/edit_training_progress_fragment" />
+        tools:layout="@layout/edit_training_progress_fragment">
+        <action
+            android:id="@+id/action_editTrainingProgressFragment_to_participantInfoFragment"
+            app:destination="@id/participantInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editParticipantApplicationFragment"
+        android:name="com.saa.staff.activities.mainui.ReviewApplication.EditParticipantApplicationFragment"
+        android:label="edit_participant_application_fragment"
+        tools:layout="@layout/edit_participant_application_fragment">
+        <action
+            android:id="@+id/action_editParticipantApplicationFragment_to_participantInfoFragment"
+            app:destination="@id/participantInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/participantInfoFragment"
+        android:name="com.saa.staff.activities.mainui.TrainingProgress.ParticipantInfoFragment"
+        android:label="participant_info_fragment"
+        tools:layout="@layout/participant_info_fragment" />
 </navigation>

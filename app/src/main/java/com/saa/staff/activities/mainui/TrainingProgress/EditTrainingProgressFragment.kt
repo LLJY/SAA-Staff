@@ -38,9 +38,9 @@ class EditTrainingProgressFragment : Fragment() {
             adapter.submitList(it)
             pd.dismiss()
         }
-        adapter.changeSpinnerSubject.subscribe {
+        adapter.changeSpinnerSubject.subscribe { item ->
             pd.show()
-            viewModel.updateApplication(it).observe(viewLifecycleOwner) {
+            viewModel.updateApplication(item).observe(viewLifecycleOwner) {
                 pd.dismiss()
                 if (it) {
                     Snackbar.make(

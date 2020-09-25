@@ -91,9 +91,9 @@ class ManageCoursesFragment : Fragment() {
         })
     }
     fun refreshRv(refresh: Boolean = false){
-        binding.swipeRefreshLayout.isRefreshing = true
         viewModel.getCourses(refresh).observe(viewLifecycleOwner, {
             binding.swipeRefreshLayout.isRefreshing = false
+            viewModel.courses = it
             adapter.submitList(it)
         })
     }
