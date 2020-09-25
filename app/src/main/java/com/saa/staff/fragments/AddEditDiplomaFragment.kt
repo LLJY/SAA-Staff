@@ -14,7 +14,6 @@ import com.saa.staff.databinding.AddEditDiplomaFragmentBinding
 import com.saa.staff.viewModels.AddEditDiplomaViewModel
 import com.saa.staff.viewModels.ManageDiplomaViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import javax.inject.Inject
 
@@ -41,8 +40,7 @@ class AddEditDiplomaFragment : Fragment() {
         if (viewModel.isEdit) {
             val diploma = viewModel.diploma
             binding.outlineText.editText!!.setText(diploma.outline)
-            val formatter = NumberFormat.getCurrencyInstance()
-            binding.feesText.editText!!.setText(formatter.format(diploma.fees))
+            binding.feesText.editText!!.setText(diploma.fees.toString())
             binding.diplomaTitleText.editText!!.setText(diploma.title)
             val startDateString = SimpleDateFormat("dd/MM/yyyy").format(viewModel.diploma.startDate)
             val endDateString = SimpleDateFormat("dd/MM/yyyy").format(viewModel.diploma.endDate)
