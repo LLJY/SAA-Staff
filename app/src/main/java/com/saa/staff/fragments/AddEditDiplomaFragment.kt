@@ -11,8 +11,8 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.databinding.AddEditDiplomaFragmentBinding
-import com.saa.staff.viewModels.AddEditDiplomaViewModel
-import com.saa.staff.viewModels.ManageDiplomaViewModel
+import com.saa.staff.viewmodels.AddEditDiplomaViewModel
+import com.saa.staff.viewmodels.ManageDiplomaViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import javax.inject.Inject

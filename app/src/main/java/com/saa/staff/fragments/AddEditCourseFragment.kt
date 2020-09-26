@@ -16,8 +16,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.R
 import com.saa.staff.databinding.AddEditCourseFragmentBinding
-import com.saa.staff.viewModels.AddEditCourseViewModel
-import com.saa.staff.viewModels.ManageCoursesViewModel
+import com.saa.staff.viewmodels.AddEditCourseViewModel
+import com.saa.staff.viewmodels.ManageCoursesViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList

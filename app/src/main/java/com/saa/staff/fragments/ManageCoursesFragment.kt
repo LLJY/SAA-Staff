@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.CoursesRecyclerAdapter
 import com.saa.staff.databinding.ManageCoursesFragmentBinding
-import com.saa.staff.viewModels.AddEditCourseViewModel
-import com.saa.staff.viewModels.ManageCoursesViewModel
-import com.saa.staff.viewModels.ViewCourseInfoViewModel
+import com.saa.staff.viewmodels.AddEditCourseViewModel
+import com.saa.staff.viewmodels.ManageCoursesViewModel
+import com.saa.staff.viewmodels.ViewCourseInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

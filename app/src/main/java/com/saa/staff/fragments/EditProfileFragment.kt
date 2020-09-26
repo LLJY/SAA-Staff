@@ -15,9 +15,9 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.saa.staff.R
-import com.saa.staff.activities.mainui.EditProfile.EditProfileViewModel
 import com.saa.staff.databinding.EditProfileFragmentBinding
-import com.saa.staff.viewModels.HomeViewModel
+import com.saa.staff.viewmodels.EditProfileViewModel
+import com.saa.staff.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

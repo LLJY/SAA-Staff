@@ -11,7 +11,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
-import com.saa.staff.viewModels.HomeViewModel
+import com.saa.staff.viewmodels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

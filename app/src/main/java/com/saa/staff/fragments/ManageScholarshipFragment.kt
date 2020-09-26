@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.ScholarshipRecyclerAdapter
 import com.saa.staff.databinding.ManageScholarshipFragmentBinding
-import com.saa.staff.viewModels.AddEditScholarshipViewModel
-import com.saa.staff.viewModels.ManageScholarshipViewModel
-import com.saa.staff.viewModels.ViewScholarshipViewModel
+import com.saa.staff.viewmodels.AddEditScholarshipViewModel
+import com.saa.staff.viewmodels.ManageScholarshipViewModel
+import com.saa.staff.viewmodels.ViewScholarshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

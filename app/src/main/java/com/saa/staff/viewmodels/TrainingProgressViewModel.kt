@@ -1,4 +1,4 @@
-package com.saa.staff.activities.mainui.TrainingProgress
+package com.saa.staff.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel

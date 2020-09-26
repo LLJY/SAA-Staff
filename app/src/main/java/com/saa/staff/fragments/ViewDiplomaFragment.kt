@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.saa.staff.databinding.ViewDiplomaFragmentBinding
-import com.saa.staff.viewModels.ViewDiplomaViewModel
+import com.saa.staff.viewmodels.ViewDiplomaViewModel
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 

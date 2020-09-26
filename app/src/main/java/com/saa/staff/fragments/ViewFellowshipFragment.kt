@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.saa.staff.databinding.ViewFellowshipFragmentBinding
-import com.saa.staff.viewModels.ViewFellowshipViewModel
+import com.saa.staff.viewmodels.ViewFellowshipViewModel
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDateTime

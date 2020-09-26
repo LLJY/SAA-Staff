@@ -1,4 +1,4 @@
-package com.saa.staff.activities.mainui.TrainingProgress
+package com.saa.staff.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.saa.staff.databinding.ParticipantInfoFragmentBinding
+import com.saa.staff.viewmodels.ParticipantInfoViewModel
 
 class ParticipantInfoFragment : Fragment() {
 

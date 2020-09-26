@@ -16,9 +16,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.R
 import com.saa.staff.databinding.AddEditFellowshipFragmentBinding
 import com.saa.staff.models.Course
-import com.saa.staff.viewModels.AddEditFellowshipViewModel
-import com.saa.staff.viewModels.ManageCoursesViewModel
-import com.saa.staff.viewModels.ManageFellowshipViewModel
+import com.saa.staff.viewmodels.AddEditFellowshipViewModel
+import com.saa.staff.viewmodels.ManageCoursesViewModel
+import com.saa.staff.viewmodels.ManageFellowshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import javax.inject.Inject

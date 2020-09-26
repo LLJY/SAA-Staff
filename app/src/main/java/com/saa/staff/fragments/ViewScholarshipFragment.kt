@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.saa.staff.databinding.ViewScholarshipFragmentBinding
-import com.saa.staff.viewModels.ViewScholarshipViewModel
+import com.saa.staff.viewmodels.ViewScholarshipViewModel
 
 class ViewScholarshipFragment : Fragment() {
     private val viewModel: ViewScholarshipViewModel by activityViewModels()

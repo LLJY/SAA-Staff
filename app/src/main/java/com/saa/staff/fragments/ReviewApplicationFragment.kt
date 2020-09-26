@@ -1,4 +1,4 @@
-package com.saa.staff.activities.mainui.ReviewApplication
+package com.saa.staff.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,10 +17,7 @@ import com.saa.staff.adapters.TrainingDiplomasRecyclerAdapter
 import com.saa.staff.adapters.TrainingFellowshipsRecyclerAdapter
 import com.saa.staff.adapters.TrainingScholarshipsRecyclerAdapter
 import com.saa.staff.databinding.ReviewApplicationFragmentBinding
-import com.saa.staff.viewModels.ManageCoursesViewModel
-import com.saa.staff.viewModels.ManageDiplomaViewModel
-import com.saa.staff.viewModels.ManageFellowshipViewModel
-import com.saa.staff.viewModels.ManageScholarshipViewModel
+import com.saa.staff.viewmodels.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

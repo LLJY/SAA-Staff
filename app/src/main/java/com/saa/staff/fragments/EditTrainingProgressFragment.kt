@@ -1,4 +1,4 @@
-package com.saa.staff.activities.mainui.TrainingProgress
+package com.saa.staff.fragments
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.EditTrainingUsersRecyclerAdapter
 import com.saa.staff.databinding.EditTrainingProgressFragmentBinding
+import com.saa.staff.viewmodels.EditTrainingProgressViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

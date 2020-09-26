@@ -17,8 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.saa.staff.R
 import com.saa.staff.databinding.FragmentSignUpBinding
-import com.saa.staff.viewModels.LoginViewModel
-import com.saa.staff.viewModels.SignupViewModel
+import com.saa.staff.viewmodels.LoginViewModel
+import com.saa.staff.viewmodels.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

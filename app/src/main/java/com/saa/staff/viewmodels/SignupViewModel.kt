@@ -1,4 +1,4 @@
-package com.saa.staff.viewModels
+package com.saa.staff.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.saa.staff.viewModels
+package com.saa.staff.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.saa.staff.models.Scholarship

@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.FellowshipsRecyclerAdapter
 import com.saa.staff.databinding.ManageFellowshipFragmentBinding
-import com.saa.staff.viewModels.AddEditFellowshipViewModel
-import com.saa.staff.viewModels.ManageFellowshipViewModel
-import com.saa.staff.viewModels.ViewFellowshipViewModel
+import com.saa.staff.viewmodels.AddEditFellowshipViewModel
+import com.saa.staff.viewmodels.ManageFellowshipViewModel
+import com.saa.staff.viewmodels.ViewFellowshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

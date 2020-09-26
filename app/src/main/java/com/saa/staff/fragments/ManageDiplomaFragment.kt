@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.DiplomasRecyclerAdapter
 import com.saa.staff.databinding.ManageDiplomaFragmentBinding
-import com.saa.staff.viewModels.AddEditDiplomaViewModel
-import com.saa.staff.viewModels.ManageDiplomaViewModel
-import com.saa.staff.viewModels.ViewDiplomaViewModel
+import com.saa.staff.viewmodels.AddEditDiplomaViewModel
+import com.saa.staff.viewmodels.ManageDiplomaViewModel
+import com.saa.staff.viewmodels.ViewDiplomaViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

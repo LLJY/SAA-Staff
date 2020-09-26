@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.saa.staff.interfaces.FirebaseCloudService
-import com.saa.staff.repositories.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,39 +27,6 @@ object ProgressDialogModule {
         pd.setCancelable(false)
         pd.setTitle("Please wait...")
         return pd
-    }
-}
-@Module
-@InstallIn(ApplicationComponent::class)
-object RepositoriesModule {
-    @Provides
-    @Singleton
-    fun provideLoginRepository(retrofit: FirebaseCloudService): ProfileRepository {
-        return ProfileRepository(retrofit)
-    }
-
-    @Provides
-    @Singleton
-    fun provideManageCourseRepository(retrofit: FirebaseCloudService): ManageCourseRepository {
-        return ManageCourseRepository(retrofit)
-    }
-
-    @Provides
-    @Singleton
-    fun provideManageFellowshipRepository(retrofit: FirebaseCloudService): ManageFellowshipRepository {
-        return ManageFellowshipRepository(retrofit)
-    }
-
-    @Provides
-    @Singleton
-    fun provideManageDiplomaRepository(retrofit: FirebaseCloudService): ManageDiplomaRepository {
-        return ManageDiplomaRepository(retrofit)
-    }
-
-    @Provides
-    @Singleton
-    fun provideManageScholarshipRepository(retrofit: FirebaseCloudService): ManageScholarshipRepository {
-        return ManageScholarshipRepository(retrofit)
     }
 }
 @Module

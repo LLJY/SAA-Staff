@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.databinding.AddEditScholarshipFragmentBinding
-import com.saa.staff.viewModels.AddEditScholarshipViewModel
-import com.saa.staff.viewModels.ManageScholarshipViewModel
+import com.saa.staff.viewmodels.AddEditScholarshipViewModel
+import com.saa.staff.viewmodels.ManageScholarshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

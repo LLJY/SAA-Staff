@@ -10,9 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.activities.mainui.ApproveStaff.ApproveStaffViewModel
 import com.saa.staff.adapters.ApproveRejectEmployeeRecyclerAdapter
 import com.saa.staff.databinding.ApproveStaffFragmentBinding
+import com.saa.staff.viewmodels.ApproveStaffViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
