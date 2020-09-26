@@ -9,5 +9,5 @@ class ApproveStaffViewModel @ViewModelInject constructor(private var repository:
     ViewModel() {
     fun getEmployees() = liveData { emit(repository.getEmployees()) }
     fun updateEmployeeStatus(employee: Employee) =
-        liveData { emit(repository.updateEmployees(employee.uuid)) }
+        liveData { emit(repository.updateEmployees(employee)) }
 }

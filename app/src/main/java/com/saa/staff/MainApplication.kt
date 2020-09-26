@@ -35,8 +35,8 @@ object ProgressDialogModule {
 object RepositoriesModule {
     @Provides
     @Singleton
-    fun provideLoginRepository(retrofit: FirebaseCloudService): LoginRepository {
-        return LoginRepository(retrofit)
+    fun provideLoginRepository(retrofit: FirebaseCloudService): ProfileRepository {
+        return ProfileRepository(retrofit)
     }
 
     @Provides

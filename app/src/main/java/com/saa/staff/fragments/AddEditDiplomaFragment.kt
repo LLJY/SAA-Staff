@@ -20,7 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class AddEditDiplomaFragment : Fragment() {
     private val viewModel: AddEditDiplomaViewModel by activityViewModels()
-    val manageDiplomaViewModel: ManageDiplomaViewModel by activityViewModels()
+    private val manageDiplomaViewModel: ManageDiplomaViewModel by activityViewModels()
     private lateinit var binding: AddEditDiplomaFragmentBinding
     @Inject
     lateinit var pd: ProgressDialog

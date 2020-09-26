@@ -1,19 +1,14 @@
 package com.saa.staff.viewModels
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.saa.staff.repositories.LoginRepository
+import com.saa.staff.repositories.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 
-class LoginViewModel @ViewModelInject constructor(val repository: LoginRepository) : ViewModel() {
-    public var email = ""
-    public var password = ""
+class LoginViewModel @ViewModelInject constructor(val repository: ProfileRepository) : ViewModel() {
+    var email = ""
+    var password = ""
 
-    fun login(): LiveData<Boolean>{
-        return liveData (Dispatchers.IO){
-            emit(repository.login(email, password))
-        }
-    }
+    fun login() = liveData(Dispatchers.IO) { emit(repository.login(email, password)) }
 }

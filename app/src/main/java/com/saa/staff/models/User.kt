@@ -1,11 +1,10 @@
 package com.saa.staff.models
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class User(
+    var uuid: String = "",
     var firstName: String = "",
     var middleName: String? = null,
     var lastName: String = "",

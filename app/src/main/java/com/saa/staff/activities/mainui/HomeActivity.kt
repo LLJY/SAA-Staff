@@ -1,26 +1,25 @@
 package com.saa.staff.activities.mainui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.Fragment
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
+import com.saa.staff.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_home.*
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     lateinit var binding: ActivityHomeBinding
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
+    private val viewModel: HomeViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -28,17 +27,33 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // setup the navcontroller
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.editProfileFragment, R.id.manageCoursesFragment, R.id.manageFellowshipFragment, R.id.manageScholarshipFragment, R.id.manageDiplomaFragment, R.id.sendNotificationFragment, R.id.trainingProgressFragment, R.id.reviewApplicationFragment, R.id.approveStaffFragment), binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.editProfileFragment,
+                R.id.manageCoursesFragment,
+                R.id.manageFellowshipFragment,
+                R.id.manageScholarshipFragment,
+                R.id.manageDiplomaFragment,
+                R.id.sendNotificationFragment,
+                R.id.trainingProgressFragment,
+                R.id.reviewApplicationFragment,
+                R.id.approveStaffFragment
+            ), binding.drawerLayout
+        )
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         NavigationUI.setupWithNavController(binding.navigationView, navController)
         binding.navigationView.setNavigationItemSelectedListener(this)
 
+        // set the userid inside homeViewModel
+        viewModel.userId = intent.getStringExtra("USER_ID")
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        item.setChecked(true)
+        item.isChecked = true
         binding.drawerLayout.closeDrawers()
         when (item.itemId){
             R.id.edit_profile_item -> navController.navigate(R.id.editProfileFragment)

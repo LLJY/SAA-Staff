@@ -2,13 +2,14 @@ package com.saa.staff.fragments
 
 import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -21,7 +22,6 @@ import com.saa.staff.viewModels.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -34,11 +34,9 @@ import kotlin.collections.ArrayList
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
     private val viewModel: SignupViewModel by viewModels()
-    private val loginViewModel: LoginViewModel by viewModels()
-    @Inject lateinit var pd: ProgressDialog
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val loginViewModel: LoginViewModel by activityViewModels()
+    @Inject
+    lateinit var pd: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,7 +135,7 @@ class SignUpFragment : Fragment() {
             binding.dobPicker.editText!!.addTextChangedListener {
                 try {
                     val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                    viewModel.user.dateOfBirth = date.time/1000
+                    viewModel.user.dateOfBirth = date.time
                     binding.dobPicker.error = null
                 } catch (ex: Exception) {
                     markFormError(binding.dobPicker, "Please Enter a Valid Date!")
@@ -146,7 +144,7 @@ class SignUpFragment : Fragment() {
             binding.passportExpiryPicker.editText!!.addTextChangedListener {
                 try {
                     val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                    viewModel.user.passportExpiry = date.time/1000
+                    viewModel.user.passportExpiry = date.time
                     binding.passportExpiryPicker.error = null
                 } catch (ex: Exception) {
                     markFormError(binding.passportExpiryPicker, "Please Enter a Valid Date!")
@@ -163,7 +161,7 @@ class SignUpFragment : Fragment() {
             binding.passwordText.editText!!.addTextChangedListener {
                 binding.passwordText.error = null
                 binding.passwordAgainText.error = null
-                viewModel.user.password = it.toString();
+                viewModel.user.password = it.toString()
             }
             binding.passwordAgainText.editText!!.addTextChangedListener {
                 binding.passwordText.error = null

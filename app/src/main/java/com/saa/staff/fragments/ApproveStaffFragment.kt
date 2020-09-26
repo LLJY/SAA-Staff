@@ -56,7 +56,7 @@ class ApproveStaffFragment : Fragment() {
                     // set the approval status to accepted and update the list with it
                     item.approvalStatus = 2
                     val list = adapter.currentList.toMutableList()
-                    list.set(itemIndex, item)
+                    list[itemIndex] = item
                     adapter.submitList(list)
                     adapter.notifyDataSetChanged()
                 } else {
@@ -79,7 +79,7 @@ class ApproveStaffFragment : Fragment() {
                     // set the approval status to rejected and update the list with it
                     item.approvalStatus = 0
                     val list = adapter.currentList.toMutableList()
-                    list.set(itemIndex, item)
+                    list[itemIndex] = item
                     adapter.submitList(list)
                     adapter.notifyDataSetChanged()
                 } else {

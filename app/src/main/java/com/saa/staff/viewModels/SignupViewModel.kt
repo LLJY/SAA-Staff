@@ -1,23 +1,28 @@
 package com.saa.staff.viewModels
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.saa.staff.models.User
-import com.saa.staff.repositories.LoginRepository
+import com.saa.staff.repositories.ProfileRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SignupViewModel @ViewModelInject constructor(private var loginRepository: LoginRepository): ViewModel() {
+class SignupViewModel @ViewModelInject constructor(private var profileRepository: ProfileRepository) :
+    ViewModel() {
 
-    public var user = User()
-    fun signUp(): LiveData<Boolean>{
-        return liveData (Dispatchers.IO){
-            emit(loginRepository.signUp(user))
+    var user = User()
+    fun signUp(): LiveData<Boolean> {
+        return liveData(Dispatchers.IO) {
+            emit(profileRepository.signUp(user))
         }
     }
-    fun helloWorld(){
+
+    fun helloWorld() {
         viewModelScope.launch {
-            loginRepository.helloWorld()
+            profileRepository.helloWorld()
         }
     }
 

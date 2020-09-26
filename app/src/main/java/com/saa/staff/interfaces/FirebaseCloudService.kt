@@ -13,13 +13,17 @@ interface FirebaseCloudService{
     @POST("sign-up-staff")
     suspend fun signUp(@Body user: User): Boolean
 
+    @POST("update-employee-info")
+    suspend fun updateUser(@Body user: User): Boolean
+
     @POST("check-email")
     suspend fun checkEmail(@Body email: String): Boolean
 
     @Serializable
     data class LoginInformation(val email: String, val password: String)
+
     @POST("login-staff")
-    suspend fun login(@Body loginInformation: LoginInformation):Boolean
+    suspend fun login(@Body loginInformation: LoginInformation): String
 
     @POST("add-course")
     suspend fun addCourse(@Body course: Course): Boolean
@@ -68,4 +72,13 @@ interface FirebaseCloudService{
 
     @POST("update-scholarship")
     suspend fun updateScholarship(@Body scholarship: Scholarship): Boolean
+
+    @POST("get-employee-info")
+    suspend fun getUserInfo(@Body uuid: String): User
+
+    @GET("get-unapproved-staff")
+    suspend fun getUnapprovedStaff(): List<Employee>
+
+    @POST("update-staff-approval")
+    suspend fun updateEmployeeApproval(@Body employee: Employee): Boolean
 }
