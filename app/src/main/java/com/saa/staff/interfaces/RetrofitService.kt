@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface FirebaseCloudService{
+interface RetrofitService {
     @GET("hello-world")
     suspend fun helloWorld(): String
 

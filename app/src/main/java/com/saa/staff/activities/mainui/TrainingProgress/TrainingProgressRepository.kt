@@ -1,10 +1,10 @@
 package com.saa.staff.activities.mainui.TrainingProgress
 
-import com.saa.staff.interfaces.FirebaseCloudService
+import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.UserApplication
 import javax.inject.Inject
 
-class TrainingProgressRepository @Inject constructor(retrofit: FirebaseCloudService) {
+class TrainingProgressRepository @Inject constructor(retrofit: RetrofitService) {
     suspend fun getApplications(courseTypeIndex: Int): List<UserApplication> {
         try {
             // get the difference applicants based of the course provided

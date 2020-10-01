@@ -1,11 +1,11 @@
 package com.saa.staff.repositories
 
 import android.util.Log
-import com.saa.staff.interfaces.FirebaseCloudService
+import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.Fellowship
 import javax.inject.Inject
 
-class ManageFellowshipRepository @Inject constructor(var retrofit: FirebaseCloudService) {
+class ManageFellowshipRepository @Inject constructor(var retrofit: RetrofitService) {
     suspend fun getFellowships(): List<Fellowship> {
         return try {
             retrofit.getFellowships()
@@ -15,6 +15,7 @@ class ManageFellowshipRepository @Inject constructor(var retrofit: FirebaseCloud
             listOf()
         }
     }
+
     suspend fun addFellowship(fellowship: Fellowship): Boolean {
         return try {
             retrofit.addFellowship(fellowship)

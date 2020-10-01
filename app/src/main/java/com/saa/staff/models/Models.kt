@@ -160,3 +160,9 @@ class EmployeeDiffCallback : DiffUtil.ItemCallback<Employee>() {
     }
 
 }
+
+@Serializable
+data class Notification(val condition: String, val data: NotificationData)
+
+@Serializable
+data class NotificationData(val title: String, val message: String)

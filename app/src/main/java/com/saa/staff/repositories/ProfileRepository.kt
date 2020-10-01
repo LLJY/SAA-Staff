@@ -1,11 +1,11 @@
 package com.saa.staff.repositories
 
 import android.util.Log
-import com.saa.staff.interfaces.FirebaseCloudService
+import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.User
 import javax.inject.Inject
 
-class ProfileRepository @Inject constructor(var client: FirebaseCloudService) {
+class ProfileRepository @Inject constructor(var client: RetrofitService) {
     suspend fun signUp(user: User): Boolean {
         return try {
             client.signUp(user)
@@ -26,7 +26,7 @@ class ProfileRepository @Inject constructor(var client: FirebaseCloudService) {
 
     suspend fun login(email: String, password: String): String {
         return try {
-            client.login(FirebaseCloudService.LoginInformation(email, password))
+            client.login(RetrofitService.LoginInformation(email, password))
         } catch (ex: Exception) {
             Log.d("Err", ex.toString())
             // return an empty string for the error, TODO a more descriptive error message

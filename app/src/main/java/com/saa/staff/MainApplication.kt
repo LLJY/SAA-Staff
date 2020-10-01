@@ -4,7 +4,8 @@ import android.app.Application
 import android.app.ProgressDialog
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.saa.staff.interfaces.FirebaseCloudService
+import com.saa.staff.interfaces.FirebaseMessagingService
+import com.saa.staff.interfaces.RetrofitService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,20 +34,30 @@ object ProgressDialogModule {
 @InstallIn(ApplicationComponent::class)
 object NetworkModule{
     @Provides
-    fun provideRetrofit(): Retrofit{
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/")
-            .addConverterFactory(Json{ignoreUnknownKeys=true
-            isLenient = true}.asConverterFactory(MediaType.get("application/json")))
-            .build()
-        return retrofit
-    }
-    @Provides
     @Singleton
-    fun provideFirebaseCloudService(retrofit: Retrofit): FirebaseCloudService{
-        return retrofit.create(FirebaseCloudService::class.java)
+    fun provideRetrofitService(): RetrofitService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:8000")
+            .addConverterFactory(Json {
+                ignoreUnknownKeys = true
+                isLenient = true
+            }.asConverterFactory(MediaType.get("application/json")))
+            .build()
+        return retrofit.create(RetrofitService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideFirebaseMessagingService(): FirebaseMessagingService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://fcm.googleapis.com/fcm/")
+            .addConverterFactory(Json {
+                ignoreUnknownKeys = true
+                isLenient = true
+            }.asConverterFactory(MediaType.get("application/json")))
+            .build()
+        return retrofit.create(FirebaseMessagingService::class.java)
+    }
 }
 
 @HiltAndroidApp

@@ -1,11 +1,11 @@
 package com.saa.staff.repositories
 
 import android.util.Log
-import com.saa.staff.interfaces.FirebaseCloudService
+import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.Diploma
 import javax.inject.Inject
 
-class ManageDiplomaRepository @Inject constructor(var retrofit: FirebaseCloudService) {
+class ManageDiplomaRepository @Inject constructor(var retrofit: RetrofitService) {
     suspend fun getDiplomas(): List<Diploma> {
         return try {
             retrofit.getDiplomas()

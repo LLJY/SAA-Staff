@@ -35,15 +35,21 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
+        val intent = Intent(activity, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        // pass the userid to the next activity
+        println("userid: a")
+        intent.putExtra("USER_ID", "a")
+        startActivity(intent)
         binding.emailText.editText!!.setText(viewModel.email)
         binding.passwordText.editText!!.setText(viewModel.password)
-        binding.emailText.editText!!.addTextChangedListener{
+        binding.emailText.editText!!.addTextChangedListener {
             viewModel.email = it.toString()
-            if(it.toString().isBlank()){
-                if(binding.emailText.error != "Required"){
+            if (it.toString().isBlank()) {
+                if (binding.emailText.error != "Required") {
                     binding.emailText.error = "Required"
                 }
-            }else{
+            } else {
                 binding.emailText.error = null
             }
         }

@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/sendNotificationFragment"
-        android:name="com.saa.staff.activities.mainui.SendNotification.SendNotificationFragment"
+        android:name="com.saa.staff.fragments.SendNotificationFragment"
         android:label="send_notification_fragment"
         tools:layout="@layout/send_notification_fragment" />
     <fragment
