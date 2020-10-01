@@ -4,39 +4,54 @@
 
         <item
             android:id="@+id/edit_profile_item"
+            android:icon="@drawable/ic_baseline_account_circle_24"
             android:title="Edit Profile" />
 
         <item
             android:id="@+id/manage_course_item"
+            android:icon="@drawable/ic_baseline_courses_24"
             android:title="Manage Courses" />
 
         <item
             android:id="@+id/manage_fellowship_item"
+            android:icon="@drawable/ic_baseline_fellowship_24"
             android:title="Manage Fellowships" />
         <item
             android:id="@+id/manage_scholarship_item"
+            android:icon="@drawable/ic_baseline_scholarship_24"
             android:title="Manage Scholarships" />
 
         <item
             android:id="@+id/manage_diploma_item"
+            android:icon="@drawable/ic_baseline_diploma_24"
             android:title="Manage Diploma" />
 
         <item
+            android:icon="@drawable/ic_baseline_notifications_24"
             android:id="@+id/send_notification_item"
             android:title="Send Push Notification" />
 
         <item
+            android:icon="@drawable/ic_baseline_training_progress_24"
             android:id="@+id/training_progress_item"
             android:title="Training Progress" />
 
         <item
+            android:icon="@drawable/ic_baseline_review_applications_24"
             android:id="@+id/review_application_item"
             android:title="Review Applications" />
 
         <item
+            android:icon="@drawable/ic_baseline_approve_employees_24"
             android:id="@+id/approve_staff_item"
             android:title="Approve Staff Users" />
 
 
+    </group>
+    <group>
+        <item
+            android:id="@+id/logout_button"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="Logout" />
     </group>
 </menu>
