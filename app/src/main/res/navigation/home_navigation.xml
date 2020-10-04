@@ -165,8 +165,8 @@
         android:label="edit_training_progress_fragment"
         tools:layout="@layout/edit_training_progress_fragment">
         <action
-            android:id="@+id/action_editTrainingProgressFragment_to_participantInfoFragment"
-            app:destination="@id/participantInfoFragment" />
+            android:id="@+id/action_editTrainingProgressFragment_to_viewUserInfoFragment"
+            app:destination="@id/viewUserInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/editParticipantApplicationFragment"
@@ -174,12 +174,12 @@
         android:label="edit_participant_application_fragment"
         tools:layout="@layout/edit_participant_application_fragment">
         <action
-            android:id="@+id/action_editParticipantApplicationFragment_to_participantInfoFragment"
-            app:destination="@id/participantInfoFragment" />
+            android:id="@+id/action_editParticipantApplicationFragment_to_viewUserInfoFragment"
+            app:destination="@id/viewUserInfoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/participantInfoFragment"
-        android:name="com.saa.staff.fragments.ParticipantInfoFragment"
-        android:label="participant_info_fragment"
-        tools:layout="@layout/participant_info_fragment" />
+        android:id="@+id/viewUserInfoFragment"
+        android:name="com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoFragment"
+        android:label="view_user_info_fragment"
+        tools:layout="@layout/view_user_info_fragment" />
 </navigation>

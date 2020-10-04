@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.DiplomasRecyclerAdapter
 import com.saa.staff.databinding.ManageDiplomaFragmentBinding
+import com.saa.staff.models.Diploma
 import com.saa.staff.viewmodels.AddEditDiplomaViewModel
 import com.saa.staff.viewmodels.ManageDiplomaViewModel
 import com.saa.staff.viewmodels.ViewDiplomaViewModel
@@ -50,6 +51,9 @@ class ManageDiplomaFragment : Fragment() {
                 }
             }
         })
+        binding.searchText.editText!!.addTextChangedListener {
+            adapter.submitList(search(it.toString()))
+        }
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshRv(true)
         }
@@ -92,6 +96,15 @@ class ManageDiplomaFragment : Fragment() {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.diplomas = it
             adapter.submitList(it)
+        }
+    }
+
+    fun search(query: String): List<Diploma>? {
+        // by the time there is an opportunity to execute this, these will not be null.
+        if (query.isNotBlank()) {
+            return viewModel.diplomas?.filter { it.title.contains(query) }
+        } else {
+            return viewModel.diplomas
         }
     }
 

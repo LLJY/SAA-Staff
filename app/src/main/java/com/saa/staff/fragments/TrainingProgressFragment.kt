@@ -109,4 +109,5 @@ class TrainingProgressFragment : Fragment() {
         }
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
     }
+
 }

@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoViewModel
 import com.saa.staff.adapters.EditTrainingUsersRecyclerAdapter
 import com.saa.staff.databinding.EditTrainingProgressFragmentBinding
 import com.saa.staff.viewmodels.EditTrainingProgressViewModel
@@ -18,6 +20,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class EditTrainingProgressFragment : Fragment() {
     private val viewModel: EditTrainingProgressViewModel by activityViewModels()
+    private val viewUserInfoViewModel: ViewUserInfoViewModel by activityViewModels()
+
     @Inject
     lateinit var pd: ProgressDialog
     private lateinit var binding: EditTrainingProgressFragmentBinding
@@ -38,6 +42,10 @@ class EditTrainingProgressFragment : Fragment() {
         viewModel.getApplicants().observe(viewLifecycleOwner) {
             adapter.submitList(it)
             pd.dismiss()
+        }
+        adapter.viewClickSubject.subscribe {
+            viewUserInfoViewModel.userUUID = it.userUUID
+            findNavController().navigate(EditTrainingProgressFragmentDirections.actionEditTrainingProgressFragmentToViewUserInfoFragment())
         }
         adapter.changeSpinnerSubject.subscribe { item ->
             pd.show()

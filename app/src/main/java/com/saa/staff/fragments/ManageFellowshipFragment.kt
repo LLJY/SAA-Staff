@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.FellowshipsRecyclerAdapter
 import com.saa.staff.databinding.ManageFellowshipFragmentBinding
+import com.saa.staff.models.Fellowship
 import com.saa.staff.viewmodels.AddEditFellowshipViewModel
 import com.saa.staff.viewmodels.ManageFellowshipViewModel
 import com.saa.staff.viewmodels.ViewFellowshipViewModel
@@ -46,14 +47,17 @@ class ManageFellowshipFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshRv(true)
         }
+        binding.searchText.editText!!.addTextChangedListener {
+            adapter.submitList(search(it.toString()))
+        }
         // setup the recyclerview onclicklisteners
         adapter.detailsButtonClick.subscribe {
             viewFellowshipViewModel.fellowShip = it
             findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToViewFellowshipFragment())
         }
-        adapter.editInfoClick.subscribe{
+        adapter.editInfoClick.subscribe {
             addEditFellowshipViewModel.clearViewModel()
-            addEditFellowshipViewModel.isEdit=true
+            addEditFellowshipViewModel.isEdit = true
             addEditFellowshipViewModel.fellowShip = it
             findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
         }
@@ -88,13 +92,22 @@ class ManageFellowshipFragment : Fragment() {
      * Refresh the recyclerview by getting fellowships from the backend and asynchronously updating the
      * List using submitList, which calculates the diff in another thread.
      */
-    fun refreshRv(refresh: Boolean = false){
+    fun refreshRv(refresh: Boolean = false) {
         viewModel.getFellowships(refresh).observe(viewLifecycleOwner, {
             // set the refresh to not refreshing
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.fellowships = it
             adapter.submitList(it)
         })
+    }
+
+    fun search(query: String): List<Fellowship>? {
+        // by the time there is an opportunity to execute this, these will not be null.
+        if (query.isNotBlank()) {
+            return viewModel.fellowships?.filter { it.title.contains(query) }
+        } else {
+            return viewModel.fellowships
+        }
     }
 
 }

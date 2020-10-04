@@ -64,6 +64,10 @@ class EditParticipantApplicationFragment : Fragment() {
                 }
             }
         }
+//        adapter..subscribe{
+//            viewUserInfoViewModel.userUUID = it.userUUID
+//            findNavController().navigate(EditTrainingProgressFragmentDirections.actionEditTrainingProgressFragmentToViewUserInfoFragment())
+//        }
 
         adapter.rejectButtonClickSubject.subscribe { item ->
             pd.show()

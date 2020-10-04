@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.ScholarshipRecyclerAdapter
 import com.saa.staff.databinding.ManageScholarshipFragmentBinding
+import com.saa.staff.models.Scholarship
 import com.saa.staff.viewmodels.AddEditScholarshipViewModel
 import com.saa.staff.viewmodels.ManageScholarshipViewModel
 import com.saa.staff.viewmodels.ViewScholarshipViewModel
@@ -54,6 +55,9 @@ class ManageScholarshipFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshRv(true)
         }
+        binding.searchText.editText!!.addTextChangedListener {
+            adapter.submitList(search(it.toString()))
+        }
         adapter.detailsButtonClick.subscribe {
             viewScholarshipViewModel.scholarship = it
             findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToViewScholarshipFragment())
@@ -87,11 +91,20 @@ class ManageScholarshipFragment : Fragment() {
     /**
      * refresh recyclerview
      */
-    fun refreshRv(refresh:Boolean=false) {
+    fun refreshRv(refresh: Boolean = false) {
         viewModel.getScholarships(refresh).observe(viewLifecycleOwner) {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.scholarships = it
             adapter.submitList(it)
+        }
+    }
+
+    fun search(query: String): List<Scholarship>? {
+        // by the time there is an opportunity to execute this, these will not be null.
+        if (query.isNotBlank()) {
+            return viewModel.scholarships?.filter { it.title.contains(query) }
+        } else {
+            return viewModel.scholarships
         }
     }
 

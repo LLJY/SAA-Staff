@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.adapters.CoursesRecyclerAdapter
 import com.saa.staff.databinding.ManageCoursesFragmentBinding
+import com.saa.staff.models.Course
 import com.saa.staff.viewmodels.AddEditCourseViewModel
 import com.saa.staff.viewmodels.ManageCoursesViewModel
 import com.saa.staff.viewmodels.ViewCourseInfoViewModel
@@ -45,11 +46,14 @@ class ManageCoursesFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshRv(true)
         }
+        binding.searchText.editText!!.addTextChangedListener {
+            adapter.submitList(search(it.toString()))
+        }
         adapter.deleteClick.subscribe {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Are you sure?")
             builder.setMessage("Do you want to delete \"${it.title}\" ?")
-            builder.setNegativeButton("NO"){dialog, which ->
+            builder.setNegativeButton("NO") { dialog, which ->
 
             }
             builder.setPositiveButton("YES") { dialog, which ->
@@ -78,24 +82,34 @@ class ManageCoursesFragment : Fragment() {
             addEditCourseViewModel.clearViewModel()
             findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
         }
-        binding.coursesRecycler.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+        binding.coursesRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(dy > 0){
+                if (dy > 0) {
                     binding.fab.hide()
-                }else if(dy<0){
+                } else if (dy < 0) {
                     binding.fab.show()
                 }
             }
         })
     }
-    fun refreshRv(refresh: Boolean = false){
+
+    fun refreshRv(refresh: Boolean = false) {
         viewModel.getCourses(refresh).observe(viewLifecycleOwner, {
             binding.swipeRefreshLayout.isRefreshing = false
             viewModel.courses = it
             adapter.submitList(it)
         })
+    }
+
+    fun search(query: String): List<Course>? {
+        // by the time there is an opportunity to execute this, these will not be null.
+        if (query.isNotBlank()) {
+            return viewModel.courses?.filter { it.title.contains(query) }
+        } else {
+            return viewModel.courses
+        }
     }
 
 }
