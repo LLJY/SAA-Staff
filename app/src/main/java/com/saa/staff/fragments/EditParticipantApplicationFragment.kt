@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoViewModel
 import com.saa.staff.adapters.ApproveRejectUserRecyclerAdapter
 import com.saa.staff.databinding.EditParticipantApplicationFragmentBinding
 import com.saa.staff.viewmodels.EditParticipantApplicationViewModel
@@ -19,6 +22,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class EditParticipantApplicationFragment : Fragment() {
     private val viewModel: EditParticipantApplicationViewModel by activityViewModels()
+    private val viewUserInfoViewModel: ViewUserInfoViewModel by activityViewModels()
     private lateinit var binding: EditParticipantApplicationFragmentBinding
     @Inject
     lateinit var pd: ProgressDialog
@@ -64,10 +68,19 @@ class EditParticipantApplicationFragment : Fragment() {
                 }
             }
         }
-//        adapter..subscribe{
-//            viewUserInfoViewModel.userUUID = it.userUUID
-//            findNavController().navigate(EditTrainingProgressFragmentDirections.actionEditTrainingProgressFragmentToViewUserInfoFragment())
-//        }
+        binding.searchText.editText!!.addTextChangedListener { text ->
+            if (text.toString().isNotBlank()) {
+                adapter.submitList(viewModel.userApplications?.filter {
+                    it.toString().toLowerCase().contains(text.toString().toLowerCase())
+                })
+            } else {
+                adapter.submitList(viewModel.userApplications)
+            }
+        }
+        adapter.viewInfoClickSubject.subscribe {
+            viewUserInfoViewModel.userUUID = it.userUUID
+            findNavController().navigate(EditParticipantApplicationFragmentDirections.actionEditParticipantApplicationFragmentToViewUserInfoFragment())
+        }
 
         adapter.rejectButtonClickSubject.subscribe { item ->
             pd.show()

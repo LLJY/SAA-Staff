@@ -9,8 +9,12 @@ import com.saa.staff.models.UserApplication
 class EditParticipantApplicationViewModel @ViewModelInject constructor(val trainingProgressRepository: TrainingProgressRepository) :
     ViewModel() {
     var courseTypeIndex: Int = 0
+    var userApplications: List<UserApplication>? = null
     fun getApplicants() =
-        liveData { emit(trainingProgressRepository.getApplications(courseTypeIndex)) }
+        liveData {
+            userApplications = trainingProgressRepository.getApplications(courseTypeIndex)
+            emit(userApplications)
+        }
 
     fun updateApplication(userApplication: UserApplication) =
         liveData { emit(trainingProgressRepository.updateUserApplication(userApplication)) }

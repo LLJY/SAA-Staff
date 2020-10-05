@@ -19,6 +19,8 @@ class ApproveRejectUserRecyclerAdapter constructor(val context: Context) :
     val approveButtonClickSubject: Subject<UserApplication> get() = approvePublishSubject
     private val rejectPublishSubject = PublishSubject.create<UserApplication>()
     val rejectButtonClickSubject: Subject<UserApplication> get() = rejectPublishSubject
+    private val viewInfoPublishSubject = PublishSubject.create<UserApplication>()
+    val viewInfoClickSubject: Subject<UserApplication> get() = viewInfoPublishSubject
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApproveRejectUserViewHolder {
         return ApproveRejectUserViewHolder(
@@ -55,6 +57,9 @@ class ApproveRejectUserRecyclerAdapter constructor(val context: Context) :
             binding.rejectStaffButton.setOnClickListener {
                 rejectPublishSubject.onNext(application)
             }
+        }
+        binding.root.setOnClickListener {
+            viewInfoClickSubject.onNext(application)
         }
 
 

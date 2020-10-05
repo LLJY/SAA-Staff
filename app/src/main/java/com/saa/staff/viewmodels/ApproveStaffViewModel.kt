@@ -8,7 +8,12 @@ import com.saa.staff.repositories.ApproveStaffRepository
 
 class ApproveStaffViewModel @ViewModelInject constructor(private var repository: ApproveStaffRepository) :
     ViewModel() {
-    fun getEmployees() = liveData { emit(repository.getEmployees()) }
+    var employees: List<Employee>? = null
+    fun getEmployees() = liveData {
+        employees = repository.getEmployees()
+        emit(employees)
+    }
+
     fun updateEmployeeStatus(employee: Employee) =
         liveData { emit(repository.updateEmployees(employee)) }
 }

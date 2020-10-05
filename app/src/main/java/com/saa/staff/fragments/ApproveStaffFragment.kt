@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
@@ -42,9 +43,23 @@ class ApproveStaffFragment : Fragment() {
             pd.dismiss()
             adapter.submitList(it)
         }
+        adapter.viewInfoClickSubject.subscribe {
+
+        }
+        binding.searchText.editText!!.addTextChangedListener {
+            if (it.toString().isNotBlank()) {
+                adapter.submitList(viewModel.employees?.filter {
+                    it.fullName.toLowerCase().contains(it.toString().toLowerCase())
+                })
+            } else {
+                adapter.submitList(viewModel.employees)
+            }
+        }
         adapter.approveButtonClickSubject.subscribe { item ->
             pd.show()
-            viewModel.updateEmployeeStatus(item).observe(viewLifecycleOwner) {
+            val newItem = item
+            newItem.approvalStatus = 2
+            viewModel.updateEmployeeStatus(newItem).observe(viewLifecycleOwner) {
                 pd.dismiss()
                 if (it) {
                     Snackbar.make(
@@ -53,10 +68,8 @@ class ApproveStaffFragment : Fragment() {
                         Snackbar.LENGTH_LONG
                     ).show()
                     val itemIndex = adapter.currentList.indexOf(item)
-                    // set the approval status to accepted and update the list with it
-                    item.approvalStatus = 2
                     val list = adapter.currentList.toMutableList()
-                    list[itemIndex] = item
+                    list[itemIndex] = newItem
                     adapter.submitList(list)
                     adapter.notifyDataSetChanged()
                 } else {
@@ -67,7 +80,9 @@ class ApproveStaffFragment : Fragment() {
         }
         adapter.rejectButtonClickSubject.subscribe { item ->
             pd.show()
-            viewModel.updateEmployeeStatus(item).observe(viewLifecycleOwner) {
+            val newItem = item
+            newItem.approvalStatus = 0
+            viewModel.updateEmployeeStatus(newItem).observe(viewLifecycleOwner) {
                 pd.dismiss()
                 if (it) {
                     Snackbar.make(
@@ -76,10 +91,8 @@ class ApproveStaffFragment : Fragment() {
                         Snackbar.LENGTH_LONG
                     ).show()
                     val itemIndex = adapter.currentList.indexOf(item)
-                    // set the approval status to rejected and update the list with it
-                    item.approvalStatus = 0
                     val list = adapter.currentList.toMutableList()
-                    list[itemIndex] = item
+                    list[itemIndex] = newItem
                     adapter.submitList(list)
                     adapter.notifyDataSetChanged()
                 } else {

@@ -9,7 +9,12 @@ import com.saa.staff.models.UserApplication
 class EditTrainingProgressViewModel @ViewModelInject constructor(private var repository: TrainingProgressRepository) :
     ViewModel() {
     var courseTypeIndex: Int = 0
-    fun getApplicants() = liveData { emit(repository.getApplications(courseTypeIndex)) }
+    var applicants: List<UserApplication>? = null
+    fun getApplicants() = liveData {
+        applicants = repository.getApplications(courseTypeIndex)
+        emit(applicants)
+    }
+
     fun updateApplication(userApplication: UserApplication) =
         liveData { emit(repository.updateUserApplication(userApplication)) }
 }

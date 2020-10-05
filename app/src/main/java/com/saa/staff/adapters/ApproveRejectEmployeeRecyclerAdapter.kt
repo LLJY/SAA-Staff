@@ -18,7 +18,8 @@ class ApproveRejectEmployeeRecyclerAdapter constructor(val context: Context) :
     val approveButtonClickSubject: Subject<Employee> get() = approvePublishSubject
     private val rejectPublishSubject = PublishSubject.create<Employee>()
     val rejectButtonClickSubject: Subject<Employee> get() = rejectPublishSubject
-
+    private val viewInfoPublishSubject = PublishSubject.create<Employee>()
+    val viewInfoClickSubject: Subject<Employee> get() = viewInfoPublishSubject
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApproveRejectUserViewHolder {
         return ApproveRejectUserViewHolder(
             UserApproveRejectRowLayoutBinding.inflate(
@@ -54,6 +55,9 @@ class ApproveRejectEmployeeRecyclerAdapter constructor(val context: Context) :
             binding.rejectStaffButton.setOnClickListener {
                 rejectPublishSubject.onNext(employee)
             }
+        }
+        binding.root.setOnClickListener {
+            viewInfoClickSubject.onNext(employee)
         }
 
 

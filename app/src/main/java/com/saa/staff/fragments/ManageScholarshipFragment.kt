@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -102,7 +103,9 @@ class ManageScholarshipFragment : Fragment() {
     fun search(query: String): List<Scholarship>? {
         // by the time there is an opportunity to execute this, these will not be null.
         if (query.isNotBlank()) {
-            return viewModel.scholarships?.filter { it.title.contains(query) }
+            return viewModel.scholarships?.filter {
+                it.title.toLowerCase().contains(query.toLowerCase())
+            }
         } else {
             return viewModel.scholarships
         }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,15 @@ class EditTrainingProgressFragment : Fragment() {
         viewModel.getApplicants().observe(viewLifecycleOwner) {
             adapter.submitList(it)
             pd.dismiss()
+        }
+        binding.searchText.editText!!.addTextChangedListener { text ->
+            if (text.toString().isNotBlank()) {
+                adapter.submitList(viewModel.applicants?.filter {
+                    it.fullName.toLowerCase().contains(text.toString().toLowerCase())
+                })
+            } else {
+                adapter.submitList(viewModel.applicants)
+            }
         }
         adapter.viewClickSubject.subscribe {
             viewUserInfoViewModel.userUUID = it.userUUID
