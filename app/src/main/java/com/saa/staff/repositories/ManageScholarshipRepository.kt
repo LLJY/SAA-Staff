@@ -4,7 +4,9 @@ import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.Scholarship
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ManageScholarshipRepository @Inject constructor(var retrofit: RetrofitService) {
     // TODO use retrofit
     suspend fun getScholarships(): List<Scholarship> {

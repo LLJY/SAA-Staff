@@ -4,7 +4,9 @@ import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.User
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ProfileRepository @Inject constructor(var client: RetrofitService) {
     suspend fun signUp(user: User): Boolean {
         return try {

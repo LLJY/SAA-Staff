@@ -4,7 +4,9 @@ import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.Diploma
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ManageDiplomaRepository @Inject constructor(var retrofit: RetrofitService) {
     suspend fun getDiplomas(): List<Diploma> {
         return try {

@@ -4,7 +4,9 @@ import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.Course
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ManageCourseRepository @Inject constructor(var retrofit: RetrofitService) {
     suspend fun getCourses(): List<Course> {
         return try {
@@ -25,6 +27,7 @@ class ManageCourseRepository @Inject constructor(var retrofit: RetrofitService) 
             false
         }
     }
+
     suspend fun deleteCourse(course: Course): Boolean {
         return try {
             retrofit.deleteCourse(course)
@@ -34,6 +37,7 @@ class ManageCourseRepository @Inject constructor(var retrofit: RetrofitService) 
             false
         }
     }
+
     suspend fun updateCourse(course: Course): Boolean {
         return try {
             retrofit.updateCourse(course)
