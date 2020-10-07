@@ -25,7 +25,7 @@ class ViewDiplomaFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.applicationDeadlineTitle.text =
+        binding.applicationDeadlineText.text =
             SimpleDateFormat("dd/MM/yyyy").format(viewModel.diploma.applicationDeadline)
         val startDateString = SimpleDateFormat("dd/MM/yyyy").format(viewModel.diploma.startDate)
         val endDateString = SimpleDateFormat("dd/MM/yyyy").format(viewModel.diploma.endDate)
