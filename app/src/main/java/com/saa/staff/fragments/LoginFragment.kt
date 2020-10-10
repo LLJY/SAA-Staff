@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.activities.mainui.HomeActivity
+import com.saa.staff.activities.HomeActivity
 import com.saa.staff.databinding.LoginFragmentBinding
 import com.saa.staff.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -12,10 +12,10 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoViewModel
 import com.saa.staff.adapters.ApproveRejectUserRecyclerAdapter
 import com.saa.staff.databinding.EditParticipantApplicationFragmentBinding
 import com.saa.staff.viewmodels.EditParticipantApplicationViewModel
+import com.saa.staff.viewmodels.ViewUserInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -41,7 +41,7 @@ class EditParticipantApplicationFragment : Fragment() {
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         pd.show()
-        viewModel.getApplicants().observe(viewLifecycleOwner) {
+        viewModel.getApplicants(viewModel.courseUUID).observe(viewLifecycleOwner) {
             pd.dismiss()
             adapter.submitList(it)
         }
@@ -78,7 +78,7 @@ class EditParticipantApplicationFragment : Fragment() {
             }
         }
         adapter.viewInfoClickSubject.subscribe {
-            viewUserInfoViewModel.userUUID = it.userUUID
+            viewUserInfoViewModel.user = it.user
             findNavController().navigate(EditParticipantApplicationFragmentDirections.actionEditParticipantApplicationFragmentToViewUserInfoFragment())
         }
 

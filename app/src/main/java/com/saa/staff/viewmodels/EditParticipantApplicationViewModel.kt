@@ -3,9 +3,9 @@ package com.saa.staff.viewmodels
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.saa.staff.activities.mainui.ReviewApplication.ReviewApplicationRepository
-import com.saa.staff.activities.mainui.TrainingProgress.TrainingProgressRepository
 import com.saa.staff.models.UserApplication
+import com.saa.staff.repositories.ReviewApplicationRepository
+import com.saa.staff.repositories.TrainingProgressRepository
 
 class EditParticipantApplicationViewModel @ViewModelInject constructor(
     private val repository: ReviewApplicationRepository,
@@ -14,9 +14,10 @@ class EditParticipantApplicationViewModel @ViewModelInject constructor(
     ViewModel() {
     var courseTypeIndex: Int = 0
     var userApplications: List<UserApplication>? = null
-    fun getApplicants() =
+    var courseUUID: String = ""
+    fun getApplicants(courseUUID: String) =
         liveData {
-            userApplications = repository.getApplications(courseTypeIndex)
+            userApplications = repository.getApplications(courseTypeIndex, courseUUID)
             emit(userApplications)
         }
 

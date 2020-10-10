@@ -83,29 +83,32 @@ interface RetrofitService {
     suspend fun updateEmployeeApproval(@Body employee: Employee): Boolean
 
     // for training progress
-    @GET("course-applications-approved")
-    suspend fun getApprovedCourseApplications(): List<UserApplication>
+    @POST("course-applications-approved")
+    suspend fun getApprovedCourseApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("fellowship-applications-approved")
-    suspend fun getApprovedFellowshipApplications(): List<UserApplication>
+    @POST("fellowship-applications-approved")
+    suspend fun getApprovedFellowshipApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("diploma-applications-approved")
-    suspend fun getApprovedDiplomaApplications(): List<UserApplication>
+    @POST("diploma-applications-approved")
+    suspend fun getApprovedDiplomaApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("scholarship-applications-approved")
-    suspend fun getApprovedScholarshipApplications(): List<UserApplication>
+    @POST("scholarship-applications-approved")
+    suspend fun getApprovedScholarshipApplications(@Body uuid: String): List<UserApplication>
 
     // for approval
-    @GET("course-applications")
-    suspend fun getCourseApplications(): List<UserApplication>
+    @POST("course-applications")
+    suspend fun getCourseApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("fellowship-applications")
-    suspend fun getFellowshipApplications(): List<UserApplication>
+    @POST("fellowship-applications")
+    suspend fun getFellowshipApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("diploma-applications")
-    suspend fun getDiplomaApplications(): List<UserApplication>
+    @POST("diploma-applications")
+    suspend fun getDiplomaApplications(@Body uuid: String): List<UserApplication>
 
-    @GET("scholarship-applications")
-    suspend fun getScholarshipApplications(): List<UserApplication>
+    @POST("scholarship-applications")
+    suspend fun getScholarshipApplications(@Body uuid: String): List<UserApplication>
+
+    @POST("update-application-progress")
+    suspend fun updateApplicationProgress(@Body userApplication: UserApplication): Boolean
 
 }

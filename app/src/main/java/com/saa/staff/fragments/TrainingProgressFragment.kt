@@ -119,6 +119,7 @@ class TrainingProgressFragment : Fragment() {
                 }
                 adapter.onClickSubject.subscribe {
                     editTrainingProgressViewModel.courseTypeIndex = 0
+                    editTrainingProgressViewModel.courseUUID = it.uuid
                     findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                 }
 
@@ -153,6 +154,7 @@ class TrainingProgressFragment : Fragment() {
                 }
                 adapter.onClickSubject.subscribe {
                     editTrainingProgressViewModel.courseTypeIndex = 1
+                    editTrainingProgressViewModel.courseUUID = it.uuid
                     findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                 }
                 searchTextWatcher = object : TextWatcher {
@@ -186,6 +188,7 @@ class TrainingProgressFragment : Fragment() {
                 }
                 adapter.onClickSubject.subscribe {
                     editTrainingProgressViewModel.courseTypeIndex = 2
+                    editTrainingProgressViewModel.courseUUID = it.uuid
                     findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                 }
                 searchTextWatcher = object : TextWatcher {
@@ -220,6 +223,7 @@ class TrainingProgressFragment : Fragment() {
                 }
                 adapter.onClickSubject.subscribe {
                     editTrainingProgressViewModel.courseTypeIndex = 3
+                    editTrainingProgressViewModel.courseUUID = it.uuid
                     findNavController().navigate(TrainingProgressFragmentDirections.actionTrainingProgressFragmentToEditTrainingProgressFragment())
                 }
                 searchTextWatcher = object : TextWatcher {

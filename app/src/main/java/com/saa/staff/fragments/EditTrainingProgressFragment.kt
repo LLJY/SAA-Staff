@@ -11,10 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoViewModel
 import com.saa.staff.adapters.EditTrainingUsersRecyclerAdapter
 import com.saa.staff.databinding.EditTrainingProgressFragmentBinding
 import com.saa.staff.viewmodels.EditTrainingProgressViewModel
+import com.saa.staff.viewmodels.ViewUserInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,7 +40,7 @@ class EditTrainingProgressFragment : Fragment() {
         pd.show()
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-        viewModel.getApplicants().observe(viewLifecycleOwner) {
+        viewModel.getApplicants(viewModel.courseUUID).observe(viewLifecycleOwner) {
             adapter.submitList(it)
             pd.dismiss()
         }
@@ -54,7 +54,7 @@ class EditTrainingProgressFragment : Fragment() {
             }
         }
         adapter.viewClickSubject.subscribe {
-            viewUserInfoViewModel.userUUID = it.userUUID
+            viewUserInfoViewModel.user = it.user
             findNavController().navigate(EditTrainingProgressFragmentDirections.actionEditTrainingProgressFragmentToViewUserInfoFragment())
         }
         adapter.changeSpinnerSubject.subscribe { item ->

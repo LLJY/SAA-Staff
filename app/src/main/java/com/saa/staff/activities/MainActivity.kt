@@ -1,9 +1,10 @@
-package com.saa.staff
+package com.saa.staff.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import com.saa.staff.R
 import com.saa.staff.databinding.ActivityMainBinding
 import com.saa.staff.viewmodels.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint

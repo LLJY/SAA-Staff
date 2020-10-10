@@ -124,15 +124,17 @@ class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {
 @Serializable
 data class Participant(
     var uuid: String,
-    var fullName: String,
+    var firstName: String,
+    var lastName: String,
     var dob: Long,
-    var contactNumber: String,
+    var email: String,
     var country: String,
     var passportNumber: String,
     var passportExpiry: Long,
     var organisation: String,
     var jobTitle: String,
-    var email: String
+    var password: String,
+    var contactNumber: Int
 )
 
 @Serializable

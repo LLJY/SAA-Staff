@@ -1,4 +1,4 @@
-package com.saa.staff.activities.mainui
+package com.saa.staff.activities
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -12,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
-import com.saa.staff.MainActivity
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
 import com.saa.staff.viewmodels.HomeViewModel

@@ -179,7 +179,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewUserInfoFragment"
-        android:name="com.saa.staff.activities.mainui.ViewUserInfo.ViewUserInfoFragment"
+        android:name="com.saa.staff.fragments.ViewUserInfoFragment"
         android:label="view_user_info_fragment"
         tools:layout="@layout/view_user_info_fragment" />
 </navigation>

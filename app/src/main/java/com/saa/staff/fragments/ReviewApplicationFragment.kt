@@ -56,6 +56,7 @@ class ReviewApplicationFragment : Fragment() {
                     }
                     adapter.onClickSubject.subscribe {
                         editParticipantApplicationViewModel.courseTypeIndex = 0
+                        editParticipantApplicationViewModel.courseUUID = it.uuid
                         findNavController().navigate(ReviewApplicationFragmentDirections.actionReviewApplicationFragmentToEditParticipantApplicationFragment())
                     }
                 }
@@ -67,6 +68,7 @@ class ReviewApplicationFragment : Fragment() {
                     }
                     adapter.onClickSubject.subscribe {
                         editParticipantApplicationViewModel.courseTypeIndex = 1
+                        editParticipantApplicationViewModel.courseUUID = it.uuid
                         findNavController().navigate(ReviewApplicationFragmentDirections.actionReviewApplicationFragmentToEditParticipantApplicationFragment())
                     }
                 }
@@ -78,6 +80,7 @@ class ReviewApplicationFragment : Fragment() {
                     }
                     adapter.onClickSubject.subscribe {
                         editParticipantApplicationViewModel.courseTypeIndex = 2
+                        editParticipantApplicationViewModel.courseUUID = it.uuid
                         findNavController().navigate(ReviewApplicationFragmentDirections.actionReviewApplicationFragmentToEditParticipantApplicationFragment())
                     }
                 }
@@ -89,6 +92,7 @@ class ReviewApplicationFragment : Fragment() {
                     }
                     adapter.onClickSubject.subscribe {
                         editParticipantApplicationViewModel.courseTypeIndex = 3
+                        editParticipantApplicationViewModel.courseUUID = it.uuid
                         findNavController().navigate(ReviewApplicationFragmentDirections.actionReviewApplicationFragmentToEditParticipantApplicationFragment())
                     }
                 }
@@ -104,6 +108,7 @@ class ReviewApplicationFragment : Fragment() {
         }
         adapter.onClickSubject.subscribe {
             editParticipantApplicationViewModel.courseTypeIndex = 0
+            editParticipantApplicationViewModel.courseUUID = it.uuid
             findNavController().navigate(ReviewApplicationFragmentDirections.actionReviewApplicationFragmentToEditParticipantApplicationFragment())
         }
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
