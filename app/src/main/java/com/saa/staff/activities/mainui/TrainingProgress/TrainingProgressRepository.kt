@@ -4,47 +4,15 @@ import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.UserApplication
 import javax.inject.Inject
 
-class TrainingProgressRepository @Inject constructor(retrofit: RetrofitService) {
+class TrainingProgressRepository @Inject constructor(private val retrofit: RetrofitService) {
     suspend fun getApplications(courseTypeIndex: Int): List<UserApplication> {
         try {
             // get the difference applicants based of the course provided
             when (courseTypeIndex) {
-                0 -> return listOf(
-                    UserApplication(
-                        "Lucas Lee",
-                        2,
-                        "aaa",
-                        "aaa",
-                        0
-                    )
-                )
-                1 -> return listOf(
-                    UserApplication(
-                        "Lucas Lee",
-                        2,
-                        "aaa",
-                        "aaa",
-                        1
-                    )
-                )
-                2 -> return listOf(
-                    UserApplication(
-                        "Lucas Lee",
-                        2,
-                        "aaa",
-                        "aaa",
-                        2
-                    )
-                )
-                3 -> return listOf(
-                    UserApplication(
-                        "Lucas Lee",
-                        2,
-                        "aaa",
-                        "aaa",
-                        3
-                    )
-                )
+                0 -> return retrofit.getApprovedCourseApplications()
+                1 -> return retrofit.getApprovedFellowshipApplications()
+                2 -> return retrofit.getApprovedScholarshipApplications()
+                3 -> return retrofit.getApprovedDiplomaApplications()
             }
         } catch (ex: Exception) {
             return listOf()

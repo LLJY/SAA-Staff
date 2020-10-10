@@ -105,14 +105,14 @@ data class UserApplication(
     var fullName: String,
     var progressType: Int, // 0, rejected, 1 not approved, 2 in progress, 3 completed
     var applicationUUID: String,
-    var userUUID: String,
+    var user: Participant,
     var courseApplicationIndex: Int // 0 = course, 1= fellowship, 2=scholarship, 3=diploma
 )
 
 class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {
     override fun areItemsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
         // compare concatenated unique user and application uuids to compare as they will surely be unique as well
-        return oldItem.userUUID + oldItem.applicationUUID == newItem.userUUID + oldItem.applicationUUID
+        return oldItem.user.uuid + oldItem.applicationUUID == newItem.user.uuid + oldItem.applicationUUID
     }
 
     override fun areContentsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
@@ -166,3 +166,4 @@ data class Notification(val condition: String, val data: NotificationData)
 
 @Serializable
 data class NotificationData(val title: String, val message: String)
+

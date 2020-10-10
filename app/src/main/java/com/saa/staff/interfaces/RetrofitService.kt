@@ -81,4 +81,31 @@ interface RetrofitService {
 
     @POST("update-staff-approval")
     suspend fun updateEmployeeApproval(@Body employee: Employee): Boolean
+
+    // for training progress
+    @GET("course-applications-approved")
+    suspend fun getApprovedCourseApplications(): List<UserApplication>
+
+    @GET("fellowship-applications-approved")
+    suspend fun getApprovedFellowshipApplications(): List<UserApplication>
+
+    @GET("diploma-applications-approved")
+    suspend fun getApprovedDiplomaApplications(): List<UserApplication>
+
+    @GET("scholarship-applications-approved")
+    suspend fun getApprovedScholarshipApplications(): List<UserApplication>
+
+    // for approval
+    @GET("course-applications")
+    suspend fun getCourseApplications(): List<UserApplication>
+
+    @GET("fellowship-applications")
+    suspend fun getFellowshipApplications(): List<UserApplication>
+
+    @GET("diploma-applications")
+    suspend fun getDiplomaApplications(): List<UserApplication>
+
+    @GET("scholarship-applications")
+    suspend fun getScholarshipApplications(): List<UserApplication>
+
 }
