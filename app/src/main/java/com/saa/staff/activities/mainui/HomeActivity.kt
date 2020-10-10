@@ -1,5 +1,8 @@
 package com.saa.staff.activities.mainui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -9,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
+import com.saa.staff.MainActivity
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
 import com.saa.staff.viewmodels.HomeViewModel
@@ -55,7 +59,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         item.isChecked = true
         binding.drawerLayout.closeDrawers()
-        when (item.itemId){
+        when (item.itemId) {
             R.id.edit_profile_item -> navController.navigate(R.id.editProfileFragment)
             R.id.manage_course_item -> navController.navigate(R.id.manageCoursesFragment)
             R.id.manage_fellowship_item -> navController.navigate(R.id.manageFellowshipFragment)
@@ -65,6 +69,21 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.training_progress_item -> navController.navigate(R.id.trainingProgressFragment)
             R.id.review_application_item -> navController.navigate(R.id.reviewApplicationFragment)
             R.id.approve_staff_item -> navController.navigate(R.id.approveStaffFragment)
+            R.id.logout_button -> {
+                val dialog = AlertDialog.Builder(this@HomeActivity)
+                dialog.setTitle("Are you sure?")
+                dialog.setMessage("Are you sure you want to logout?")
+                dialog.setNegativeButton("NO") { _: DialogInterface, i: Int ->
+
+                }
+                dialog.setPositiveButton("YES") { dialog: DialogInterface, i: Int ->
+                    dialog.dismiss()
+                    // disable the callback when yes is pressed and trigger onBackPressed
+                    val intent = Intent(this@HomeActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                dialog.show()
+            }
         }
         return true
     }

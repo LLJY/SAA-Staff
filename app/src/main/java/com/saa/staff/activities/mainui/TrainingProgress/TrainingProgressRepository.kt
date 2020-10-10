@@ -5,6 +5,9 @@ import com.saa.staff.models.UserApplication
 import javax.inject.Inject
 
 class TrainingProgressRepository @Inject constructor(retrofit: RetrofitService) {
+    /**
+     * Only gets approved applicants
+     */
     suspend fun getApplications(courseTypeIndex: Int): List<UserApplication> {
         try {
             // get the difference applicants based of the course provided

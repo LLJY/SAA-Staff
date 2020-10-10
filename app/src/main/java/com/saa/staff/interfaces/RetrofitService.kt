@@ -81,4 +81,7 @@ interface RetrofitService {
 
     @POST("update-staff-approval")
     suspend fun updateEmployeeApproval(@Body employee: Employee): Boolean
+
+    @POST("course-applications-approved")
+    suspend fun getApprovedCourseApplications(@Body uuid: String): List<UserApplication>
 }
