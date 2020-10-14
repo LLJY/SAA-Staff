@@ -43,7 +43,7 @@ class SendNotificationFragment : Fragment() {
                         if (it) {
                             Snackbar.make(
                                 binding.root,
-                                "Ensure all fields are valid!",
+                                "Notification Sent!",
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         } else {
