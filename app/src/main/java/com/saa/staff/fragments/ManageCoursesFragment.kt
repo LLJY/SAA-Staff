@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,9 @@ import com.saa.staff.viewmodels.AddEditCourseViewModel
 import com.saa.staff.viewmodels.ManageCoursesViewModel
 import com.saa.staff.viewmodels.ViewCourseInfoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ManageCoursesFragment : Fragment() {
@@ -50,32 +54,35 @@ class ManageCoursesFragment : Fragment() {
         binding.searchText.editText!!.addTextChangedListener {
             adapter.submitList(search(it.toString()))
         }
-        adapter.deleteClick.subscribe {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Are you sure?")
-            builder.setMessage("Do you want to delete \"${it.title}\" ?")
-            builder.setNegativeButton("NO") { dialog, which ->
+        // use main coroutine scope to avoid spawning unnecessary threads and savc resources
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter.deleteClick.collect {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Are you sure?")
+                builder.setMessage("Do you want to delete \"${it.title}\" ?")
+                builder.setNegativeButton("NO") { dialog, which ->
 
+                }
+                builder.setPositiveButton("YES") { dialog, which ->
+                    viewModel.deleteCourse(it).observe(viewLifecycleOwner, {
+                        refreshRv()
+                    })
+                }
+                builder.show()
             }
-            builder.setPositiveButton("YES") { dialog, which ->
-                viewModel.deleteCourse(it).observe(viewLifecycleOwner, {
-                    refreshRv()
-                })
+            // subscribe for click information and launch the views accordingly
+            adapter.detailsButtonClick.collect {
+                viewCourseViewModel.clearViewModel()
+                viewCourseViewModel.course = it
+                findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToViewCourseInfoFragment())
             }
-            builder.show()
-        }
-        // subscribe for click information and launch the views accordingly
-        adapter.detailsButtonClick.subscribe{
-            viewCourseViewModel.clearViewModel()
-            viewCourseViewModel.course = it
-            findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToViewCourseInfoFragment())
-        }
-        adapter.editInfoClick.subscribe {
-            addEditCourseViewModel.isEdit = true
-            // ensure that viewmodel is cleared
-            addEditCourseViewModel.clearViewModel()
-            addEditCourseViewModel.course = it
-            findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
+            adapter.editInfoClick.collect {
+                addEditCourseViewModel.isEdit = true
+                // ensure that viewmodel is cleared
+                addEditCourseViewModel.clearViewModel()
+                addEditCourseViewModel.course = it
+                findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToAddEditCourseFragment())
+            }
         }
         binding.fab.setOnClickListener {
             addEditCourseViewModel.isEdit = false

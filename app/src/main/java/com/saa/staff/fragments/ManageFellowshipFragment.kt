@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +21,9 @@ import com.saa.staff.viewmodels.AddEditFellowshipViewModel
 import com.saa.staff.viewmodels.ManageFellowshipViewModel
 import com.saa.staff.viewmodels.ViewFellowshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -52,41 +56,47 @@ class ManageFellowshipFragment : Fragment() {
             adapter.submitList(search(it.toString()))
         }
         // setup the recyclerview onclicklisteners
-        adapter.detailsButtonClick.subscribe {
-            viewFellowshipViewModel.fellowShip = it
-            findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToViewFellowshipFragment())
-        }
-        adapter.editInfoClick.subscribe {
-            addEditFellowshipViewModel.clearViewModel()
-            addEditFellowshipViewModel.isEdit = true
-            addEditFellowshipViewModel.fellowShip = it
-            findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
-        }
-        binding.fabFellowship.setOnClickListener {
-            addEditFellowshipViewModel.clearViewModel()
-            findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
-        }
-        adapter.deleteClick.subscribe{
-            val dialog = AlertDialog.Builder(requireContext())
-            dialog.setTitle("Are you sure?")
-            dialog.setMessage("Do you want to delete \"${it.title}\" ?")
-            dialog.setPositiveButton("YES") { dialogInterface: DialogInterface, i: Int ->
-                pd.show()
-                viewModel.deleteFellowship(it).observe(viewLifecycleOwner){
-                    pd.dismiss()
-                    if(it){
-                        refreshRv(true)
-                    }else{
-                        Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG).show()
+        // use main coroutine scope to avoid spawning unnecessary threads and savc resources
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter.detailsButtonClick.collect {
+                viewFellowshipViewModel.fellowShip = it
+                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToViewFellowshipFragment())
+            }
+            adapter.editInfoClick.collect {
+                addEditFellowshipViewModel.clearViewModel()
+                addEditFellowshipViewModel.isEdit = true
+                addEditFellowshipViewModel.fellowShip = it
+                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
+            }
+            binding.fabFellowship.setOnClickListener {
+                addEditFellowshipViewModel.clearViewModel()
+                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
+            }
+            adapter.deleteClick.collect {
+                val dialog = AlertDialog.Builder(requireContext())
+                dialog.setTitle("Are you sure?")
+                dialog.setMessage("Do you want to delete \"${it.title}\" ?")
+                dialog.setPositiveButton("YES") { dialogInterface: DialogInterface, i: Int ->
+                    pd.show()
+                    viewModel.deleteFellowship(it).observe(viewLifecycleOwner) {
+                        pd.dismiss()
+                        if (it) {
+                            refreshRv(true)
+                        } else {
+                            Snackbar.make(
+                                binding.root,
+                                "Oops! Something went wrong!",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                        }
                     }
                 }
-            }
-            dialog.setNegativeButton("NO") { dialogInterface: DialogInterface, i: Int ->
+                dialog.setNegativeButton("NO") { dialogInterface: DialogInterface, i: Int ->
 
+                }
+                dialog.show()
             }
-            dialog.show()
         }
-
     }
 
     /**

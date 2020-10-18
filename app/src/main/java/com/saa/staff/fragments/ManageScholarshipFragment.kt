@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,9 @@ import com.saa.staff.viewmodels.AddEditScholarshipViewModel
 import com.saa.staff.viewmodels.ManageScholarshipViewModel
 import com.saa.staff.viewmodels.ViewScholarshipViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ManageScholarshipFragment : Fragment() {
@@ -59,29 +63,32 @@ class ManageScholarshipFragment : Fragment() {
         binding.searchText.editText!!.addTextChangedListener {
             adapter.submitList(search(it.toString()))
         }
-        adapter.detailsButtonClick.subscribe {
-            viewScholarshipViewModel.scholarship = it
-            findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToViewScholarshipFragment())
-        }
-        adapter.editInfoClick.subscribe {
-            addEditScholarshipViewModel.resetViewModel()
-            addEditScholarshipViewModel.scholarship = it
-            addEditScholarshipViewModel.isEdit = true
-            findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToAddEditScholarshipFragment())
-        }
-        adapter.deleteClick.subscribe {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Are you sure?")
-            builder.setMessage("Do you want to delete \"${it.title}\" ?")
-            builder.setNegativeButton("NO") { dialog, which ->
+        // use main coroutine scope to avoid spawning unnecessary threads and savc resources
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter.detailsButtonClick.collect {
+                viewScholarshipViewModel.scholarship = it
+                findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToViewScholarshipFragment())
+            }
+            adapter.editInfoClick.collect {
+                addEditScholarshipViewModel.resetViewModel()
+                addEditScholarshipViewModel.scholarship = it
+                addEditScholarshipViewModel.isEdit = true
+                findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToAddEditScholarshipFragment())
+            }
+            adapter.deleteClick.collect {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Are you sure?")
+                builder.setMessage("Do you want to delete \"${it.title}\" ?")
+                builder.setNegativeButton("NO") { dialog, which ->
 
+                }
+                builder.setPositiveButton("YES") { dialog, which ->
+                    viewModel.deleteScholarship(it).observe(viewLifecycleOwner, {
+                        refreshRv(true)
+                    })
+                }
+                builder.show()
             }
-            builder.setPositiveButton("YES") { dialog, which ->
-                viewModel.deleteScholarship(it).observe(viewLifecycleOwner, {
-                    refreshRv(true)
-                })
-            }
-            builder.show()
         }
         binding.fab.setOnClickListener {
             addEditScholarshipViewModel.resetViewModel()

@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.databinding.CourseViewHolderBinding
 import com.saa.staff.models.Diploma
 import com.saa.staff.models.DiplomaItemDiffCallback
-import io.reactivex.rxjava3.subjects.PublishSubject
-import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -21,12 +25,12 @@ class DiplomasRecyclerAdapter(var context: Context) : ListAdapter<Diploma, Diplo
     DiplomaItemDiffCallback()
 ) {
     lateinit var binding: CourseViewHolderBinding
-    private val detailsButtonClickPublisher = PublishSubject.create<Diploma>()
-    private val editInfoClickPublisher = PublishSubject.create<Diploma>()
-    private val deleteClickPublisher = PublishSubject.create<Diploma>()
-    val detailsButtonClick: Subject<Diploma> get() = detailsButtonClickPublisher
-    val editInfoClick: Subject<Diploma> get() = editInfoClickPublisher
-    val deleteClick: Subject<Diploma> get() = deleteClickPublisher
+    private val detailsButtonClickPublisher = ConflatedBroadcastChannel<Diploma>()
+    private val editInfoClickPublisher = ConflatedBroadcastChannel<Diploma>()
+    private val deleteClickPublisher = ConflatedBroadcastChannel<Diploma>()
+    val detailsButtonClick: Flow<Diploma> get() = detailsButtonClickPublisher.asFlow()
+    val editInfoClick: Flow<Diploma> get() = editInfoClickPublisher.asFlow()
+    val deleteClick: Flow<Diploma> get() = deleteClickPublisher.asFlow()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiplomasViewHolder {
         binding = CourseViewHolderBinding.inflate(LayoutInflater.from(context), parent, false)
         return DiplomasViewHolder(binding)
@@ -52,14 +56,22 @@ class DiplomasRecyclerAdapter(var context: Context) : ListAdapter<Diploma, Diplo
         binding.titleText.isSelected = true
         binding.languageText.isSelected = true
         // set the onclick listener
-        binding.editInfoButton.setOnClickListener{
-            editInfoClickPublisher.onNext(diploma)
+        binding.editInfoButton.setOnClickListener {
+            // not sure what coroutine scope ot use, just use globalscope for now
+            // let's run this on the main thread to prevent from spawning unnecessary threads and waste resources
+            GlobalScope.launch(Dispatchers.Main) {
+                editInfoClickPublisher.send(diploma)
+            }
         }
-        binding.detailsButton.setOnClickListener{
-            detailsButtonClickPublisher.onNext(diploma)
+        binding.detailsButton.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                detailsButtonClickPublisher.send(diploma)
+            }
         }
         binding.deleteButton.setOnClickListener {
-            deleteClickPublisher.onNext(diploma)
+            GlobalScope.launch(Dispatchers.Main) {
+                deleteClickPublisher.send(diploma)
+            }
         }
     }
 }

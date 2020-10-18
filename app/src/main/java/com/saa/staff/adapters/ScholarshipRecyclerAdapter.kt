@@ -8,20 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.saa.staff.databinding.CourseViewHolderBinding
 import com.saa.staff.models.Scholarship
 import com.saa.staff.models.ScholarshipItemDiffCallback
-import io.reactivex.rxjava3.subjects.PublishSubject
-import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.launch
 
 class ScholarshipRecyclerAdapter(var context: Context) :
     ListAdapter<Scholarship, ScholarshipViewHolder>(
         ScholarshipItemDiffCallback()
     ) {
     lateinit var binding: CourseViewHolderBinding
-    private val detailsButtonClickPublisher = PublishSubject.create<Scholarship>()
-    private val editInfoClickPublisher = PublishSubject.create<Scholarship>()
-    private val deleteClickPublisher = PublishSubject.create<Scholarship>()
-    val detailsButtonClick: Subject<Scholarship> get() = detailsButtonClickPublisher
-    val editInfoClick: Subject<Scholarship> get() = editInfoClickPublisher
-    val deleteClick: Subject<Scholarship> get() = deleteClickPublisher
+    private val detailsButtonClickPublisher = ConflatedBroadcastChannel<Scholarship>()
+    private val editInfoClickPublisher = ConflatedBroadcastChannel<Scholarship>()
+    private val deleteClickPublisher = ConflatedBroadcastChannel<Scholarship>()
+    val detailsButtonClick: Flow<Scholarship> get() = detailsButtonClickPublisher.asFlow()
+    val editInfoClick: Flow<Scholarship> get() = editInfoClickPublisher.asFlow()
+    val deleteClick: Flow<Scholarship> get() = deleteClickPublisher.asFlow()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScholarshipViewHolder {
         binding = CourseViewHolderBinding.inflate(LayoutInflater.from(context), parent, false)
         return ScholarshipViewHolder(binding)
@@ -37,13 +41,21 @@ class ScholarshipRecyclerAdapter(var context: Context) :
         binding.languageText.isSelected = true
         // set the onclick listener
         binding.editInfoButton.setOnClickListener {
-            editInfoClickPublisher.onNext(scholarship)
+            // not sure what coroutine scope ot use, just use globalscope for now
+            // let's run this on the main thread to prevent from spawning unnecessary threads and waste resources
+            GlobalScope.launch(Dispatchers.Main) {
+                editInfoClickPublisher.send(scholarship)
+            }
         }
         binding.detailsButton.setOnClickListener {
-            detailsButtonClickPublisher.onNext(scholarship)
+            GlobalScope.launch(Dispatchers.Main) {
+                detailsButtonClickPublisher.send(scholarship)
+            }
         }
         binding.deleteButton.setOnClickListener {
-            deleteClickPublisher.onNext(scholarship)
+            GlobalScope.launch(Dispatchers.Main) {
+                deleteClickPublisher.send(scholarship)
+            }
         }
     }
 }

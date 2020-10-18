@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,9 @@ import com.saa.staff.viewmodels.AddEditDiplomaViewModel
 import com.saa.staff.viewmodels.ManageDiplomaViewModel
 import com.saa.staff.viewmodels.ViewDiplomaViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ManageDiplomaFragment : Fragment() {
@@ -58,31 +62,35 @@ class ManageDiplomaFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             refreshRv(true)
         }
-        adapter.deleteClick.subscribe {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Are you sure?")
-            builder.setMessage("Do you want to delete \"${it.title}\" ?")
-            builder.setNegativeButton("NO") { dialog, which ->
+        // use main coroutine scope to avoid spawning unnecessary threads and savc resources
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter.deleteClick.collect {
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Are you sure?")
+                builder.setMessage("Do you want to delete \"${it.title}\" ?")
+                builder.setNegativeButton("NO") { dialog, which ->
+
+                }
+                builder.setPositiveButton("YES") { dialog, which ->
+                    viewModel.deleteDiploma(it).observe(viewLifecycleOwner, {
+                        refreshRv(true)
+                    })
+                }
+                builder.show()
+            }
+            adapter.detailsButtonClick.collect {
+                viewDiplomasViewModel.diploma = it
+                findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToViewDiplomaFragment())
+            }
+            adapter.editInfoClick.collect {
+                addEditDiplomaViewModel.clearViewModel()
+                addEditDiplomaViewModel.isEdit = true
+                addEditDiplomaViewModel.diploma = it
+                findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToAddEditDiplomaFragment())
 
             }
-            builder.setPositiveButton("YES") { dialog, which ->
-                viewModel.deleteDiploma(it).observe(viewLifecycleOwner, {
-                    refreshRv(true)
-                })
-            }
-            builder.show()
         }
-        adapter.detailsButtonClick.subscribe {
-            viewDiplomasViewModel.diploma = it
-            findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToViewDiplomaFragment())
-        }
-        adapter.editInfoClick.subscribe {
-            addEditDiplomaViewModel.clearViewModel()
-            addEditDiplomaViewModel.isEdit = true
-            addEditDiplomaViewModel.diploma = it
-            findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToAddEditDiplomaFragment())
 
-        }
         binding.fab.setOnClickListener {
             addEditDiplomaViewModel.clearViewModel()
             findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToAddEditDiplomaFragment())
