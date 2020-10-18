@@ -144,7 +144,6 @@ data class Employee(
     var contactNumber: String,
     var country: String,
     var passportNumber: String,
-    var jobTitle: String,
     var email: String,
     var userType: String,
     var approvalStatus: Int

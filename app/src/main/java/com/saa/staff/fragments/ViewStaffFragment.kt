@@ -28,7 +28,6 @@ class ViewStaffFragment : Fragment() {
         binding.contactNumberText.text = viewModel.employee.contactNumber
         binding.countryText.text = viewModel.employee.country
         binding.emailText.text = viewModel.employee.email
-        binding.jobTitleText.text = viewModel.employee.jobTitle
         binding.dobText.text = SimpleDateFormat("dd/MM/yyyy").format(viewModel.employee.dob)
         binding.passportNumberText.text = viewModel.employee.passportNumber
     }
