@@ -38,7 +38,7 @@ class FellowshipsRecyclerAdapter(var context: Context): ListAdapter<Fellowship, 
         binding.durationText.text = "Application deadline: ${applicationDeadline}"
         binding.durationText.isSelected = true
         binding.feesText.text = "Course: ${fellowShip.course.title}"
-        binding.languageText.text = "Language: ${fellowShip.course.language}"
+        binding.languageText.text = ""
         binding.titleText.text = fellowShip.title
         binding.titleText.isSelected = true
         // set the onclick listener

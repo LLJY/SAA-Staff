@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -45,7 +44,6 @@ class AddEditCourseFragment : Fragment() {
             allLanguages.add(loc.displayLanguage)
         }
         val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, allLanguages)
-        (binding.languageSpinner.editText!! as AutoCompleteTextView).setAdapter(adapter)
         if(viewModel.isEdit){
             val course = viewModel.course
             binding.courseTitleText.editText!!.setText(course.title)
@@ -61,8 +59,6 @@ class AddEditCourseFragment : Fragment() {
             binding.prerequisitesText.editText!!.setText(course.prerequisites)
             binding.outcomeText.editText!!.setText(course.learningOutcomes)
             binding.coveredText.editText!!.setText(course.covered)
-            val languageIndex = languages.indexOf(viewModel.course.language)
-            (binding.languageSpinner.editText!! as AutoCompleteTextView).setSelection(if(languageIndex == -1) 0 else languageIndex)
         }
 
 
@@ -153,15 +149,12 @@ class AddEditCourseFragment : Fragment() {
                 binding.coveredText.error = "Required"
             }
         }
-        binding.languageSpinner.editText!!.addTextChangedListener {
-            viewModel.course.language = it.toString()
-        }
         binding.doneButton.setOnClickListener {
             isExit = true
             val course = viewModel.course
-            if (course.applicationDeadline != 0L && course.attending.isNotBlank() && course.covered.isNotBlank() && course.startDate != 0L && course.endDate != 0L && course.language.isNotBlank() && course.learningActivities.isNotBlank() && course.learningOutcomes.isNotBlank() && course.title.isNotBlank() && course.language.isNotBlank()) {
+            if (course.applicationDeadline != 0L && course.attending.isNotBlank() && course.covered.isNotBlank() && course.startDate != 0L && course.endDate != 0L && course.learningActivities.isNotBlank() && course.learningOutcomes.isNotBlank() && course.title.isNotBlank()) {
                 // check if in edit mode, then choose to update or add.
-                if(viewModel.isEdit){
+                if (viewModel.isEdit) {
                     manageCourseViewModel.updateCourse(course).observe(viewLifecycleOwner, {
                         if (it) {
                             requireActivity().onBackPressed()

@@ -50,7 +50,7 @@ class CoursesRecyclerAdapter(var context: Context): ListAdapter<Course, CoursesV
         binding.durationText.text = "Duration: $days Days"
         val formatter = NumberFormat.getCurrencyInstance()
         binding.feesText.text = "Fees: ${formatter.format(course.fees)}"
-        binding.languageText.text = "Language: ${course.language}"
+        binding.languageText.text = ""
         binding.titleText.text = course.title
         binding.titleText.isSelected = true
         // set the onclick listener

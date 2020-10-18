@@ -16,7 +16,6 @@ class ViewCourseInfoViewModel @ViewModelInject constructor(): ViewModel() {
         "",
         "",
         "",
-        "",
         0
     )
     fun clearViewModel(){
@@ -26,7 +25,6 @@ class ViewCourseInfoViewModel @ViewModelInject constructor(): ViewModel() {
             0,
             0,
             0f,
-            "",
             "",
             "",
             "",

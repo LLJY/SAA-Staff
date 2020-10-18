@@ -22,7 +22,6 @@ class ViewFellowshipViewModel @ViewModelInject constructor() : ViewModel() {
             "",
             "",
             "",
-            "",
             System.currentTimeMillis()
         ),
         System.currentTimeMillis()

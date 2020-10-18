@@ -36,7 +36,6 @@ class ViewCourseInfoFragment : Fragment() {
         binding.learningOutcomesText.text = course.learningOutcomes
         binding.attendText.text = course.attending
         binding.prerequisitesText.text = course.prerequisites
-        binding.languageText.text = course.language
         binding.coveredText.text = course.covered
 
     }

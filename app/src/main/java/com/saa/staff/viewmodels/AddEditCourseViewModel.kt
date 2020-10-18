@@ -16,7 +16,6 @@ class AddEditCourseViewModel @ViewModelInject constructor() : ViewModel() {
         "",
         "",
         "",
-        "",
         0
     )
     var isEdit = false
@@ -27,7 +26,6 @@ class AddEditCourseViewModel @ViewModelInject constructor() : ViewModel() {
             0,
             0,
             0f,
-            "",
             "",
             "",
             "",

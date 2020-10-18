@@ -24,7 +24,6 @@ class AddEditFellowshipViewModel @ViewModelInject constructor() : ViewModel() {
             "",
             "",
             "",
-            "",
             System.currentTimeMillis()
         ),
         System.currentTimeMillis()
@@ -44,7 +43,6 @@ class AddEditFellowshipViewModel @ViewModelInject constructor() : ViewModel() {
                 System.currentTimeMillis() - 10000000,
                 System.currentTimeMillis(),
                 1000f,
-                "",
                 "",
                 "",
                 "",
