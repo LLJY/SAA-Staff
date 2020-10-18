@@ -35,12 +35,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
-        val intent = Intent(activity, HomeActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        // pass the userid to the next activity
-        println("userid: a")
-        intent.putExtra("USER_ID", "a")
-        startActivity(intent)
         binding.emailText.editText!!.setText(viewModel.email)
         binding.passwordText.editText!!.setText(viewModel.password)
         binding.emailText.editText!!.addTextChangedListener {
