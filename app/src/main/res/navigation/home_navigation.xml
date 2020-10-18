@@ -9,7 +9,15 @@
         android:id="@+id/approveStaffFragment"
         android:name="com.saa.staff.fragments.ApproveStaffFragment"
         android:label="approve_staff_fragment"
-        tools:layout="@layout/approve_staff_fragment" />
+        tools:layout="@layout/approve_staff_fragment">
+        <action
+            android:id="@+id/action_approveStaffFragment_to_viewStaffFragment"
+            app:destination="@id/viewStaffFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.saa.staff.fragments.EditProfileFragment"
@@ -166,7 +174,11 @@
         tools:layout="@layout/edit_training_progress_fragment">
         <action
             android:id="@+id/action_editTrainingProgressFragment_to_viewUserInfoFragment"
-            app:destination="@id/viewUserInfoFragment" />
+            app:destination="@id/viewUserInfoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/editParticipantApplicationFragment"
@@ -175,11 +187,19 @@
         tools:layout="@layout/edit_participant_application_fragment">
         <action
             android:id="@+id/action_editParticipantApplicationFragment_to_viewUserInfoFragment"
-            app:destination="@id/viewUserInfoFragment" />
+            app:destination="@id/viewUserInfoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/viewUserInfoFragment"
         android:name="com.saa.staff.fragments.ViewUserInfoFragment"
         android:label="view_user_info_fragment"
         tools:layout="@layout/view_user_info_fragment" />
+    <fragment
+        android:id="@+id/viewStaffFragment"
+        android:name="com.saa.staff.fragments.ViewStaffFragment"
+        android:label="ViewStaffFragment" />
 </navigation>

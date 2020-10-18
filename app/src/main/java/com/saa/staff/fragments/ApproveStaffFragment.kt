@@ -9,17 +9,20 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.ApproveRejectEmployeeRecyclerAdapter
 import com.saa.staff.databinding.ApproveStaffFragmentBinding
 import com.saa.staff.viewmodels.ApproveStaffViewModel
+import com.saa.staff.viewmodels.ViewStaffViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ApproveStaffFragment : Fragment() {
     val viewModel: ApproveStaffViewModel by activityViewModels()
+    val viewStaffViewModel: ViewStaffViewModel by activityViewModels()
 
     @Inject
     lateinit var pd: ProgressDialog
@@ -101,6 +104,10 @@ class ApproveStaffFragment : Fragment() {
                 }
             }
 
+        }
+        adapter.viewInfoClickSubject.subscribe { item ->
+            viewStaffViewModel.employee = item
+            findNavController().navigate(ApproveStaffFragmentDirections.actionApproveStaffFragmentToViewStaffFragment())
         }
     }
 
