@@ -70,12 +70,16 @@ class ManageCoursesFragment : Fragment() {
                 }
                 builder.show()
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             // subscribe for click information and launch the views accordingly
             adapter.detailsButtonClick.collect {
                 viewCourseViewModel.clearViewModel()
                 viewCourseViewModel.course = it
                 findNavController().navigate(ManageCoursesFragmentDirections.actionManageCoursesFragmentToViewCourseInfoFragment())
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.editInfoClick.collect {
                 addEditCourseViewModel.isEdit = true
                 // ensure that viewmodel is cleared

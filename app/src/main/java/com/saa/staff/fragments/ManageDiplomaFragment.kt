@@ -78,10 +78,14 @@ class ManageDiplomaFragment : Fragment() {
                 }
                 builder.show()
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.detailsButtonClick.collect {
                 viewDiplomasViewModel.diploma = it
                 findNavController().navigate(ManageDiplomaFragmentDirections.actionManageDiplomaFragmentToViewDiplomaFragment())
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.editInfoClick.collect {
                 addEditDiplomaViewModel.clearViewModel()
                 addEditDiplomaViewModel.isEdit = true

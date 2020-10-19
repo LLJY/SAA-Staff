@@ -69,12 +69,16 @@ class ManageScholarshipFragment : Fragment() {
                 viewScholarshipViewModel.scholarship = it
                 findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToViewScholarshipFragment())
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.editInfoClick.collect {
                 addEditScholarshipViewModel.resetViewModel()
                 addEditScholarshipViewModel.scholarship = it
                 addEditScholarshipViewModel.isEdit = true
                 findNavController().navigate(ManageScholarshipFragmentDirections.actionManageScholarshipFragmentToAddEditScholarshipFragment())
             }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.deleteClick.collect {
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Are you sure?")

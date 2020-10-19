@@ -62,16 +62,21 @@ class ManageFellowshipFragment : Fragment() {
                 viewFellowshipViewModel.fellowShip = it
                 findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToViewFellowshipFragment())
             }
+
+            binding.fabFellowship.setOnClickListener {
+                addEditFellowshipViewModel.clearViewModel()
+                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
+            }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.editInfoClick.collect {
                 addEditFellowshipViewModel.clearViewModel()
                 addEditFellowshipViewModel.isEdit = true
                 addEditFellowshipViewModel.fellowShip = it
                 findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
             }
-            binding.fabFellowship.setOnClickListener {
-                addEditFellowshipViewModel.clearViewModel()
-                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
-            }
+        }
+        lifecycleScope.launch(Dispatchers.Main) {
             adapter.deleteClick.collect {
                 val dialog = AlertDialog.Builder(requireContext())
                 dialog.setTitle("Are you sure?")
