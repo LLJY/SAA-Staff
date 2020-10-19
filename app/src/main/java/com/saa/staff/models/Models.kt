@@ -29,7 +29,7 @@ class CourseItemDiffCallback : DiffUtil.ItemCallback<Course>(){
     }
 
     override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -50,7 +50,7 @@ class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>() {
     }
 
     override fun areContentsTheSame(oldItem: Fellowship, newItem: Fellowship): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -72,7 +72,7 @@ class ScholarshipItemDiffCallback : DiffUtil.ItemCallback<Scholarship>() {
     }
 
     override fun areContentsTheSame(oldItem: Scholarship, newItem: Scholarship): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -94,7 +94,7 @@ class DiplomaItemDiffCallback : DiffUtil.ItemCallback<Diploma>(){
     }
 
     override fun areContentsTheSame(oldItem: Diploma, newItem: Diploma): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -115,7 +115,7 @@ class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {
     }
 
     override fun areContentsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -156,7 +156,7 @@ class EmployeeDiffCallback : DiffUtil.ItemCallback<Employee>() {
     }
 
     override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
