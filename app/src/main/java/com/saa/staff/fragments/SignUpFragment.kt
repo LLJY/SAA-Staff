@@ -93,7 +93,7 @@ class SignUpFragment : Fragment() {
             }
             binding.roleSpinner.editText!!.addTextChangedListener {
                 binding.roleSpinner.error = null
-                viewModel.user.userLevel = userLevels.indexOf(it!!.toString()) + 1
+                viewModel.user.userLevel = userLevels.indexOf(it!!.toString())
             }
             binding.countrySpinner.editText!!.addTextChangedListener {
                 binding.countrySpinner.error = null

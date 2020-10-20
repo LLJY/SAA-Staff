@@ -4,6 +4,7 @@ import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
 import com.saa.staff.models.ResetPasswordModel
 import com.saa.staff.models.User
+import com.saa.staff.models.UserInfoModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,13 +28,13 @@ class ProfileRepository @Inject constructor(var client: RetrofitService) {
         }
     }
 
-    suspend fun login(email: String, password: String): String {
+    suspend fun login(email: String, password: String): UserInfoModel {
         return try {
             client.login(RetrofitService.LoginInformation(email, password))
         } catch (ex: Exception) {
             Log.d("Err", ex.toString())
             // return an empty string for the error, TODO a more descriptive error message
-            ""
+            UserInfoModel("", 0)
         }
     }
 

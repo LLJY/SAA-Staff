@@ -139,7 +139,7 @@
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="@id/course_title_text"
             app:layout_constraintStart_toStartOf="@id/course_title_text"
-            app:layout_constraintTop_toBottomOf="@id/prerequisites_text">
+            app:layout_constraintTop_toBottomOf="@id/learning_activities_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"

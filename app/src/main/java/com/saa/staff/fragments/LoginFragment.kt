@@ -66,12 +66,13 @@ class LoginFragment : Fragment() {
             if(binding.emailText.error == null && binding.passwordText.error == null){
                 viewModel.login().observe(viewLifecycleOwner, Observer {
                     pd.dismiss()
-                    if (it.isNotBlank()) {
+                    if (it.userId.isNotBlank()) {
                         val intent = Intent(activity, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         // pass the userid to the next activity
                         println("userid: $it")
-                        intent.putExtra("USER_ID", it)
+                        intent.putExtra("USER_ID", it.userId)
+                        intent.putExtra("USER_TYPE", it.userType)
                         startActivity(intent)
                     } else {
                         Snackbar.make(

@@ -184,3 +184,6 @@ data class NotificationData(val title: String, val message: String)
 @Serializable
 data class ResetPasswordModel(var email: String, var password: String)
 
+@Serializable
+data class UserInfoModel(var userId: String, var userType: Int)
+

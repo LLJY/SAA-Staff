@@ -6,20 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import com.saa.staff.R
 import com.saa.staff.databinding.AddEditCourseFragmentBinding
 import com.saa.staff.viewmodels.AddEditCourseViewModel
 import com.saa.staff.viewmodels.ManageCoursesViewModel
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class AddEditCourseFragment : Fragment() {
     private val viewModel: AddEditCourseViewModel by activityViewModels()
@@ -37,13 +33,6 @@ class AddEditCourseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         isExit = false
-        val allLanguages = ArrayList<String>()
-        val languages: Array<String> = Locale.getISOLanguages()
-        for (i in languages.indices) {
-            val loc = Locale(languages[i])
-            allLanguages.add(loc.displayLanguage)
-        }
-        val adapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, allLanguages)
         if(viewModel.isEdit){
             val course = viewModel.course
             binding.courseTitleText.editText!!.setText(course.title)

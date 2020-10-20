@@ -5,4 +5,5 @@ import androidx.lifecycle.ViewModel
 
 class HomeViewModel @ViewModelInject constructor() : ViewModel() {
     var userId = ""
+    var userType = 0
 }

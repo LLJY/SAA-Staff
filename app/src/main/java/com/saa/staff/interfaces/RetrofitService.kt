@@ -23,7 +23,7 @@ interface RetrofitService {
     data class LoginInformation(val email: String, val password: String)
 
     @POST("login-staff")
-    suspend fun login(@Body loginInformation: LoginInformation): String
+    suspend fun login(@Body loginInformation: LoginInformation): UserInfoModel
 
     @POST("add-course")
     suspend fun addCourse(@Body course: Course): Boolean
