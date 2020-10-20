@@ -74,6 +74,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        for (i in 0 until binding.navigationView.menu.size()) {
+            binding.navigationView.menu.getItem(i).isChecked = false
+        }
         item.isChecked = true
         binding.drawerLayout.closeDrawers()
         when (item.itemId) {
