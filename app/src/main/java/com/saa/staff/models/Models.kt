@@ -11,7 +11,6 @@ data class User(
     var userLevel: Int = 0,
     var email: String = "",
     var passportNumber: String = "",
-    var passportExpiry: Long = 0,
     var dateOfBirth: Long = 0,
     var country: String = "",
     var password: String? = "",

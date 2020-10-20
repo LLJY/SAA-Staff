@@ -63,8 +63,6 @@ class EditProfileFragment : Fragment() {
             val dateBindingString = SimpleDateFormat("dd/MM/yyyy").format(user.dateOfBirth)
             binding.dobPicker.editText!!.setText(dateBindingString)
             binding.passportNumberText.editText!!.setText(user.passportNumber)
-            val passportBindingString = SimpleDateFormat("dd/MM/yyyy").format(user.passportExpiry)
-            binding.passportExpiryPicker.editText!!.setText(passportBindingString)
             binding.contactNumberText.editText!!.setText(user.contactNumber.toString())
             // get all the countries by ISO
             val countriesISO = Locale.getISOCountries()
@@ -102,23 +100,6 @@ class EditProfileFragment : Fragment() {
                         }
                     }
                 }
-                binding.passportExpiryPicker.setEndIconOnClickListener {
-                    lifecycleScope.launch(Dispatchers.Main) {
-                        val picker = MaterialDatePicker.Builder.datePicker().build()
-                        activity?.supportFragmentManager?.let { it1 ->
-                            picker.show(
-                                it1,
-                                picker.toString()
-                            )
-                        }
-                        picker.addOnPositiveButtonClickListener { date ->
-                            viewModel.user.dateOfBirth = date
-                            val dateString = SimpleDateFormat("dd/MM/yyyy").format(date)
-                            binding.passportExpiryPicker.editText!!.setText(dateString!!)
-
-                        }
-                    }
-                }
                 binding.countrySpinner.editText!!.addTextChangedListener {
                     binding.countrySpinner.error = null
                     viewModel.user.country = it!!.toString()
@@ -146,15 +127,6 @@ class EditProfileFragment : Fragment() {
                         binding.dobPicker.error = null
                     } catch (ex: Exception) {
                         markFormError(binding.dobPicker, "Please Enter a Valid Date!")
-                    }
-                }
-                binding.passportExpiryPicker.editText!!.addTextChangedListener {
-                    try {
-                        val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                        viewModel.user.passportExpiry = date.time
-                        binding.passportExpiryPicker.error = null
-                    } catch (ex: Exception) {
-                        markFormError(binding.passportExpiryPicker, "Please Enter a Valid Date!")
                     }
                 }
                 binding.passportNumberText.editText!!.addTextChangedListener {
@@ -186,7 +158,7 @@ class EditProfileFragment : Fragment() {
                             binding.firstNameText
                         ) && checkFieldEmpty(binding.lastNameText) && checkFieldEmpty(binding.dobPicker) && checkFieldEmpty(
                             binding.passportNumberText
-                        ) && checkFieldEmpty(binding.passportExpiryPicker) && checkFieldEmpty(
+                        ) && checkFieldEmpty(
                             binding.contactNumberText
                         ))
                     ) {

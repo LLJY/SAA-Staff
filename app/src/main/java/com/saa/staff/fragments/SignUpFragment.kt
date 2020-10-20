@@ -91,23 +91,6 @@ class SignUpFragment : Fragment() {
                     }
                 }
             }
-            binding.passportExpiryPicker.setEndIconOnClickListener {
-                lifecycleScope.launch(Dispatchers.Main) {
-                    val picker = MaterialDatePicker.Builder.datePicker().build()
-                    activity?.supportFragmentManager?.let { it1 ->
-                        picker.show(
-                            it1,
-                            picker.toString()
-                        )
-                    }
-                    picker.addOnPositiveButtonClickListener { date ->
-                        viewModel.user.dateOfBirth = date
-                        val dateString = SimpleDateFormat("dd/MM/yyyy").format(date)
-                        binding.passportExpiryPicker.editText!!.setText(dateString!!)
-
-                    }
-                }
-            }
             binding.roleSpinner.editText!!.addTextChangedListener {
                 binding.roleSpinner.error = null
                 viewModel.user.userLevel = userLevels.indexOf(it!!.toString()) + 1
@@ -141,15 +124,6 @@ class SignUpFragment : Fragment() {
                     markFormError(binding.dobPicker, "Please Enter a Valid Date!")
                 }
             }
-            binding.passportExpiryPicker.editText!!.addTextChangedListener {
-                try {
-                    val date = SimpleDateFormat("dd/MM/yyyy").parse(it.toString())
-                    viewModel.user.passportExpiry = date.time
-                    binding.passportExpiryPicker.error = null
-                } catch (ex: Exception) {
-                    markFormError(binding.passportExpiryPicker, "Please Enter a Valid Date!")
-                }
-            }
             binding.passportNumberText.editText!!.addTextChangedListener {
                 binding.passportNumberText.error = null
                 viewModel.user.passportNumber = it.toString()
@@ -179,7 +153,7 @@ class SignUpFragment : Fragment() {
                         binding.firstNameText
                     ) && checkFieldEmpty(binding.lastNameText) && checkFieldEmpty(binding.dobPicker) && checkFieldEmpty(
                         binding.passportNumberText
-                    ) && checkFieldEmpty(binding.passportExpiryPicker) && checkFieldEmpty(
+                    ) && checkFieldEmpty(
                         binding.contactNumberText
                     ) && checkFieldEmpty(binding.passwordText) && checkFieldEmpty(binding.passwordAgainText))
                 ) {
