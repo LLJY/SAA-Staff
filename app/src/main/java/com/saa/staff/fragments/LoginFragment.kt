@@ -83,5 +83,8 @@ class LoginFragment : Fragment() {
                 })
             }
         }
+        binding.forgotPasswordButton.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
+        }
     }
 }

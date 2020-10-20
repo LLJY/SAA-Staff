@@ -37,7 +37,7 @@ object NetworkModule{
     @Singleton
     fun provideRetrofitService(): RetrofitService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:8080")
+            .baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(Json {
                 ignoreUnknownKeys = true
                 isLenient = true

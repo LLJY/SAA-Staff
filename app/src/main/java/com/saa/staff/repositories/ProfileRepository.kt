@@ -2,6 +2,7 @@ package com.saa.staff.repositories
 
 import android.util.Log
 import com.saa.staff.interfaces.RetrofitService
+import com.saa.staff.models.ResetPasswordModel
 import com.saa.staff.models.User
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,9 +19,9 @@ class ProfileRepository @Inject constructor(var client: RetrofitService) {
         }
     }
 
-    suspend fun checkEmail(email: String): Boolean{
+    suspend fun resetPassword(email: String, password: String): Boolean {
         return try {
-            client.checkEmail(email)
+            client.resetPassword(ResetPasswordModel(email, password))
         } catch (ex: Exception) {
             false
         }

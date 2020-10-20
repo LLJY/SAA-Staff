@@ -111,4 +111,7 @@ interface RetrofitService {
     @POST("update-application-progress")
     suspend fun updateApplicationProgress(@Body userApplication: UserApplication): Boolean
 
+    @POST("reset-password")
+    suspend fun resetPassword(@Body resetPasswordModel: ResetPasswordModel): Boolean
+
 }
