@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +43,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.reviewApplicationFragment,
             R.id.approveStaffFragment
         )
-        Log.i("user_type", viewModel.userType.toString())
         // 0 school head, 1 course manager 2, admin
         when (viewModel.userType) {
             0 -> {
