@@ -47,6 +47,7 @@ class EditParticipantApplicationFragment : Fragment() {
         }
         adapter.approveButtonClickSubject.subscribe { item ->
             pd.show()
+            item.progressType = 2
             viewModel.updateApplication(item).observe(viewLifecycleOwner) {
                 pd.dismiss()
                 if (it) {
@@ -57,10 +58,10 @@ class EditParticipantApplicationFragment : Fragment() {
                     ).show()
                     val itemIndex = adapter.currentList.indexOf(item)
                     // set the progress type to rejected and update the list with it
-                    item.progressType = 2
                     val list = adapter.currentList.toMutableList()
-                    list.set(itemIndex, item)
+                    list[itemIndex] = item
                     adapter.submitList(list)
+                    // somehow diffutil doesn't call notifyDataSetChanged, do it ourselves.
                     adapter.notifyDataSetChanged()
                 } else {
                     Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG)
@@ -84,6 +85,7 @@ class EditParticipantApplicationFragment : Fragment() {
 
         adapter.rejectButtonClickSubject.subscribe { item ->
             pd.show()
+            item.progressType = 0
             viewModel.updateApplication(item).observe(viewLifecycleOwner) {
                 pd.dismiss()
                 if (it) {
@@ -94,12 +96,10 @@ class EditParticipantApplicationFragment : Fragment() {
                     ).show()
                     val itemIndex = adapter.currentList.indexOf(item)
                     // set the progress type to rejected and update the list with it
-                    var itemModified = item
-                    itemModified.progressType = 0
                     val list = adapter.currentList.toMutableList()
-                    list[itemIndex] = itemModified
-                    println(item.toString())
+                    list[itemIndex] = item
                     adapter.submitList(list)
+                    // somehow diffutil doesn't call notifyDataSetChanged, do it ourselves.
                     adapter.notifyDataSetChanged()
                 } else {
                     Snackbar.make(binding.root, "Oops! Something went wrong!", Snackbar.LENGTH_LONG)
