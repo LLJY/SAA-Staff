@@ -33,7 +33,7 @@ class ScholarshipRecyclerAdapter(var context: Context) :
 
     override fun onBindViewHolder(holder: ScholarshipViewHolder, position: Int) {
         val scholarship = getItem(position)
-        binding.durationText.text = "Bond Period: ${scholarship.bondTime}"
+        binding.durationText.text = "Bond Period: ${scholarship.bondTime} Years"
         binding.feesText.text = ""
         binding.languageText.text = ""
         binding.titleText.text = scholarship.title
