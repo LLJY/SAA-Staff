@@ -14,8 +14,8 @@ class ReviewApplicationRepository @Inject constructor(private val retrofit: Retr
             when (courseTypeIndex) {
                 0 -> return retrofit.getCourseApplications(courseUUID)
                 1 -> return retrofit.getFellowshipApplications(courseUUID)
-                3 -> return retrofit.getScholarshipApplications(courseUUID)
-                2 -> return retrofit.getDiplomaApplications(courseUUID)
+                2 -> return retrofit.getScholarshipApplications(courseUUID)
+                3 -> return retrofit.getDiplomaApplications(courseUUID)
             }
         } catch (ex: Exception) {
             return listOf()

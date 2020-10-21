@@ -15,7 +15,7 @@ class EditParticipantApplicationViewModel @ViewModelInject constructor(
     var courseTypeIndex: Int = 0
     var userApplications: List<UserApplication>? = null
     var courseUUID: String = ""
-    fun getApplicants(courseUUID: String) =
+    fun getApplicants() =
         liveData {
             userApplications = repository.getApplications(courseTypeIndex, courseUUID)
             emit(userApplications)
