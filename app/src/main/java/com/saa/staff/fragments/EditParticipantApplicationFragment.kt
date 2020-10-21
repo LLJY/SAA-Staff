@@ -41,7 +41,7 @@ class EditParticipantApplicationFragment : Fragment() {
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(requireContext())
         pd.show()
-        viewModel.getApplicants(viewModel.courseUUID).observe(viewLifecycleOwner) {
+        viewModel.getApplicants().observe(viewLifecycleOwner) {
             pd.dismiss()
             adapter.submitList(it)
         }
