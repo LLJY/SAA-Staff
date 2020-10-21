@@ -14,4 +14,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_main_home">MainHomeActivity</string>
+    <string name="abc">abc</string>
+    <string name="def">def</string>
 </resources>

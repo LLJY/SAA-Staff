@@ -62,11 +62,10 @@ class ManageFellowshipFragment : Fragment() {
                 viewFellowshipViewModel.fellowShip = it
                 findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToViewFellowshipFragment())
             }
-
-            binding.fabFellowship.setOnClickListener {
-                addEditFellowshipViewModel.clearViewModel()
-                findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
-            }
+        }
+        binding.fabFellowship.setOnClickListener {
+            addEditFellowshipViewModel.clearViewModel()
+            findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
         }
         lifecycleScope.launch(Dispatchers.Main) {
             adapter.editInfoClick.collect {

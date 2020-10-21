@@ -130,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:hint="Passport Number"
+                android:hint="Passport Number/NRIC"
                 app:layout_constraintEnd_toEndOf="@id/dob_picker"
                 app:layout_constraintStart_toStartOf="@id/dob_picker"
                 app:layout_constraintTop_toBottomOf="@id/dob_picker">
@@ -142,35 +142,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/passport_expiry_picker"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:hint="Passport Expiry"
-                app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
-                app:endIconMode="custom"
-                app:layout_constraintEnd_toEndOf="@id/passport_number_text"
-                app:layout_constraintStart_toStartOf="@id/passport_number_text"
-                app:layout_constraintTop_toBottomOf="@id/passport_number_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:inputType="date" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contact_number_text"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:hint="Contact Number"
-                app:layout_constraintEnd_toEndOf="@id/passport_expiry_picker"
-                app:layout_constraintStart_toStartOf="@id/passport_expiry_picker"
-                app:layout_constraintTop_toBottomOf="@id/passport_expiry_picker">
+                app:layout_constraintEnd_toEndOf="@id/passport_number_text"
+                app:layout_constraintStart_toStartOf="@id/passport_number_text"
+                app:layout_constraintTop_toBottomOf="@id/passport_number_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

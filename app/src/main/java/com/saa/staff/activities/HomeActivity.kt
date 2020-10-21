@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.saa.staff.R
 import com.saa.staff.databinding.ActivityHomeBinding
@@ -27,6 +28,36 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // set the userid inside homeViewModel
+        viewModel.userId =
+            intent.getStringExtra("USER_ID")!! // let the app crash if something does go wrong.
+        viewModel.userType = intent.getIntExtra("USER_TYPE", 0)
+        var menuItems = mutableListOf(
+            R.id.editProfileFragment,
+            R.id.manageCoursesFragment,
+            R.id.manageFellowshipFragment,
+            R.id.manageScholarshipFragment,
+            R.id.manageDiplomaFragment,
+            R.id.sendNotificationFragment,
+            R.id.trainingProgressFragment,
+            R.id.reviewApplicationFragment,
+            R.id.approveStaffFragment
+        )
+        // 0 school head, 1 course manager 2, admin
+        when (viewModel.userType) {
+            0 -> {
+                binding.navigationView.menu.removeGroup(R.id.admin_group)
+                binding.navigationView.menu.removeGroup(R.id.course_manager_group)
+            }
+            1 -> {
+                binding.navigationView.menu.removeGroup(R.id.admin_group)
+                binding.navigationView.menu.removeGroup(R.id.school_head_group)
+            }
+            2 -> {
+                binding.navigationView.menu.removeGroup(R.id.course_manager_group)
+                binding.navigationView.menu.removeGroup(R.id.school_head_group)
+            }
+        }
         // setup the navcontroller
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
@@ -34,28 +65,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.editProfileFragment,
-                R.id.manageCoursesFragment,
-                R.id.manageFellowshipFragment,
-                R.id.manageScholarshipFragment,
-                R.id.manageDiplomaFragment,
-                R.id.sendNotificationFragment,
-                R.id.trainingProgressFragment,
-                R.id.reviewApplicationFragment,
-                R.id.approveStaffFragment
-            ), binding.drawerLayout
+            menuItems.toSet(), binding.drawerLayout
         )
-        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
-        NavigationUI.setupWithNavController(binding.navigationView, navController)
+        setupActionBarWithNavController(navController, binding.drawerLayout)
         binding.navigationView.setNavigationItemSelectedListener(this)
-
-        // set the userid inside homeViewModel
-        viewModel.userId = intent.getStringExtra("USER_ID")
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        for (i in 0 until binding.navigationView.menu.size()) {
+            binding.navigationView.menu.getItem(i).isChecked = false
+        }
         item.isChecked = true
         binding.drawerLayout.closeDrawers()
         when (item.itemId) {

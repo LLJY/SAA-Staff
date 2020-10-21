@@ -2,6 +2,20 @@ package com.saa.staff.models
 
 import androidx.recyclerview.widget.DiffUtil
 import kotlinx.serialization.Serializable
+@Serializable
+data class User(
+    var uuid: String = "",
+    var firstName: String = "",
+    var middleName: String? = null,
+    var lastName: String = "",
+    var userLevel: Int = 0,
+    var email: String = "",
+    var passportNumber: String = "",
+    var dateOfBirth: Long = 0,
+    var country: String = "",
+    var password: String? = "",
+    var contactNumber: Int = 0
+)
 
 @Serializable
 data class Course(
@@ -29,7 +43,7 @@ class CourseItemDiffCallback : DiffUtil.ItemCallback<Course>(){
     }
 
     override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -50,7 +64,7 @@ class FellowShipItemDiffCallback : DiffUtil.ItemCallback<Fellowship>() {
     }
 
     override fun areContentsTheSame(oldItem: Fellowship, newItem: Fellowship): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -72,7 +86,7 @@ class ScholarshipItemDiffCallback : DiffUtil.ItemCallback<Scholarship>() {
     }
 
     override fun areContentsTheSame(oldItem: Scholarship, newItem: Scholarship): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -94,7 +108,7 @@ class DiplomaItemDiffCallback : DiffUtil.ItemCallback<Diploma>(){
     }
 
     override fun areContentsTheSame(oldItem: Diploma, newItem: Diploma): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -115,7 +129,7 @@ class UserApplicationDiffCallback : DiffUtil.ItemCallback<UserApplication>() {
     }
 
     override fun areContentsTheSame(oldItem: UserApplication, newItem: UserApplication): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -156,7 +170,7 @@ class EmployeeDiffCallback : DiffUtil.ItemCallback<Employee>() {
     }
 
     override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-        return oldItem == newItem
+        return oldItem.hashCode() == newItem.hashCode()
     }
 
 }
@@ -166,4 +180,10 @@ data class Notification(val condition: String, val data: NotificationData)
 
 @Serializable
 data class NotificationData(val title: String, val message: String)
+
+@Serializable
+data class ResetPasswordModel(var email: String, var password: String)
+
+@Serializable
+data class UserInfoModel(var userId: String, var userType: Int)
 

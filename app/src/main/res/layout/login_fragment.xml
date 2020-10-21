@@ -68,6 +68,7 @@
         app:cornerRadius="50dp"
         android:text="SIGN UP"/>
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/forgot_password_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

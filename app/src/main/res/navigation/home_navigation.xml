@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/manageCoursesFragment">
+    app:startDestination="@id/editProfileFragment">
 
     <fragment
         android:id="@+id/approveStaffFragment"
         android:name="com.saa.staff.fragments.ApproveStaffFragment"
-        android:label="approve_staff_fragment"
+        android:label="Approve Staff"
         tools:layout="@layout/approve_staff_fragment">
         <action
             android:id="@+id/action_approveStaffFragment_to_viewStaffFragment"
@@ -21,12 +21,12 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.saa.staff.fragments.EditProfileFragment"
-        android:label="edit_profile_fragment"
+        android:label="Edit Profile"
         tools:layout="@layout/edit_profile_fragment" />
     <fragment
         android:id="@+id/manageCoursesFragment"
         android:name="com.saa.staff.fragments.ManageCoursesFragment"
-        android:label="manage_courses_fragment"
+        android:label="Manage Courses"
         tools:layout="@layout/manage_courses_fragment" >
         <action
             android:id="@+id/action_manageCoursesFragment_to_addEditCourseFragment"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/manageFellowshipFragment"
         android:name="com.saa.staff.fragments.ManageFellowshipFragment"
-        android:label="manage_fellowship_fragment"
+        android:label="Manage Fellowships"
         tools:layout="@layout/manage_fellowship_fragment" >
         <action
             android:id="@+id/action_manageFellowshipFragment_to_viewFellowshipFragment"
@@ -66,7 +66,7 @@
     <fragment
         android:id="@+id/manageScholarshipFragment"
         android:name="com.saa.staff.fragments.ManageScholarshipFragment"
-        android:label="manage_scholarship_fragment"
+        android:label="Manage Scholarships"
         tools:layout="@layout/manage_scholarship_fragment">
         <action
             android:id="@+id/action_manageScholarshipFragment_to_viewScholarshipFragment"
@@ -86,7 +86,7 @@
     <fragment
         android:id="@+id/reviewApplicationFragment"
         android:name="com.saa.staff.fragments.ReviewApplicationFragment"
-        android:label="review_application_fragment"
+        android:label="Review Applications"
         tools:layout="@layout/review_application_fragment">
         <action
             android:id="@+id/action_reviewApplicationFragment_to_editParticipantApplicationFragment"
@@ -99,12 +99,12 @@
     <fragment
         android:id="@+id/sendNotificationFragment"
         android:name="com.saa.staff.fragments.SendNotificationFragment"
-        android:label="send_notification_fragment"
+        android:label="Send Notification"
         tools:layout="@layout/send_notification_fragment" />
     <fragment
         android:id="@+id/trainingProgressFragment"
         android:name="com.saa.staff.fragments.TrainingProgressFragment"
-        android:label="training_progress_fragment"
+        android:label="Training Progress"
         tools:layout="@layout/training_progress_fragment">
         <action
             android:id="@+id/action_trainingProgressFragment_to_editTrainingProgressFragment"
@@ -117,7 +117,7 @@
     <fragment
         android:id="@+id/manageDiplomaFragment"
         android:name="com.saa.staff.fragments.ManageDiplomaFragment"
-        android:label="manage_diploma_fragment"
+        android:label="Manage Diplomas"
         tools:layout="@layout/manage_diploma_fragment">
         <action
             android:id="@+id/action_manageDiplomaFragment_to_addEditDiplomaFragment"
@@ -137,40 +137,40 @@
     <fragment
         android:id="@+id/addEditCourseFragment"
         android:name="com.saa.staff.fragments.AddEditCourseFragment"
-        android:label="AddEditCourseFragment" />
+        android:label="Course" />
     <fragment
         android:id="@+id/viewCourseInfoFragment"
         android:name="com.saa.staff.fragments.ViewCourseInfoFragment"
-        android:label="ViewCourseInfoFragment" />
+        android:label="Course Info" />
     <fragment
         android:id="@+id/viewFellowshipFragment"
         android:name="com.saa.staff.fragments.ViewFellowshipFragment"
-        android:label="ViewFellowshipFragment" />
+        android:label="Fellowship Info" />
     <fragment
         android:id="@+id/addEditFellowshipFragment"
         android:name="com.saa.staff.fragments.AddEditFellowshipFragment"
-        android:label="add_edit_fellowship_fragment"
+        android:label="Fellowship"
         tools:layout="@layout/add_edit_fellowship_fragment" />
     <fragment
         android:id="@+id/addEditDiplomaFragment"
         android:name="com.saa.staff.fragments.AddEditDiplomaFragment"
-        android:label="AddEditDiplomaFragment" />
+        android:label="Diploma" />
     <fragment
         android:id="@+id/viewDiplomaFragment"
         android:name="com.saa.staff.fragments.ViewDiplomaFragment"
-        android:label="ViewDiplomaFragment" />
+        android:label="Diploma Info" />
     <fragment
         android:id="@+id/addEditScholarshipFragment"
         android:name="com.saa.staff.fragments.AddEditScholarshipFragment"
-        android:label="AddEditScholarshipFragment" />
+        android:label="Scholarship" />
     <fragment
         android:id="@+id/viewScholarshipFragment"
         android:name="com.saa.staff.fragments.ViewScholarshipFragment"
-        android:label="ViewScholarshipFragment" />
+        android:label="Scholarship Info" />
     <fragment
         android:id="@+id/editTrainingProgressFragment"
         android:name="com.saa.staff.fragments.EditTrainingProgressFragment"
-        android:label="edit_training_progress_fragment"
+        android:label="Edit Training Progress"
         tools:layout="@layout/edit_training_progress_fragment">
         <action
             android:id="@+id/action_editTrainingProgressFragment_to_viewUserInfoFragment"
@@ -183,7 +183,7 @@
     <fragment
         android:id="@+id/editParticipantApplicationFragment"
         android:name="com.saa.staff.fragments.EditParticipantApplicationFragment"
-        android:label="edit_participant_application_fragment"
+        android:label="Edit Applications"
         tools:layout="@layout/edit_participant_application_fragment">
         <action
             android:id="@+id/action_editParticipantApplicationFragment_to_viewUserInfoFragment"
@@ -196,10 +196,10 @@
     <fragment
         android:id="@+id/viewUserInfoFragment"
         android:name="com.saa.staff.fragments.ViewUserInfoFragment"
-        android:label="view_user_info_fragment"
+        android:label="User Info"
         tools:layout="@layout/view_user_info_fragment" />
     <fragment
         android:id="@+id/viewStaffFragment"
         android:name="com.saa.staff.fragments.ViewStaffFragment"
-        android:label="ViewStaffFragment" />
+        android:label="Staff Info" />
 </navigation>
