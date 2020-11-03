@@ -33,6 +33,7 @@ class ViewDiplomaFragment : Fragment() {
         val formatter = NumberFormat.getCurrencyInstance()
         binding.feesText.text = formatter.format(viewModel.diploma.fees)
         binding.title.text = viewModel.diploma.title
+        binding.outlineText.text = viewModel.diploma.outline
     }
 
 }

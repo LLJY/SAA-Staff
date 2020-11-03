@@ -32,7 +32,7 @@ class ViewCourseInfoFragment : Fragment() {
         binding.startDateText.text = startDate
         binding.endDateText.text = endDate
         val formatter = NumberFormat.getCurrencyInstance()
-        binding.feesText.text = "Fees: ${formatter.format(course.fees)}"
+        binding.feesText.text = "${formatter.format(course.fees)}"
         binding.learningOutcomesText.text = course.learningOutcomes
         binding.attendText.text = course.attending
         binding.prerequisitesText.text = course.prerequisites
