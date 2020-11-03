@@ -116,7 +116,7 @@ class ManageScholarshipFragment : Fragment() {
         if (query.isNotBlank()) {
             return viewModel.scholarships?.filter {
                 it.title.toLowerCase().contains(query.toLowerCase())
-            }
+            }?.distinct()
         } else {
             return viewModel.scholarships
         }

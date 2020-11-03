@@ -120,7 +120,7 @@ class ManageCoursesFragment : Fragment() {
         if (query.isNotBlank()) {
             return viewModel.courses?.filter {
                 it.title.toLowerCase().contains(query.toLowerCase())
-            }
+            }?.distinct()
         } else {
             return viewModel.courses
         }

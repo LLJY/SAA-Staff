@@ -117,7 +117,7 @@ class ManageDiplomaFragment : Fragment() {
         if (query.isNotBlank()) {
             return viewModel.diplomas?.filter {
                 it.title.toLowerCase().contains(query.toLowerCase())
-            }
+            }?.distinct()
         } else {
             return viewModel.diplomas
         }
