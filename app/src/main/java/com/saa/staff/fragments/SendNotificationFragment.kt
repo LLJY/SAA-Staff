@@ -46,6 +46,9 @@ class SendNotificationFragment : Fragment() {
                                 "Notification Sent!",
                                 Snackbar.LENGTH_SHORT
                             ).show()
+                            // clear the messages
+                            binding.titleText.editText!!.setText("")
+                            binding.message.editText!!.setText("")
                         } else {
                             Snackbar.make(
                                 binding.root,
