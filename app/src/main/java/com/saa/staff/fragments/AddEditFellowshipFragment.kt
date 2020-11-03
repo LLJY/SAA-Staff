@@ -91,14 +91,16 @@ class AddEditFellowshipFragment : Fragment() {
                 // if it is editing call update, or else, call
                 pd.show()
                 if(viewModel.isEdit){
-                    Snackbar.make(binding.root, "updating fellowship...", Snackbar.LENGTH_LONG).show()
                     manageFellowShipViewModel.updateFellowship(fellowShip).observe(viewLifecycleOwner){
+                        Snackbar.make(binding.root, "Success!", Snackbar.LENGTH_LONG).show()
                         pd.dismiss()
+                        activity?.onBackPressed()
                     }
                 }else{
-                    Snackbar.make(binding.root, "adding fellowship...", Snackbar.LENGTH_LONG).show()
                     manageFellowShipViewModel.addFellowship(fellowShip).observe(viewLifecycleOwner){
+                        Snackbar.make(binding.root, "Success!", Snackbar.LENGTH_LONG).show()
                         pd.dismiss()
+                        activity?.onBackPressed()
                     }
                 }
             }else{
