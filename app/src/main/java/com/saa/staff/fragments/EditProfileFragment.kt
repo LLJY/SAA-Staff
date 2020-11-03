@@ -173,7 +173,8 @@ class EditProfileFragment : Fragment() {
                                 ).show()
                                 // clear the viewmodel when we are done
                                 viewModel.clearViewModel()
-                                requireActivity().onBackPressed()
+                                Snackbar.make(view, "Success!", Snackbar.LENGTH_LONG)
+                                    .show()
                             } else {
                                 Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_LONG)
                                     .show()
