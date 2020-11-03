@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.saa.staff.adapters.FellowshipsRecyclerAdapter
 import com.saa.staff.databinding.ManageFellowshipFragmentBinding
@@ -75,6 +76,17 @@ class ManageFellowshipFragment : Fragment() {
                 findNavController().navigate(ManageFellowshipFragmentDirections.actionManageFellowshipFragmentToAddEditFellowshipFragment())
             }
         }
+        binding.fellowshipRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    binding.fabFellowship.hide()
+                } else if (dy < 0) {
+                    binding.fabFellowship.show()
+                }
+            }
+        })
         lifecycleScope.launch(Dispatchers.Main) {
             adapter.deleteClick.collect {
                 val dialog = AlertDialog.Builder(requireContext())
@@ -121,7 +133,7 @@ class ManageFellowshipFragment : Fragment() {
         if (query.isNotBlank()) {
             return viewModel.fellowships?.filter {
                 it.title.toLowerCase().contains(query.toLowerCase())
-            }
+            }?.distinct()
         } else {
             return viewModel.fellowships
         }
